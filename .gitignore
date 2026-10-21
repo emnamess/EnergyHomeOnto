@@ -1,0 +1,15 @@
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Backend
+backend/target/
+*.class
+
+# Local runtime data and secrets
+.env
+data/fuseki/
+*.log
+.DS_Store
+Thumbs.db
