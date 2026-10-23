@@ -6,6 +6,9 @@ frontend/.vite/
 # Backend
 backend/target/
 *.class
+backend/.venv/
+backend/__pycache__/
+backend/**/*.pyc
 
 # Local runtime data and secrets
 .env

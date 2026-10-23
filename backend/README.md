@@ -1,7 +1,27 @@
-# Backend
+# Backend Python
 
-Module Spring Boot. Lancer avec `mvn spring-boot:run` (Java 21 requis). Il expose
-`GET /api/health` et `POST /api/search` avec `{ "query": "..." }`. Le moteur
-local reconnaît actuellement les recherches de maisons avec batterie, panneau
-solaire ou éolienne. Fuseki doit être démarré et contenir le dataset `energyhome`
-pour que la recherche renvoie des individus.
+API FastAPI pour EnergyHomeOnto. Elle interroge Apache Jena Fuseki par SPARQL.
+
+## Démarrage local
+
+Depuis `backend/` :
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
+```
+
+L’API est disponible sur `http://localhost:8000` et sa documentation interactive
+sur `http://localhost:8000/docs`.
+
+`FUSEKI_QUERY_URL` définit l’endpoint SPARQL ; la valeur locale par défaut est
+`http://localhost:3030/energyhome/query`.
+
+## Organisation
+
+- `app/features/<feature>/` : code backend de chaque feature individuelle.
+- `app/shared/recherche/` : module de recherche intelligente commun aux cinq
+  membres, incluant le moteur local français vers SPARQL et l’accès Fuseki.
+- `app/main.py` : assemblage de l’application et routes communes.
