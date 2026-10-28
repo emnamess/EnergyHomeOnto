@@ -1,27 +1,36 @@
 # Backend Python
 
-API FastAPI pour EnergyHomeOnto. Elle interroge Apache Jena Fuseki par SPARQL.
+API FastAPI pour EnergyHomeOnto. Les requêtes SPARQL sont exécutées localement
+par `rdflib` sur `data/energyhomeonto.ttl` : aucun serveur Fuseki ni Docker n’est
+nécessaire.
 
-## Démarrage local
+## Démarrage avec uv
 
 Depuis `backend/` :
 
 ```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
+uv venv
+uv pip install -r requirements.txt
+uv run uvicorn app.main:app --reload --port 8000
 ```
 
 L’API est disponible sur `http://localhost:8000` et sa documentation interactive
 sur `http://localhost:8000/docs`.
 
-`FUSEKI_QUERY_URL` définit l’endpoint SPARQL ; la valeur locale par défaut est
-`http://localhost:3030/energyhome/query`.
+## Tests
+
+```powershell
+uv pip install -r requirements-dev.txt
+uv run pytest
+```
+
+Les tests de `tests/` appellent l’API avec `TestClient` sur le graphe RDF local.
 
 ## Organisation
 
 - `app/features/<feature>/` : code backend de chaque feature individuelle.
-- `app/shared/recherche/` : module de recherche intelligente commun aux cinq
-  membres, incluant le moteur local français vers SPARQL et l’accès Fuseki.
-- `app/main.py` : assemblage de l’application et routes communes.
+- `app/shared/recherche/` : module commun qui transforme une phrase française en
+  requête SPARQL locale.
+- `app/shared/rdf_store.py` : chargement unique du graphe Turtle et exécution
+  des requêtes.
+- `../data/energyhomeonto.ttl` : données RDF utilisées à l’exécution.

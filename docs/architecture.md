@@ -1,19 +1,20 @@
 # Architecture en features verticales
 
-Chaque feature porte son parcours complet : composants React, endpoint REST,
+Chaque feature porte son parcours complet : composants React, endpoint FastAPI,
 service métier et requêtes SPARQL. Les features partagent le vocabulaire OWL,
-Fuseki et l’application hôte ; elles ne sont pas découpées par couche technique.
+le graphe RDF local et l’application hôte ; elles ne sont pas découpées par couche
+technique.
 
 ```text
 Frontend React                         Backend Python / FastAPI
 features/batiments  ── HTTP/JSON ──►  features/batiments ── SPARQL ──┐
-features/production  ── HTTP/JSON ──►  features/production ─ SPARQL ─┤
-features/stockage    ── HTTP/JSON ──►  features/stockage ─── SPARQL ─┤
-features/reseau      ── HTTP/JSON ──►  features/reseau ───── SPARQL ─┤
-features/territoires ── HTTP/JSON ──►  features/territoires ─ SPARQL ┤
-shared/recherche     ── HTTP/JSON ──►  shared/recherche ───── SPARQL ┤
+features/production ── HTTP/JSON ──►  features/production ─ SPARQL ─┤
+features/stockage   ── HTTP/JSON ──►  features/stockage ─── SPARQL ─┤
+features/reseau     ── HTTP/JSON ──►  features/reseau ───── SPARQL ─┤
+features/territoires── HTTP/JSON ──►  features/territoires ─ SPARQL ─┤
+shared/recherche    ── HTTP/JSON ──►  shared/recherche ───── SPARQL ─┤
                                                                     ▼
-                                                 Apache Jena Fuseki / dataset
+                                               rdflib / energyhomeonto.ttl
 ```
 
 ## Pull requests
@@ -28,5 +29,5 @@ intégrés par PR vers `main`.
 
 `POST /api/search` reçoit `{ "query": "..." }`. L’analyseur local comprend la
 phrase par des règles codées dans le projet, compose un patron SPARQL depuis les
-classes/propriétés connues, puis interroge Fuseki. Aucun service d’IA distant
-n’est utilisé.
+classes et propriétés connues, puis l’exécute sur le graphe RDF local. Aucun
+service d’IA distant n’est utilisé.
