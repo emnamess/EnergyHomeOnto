@@ -25,6 +25,10 @@ ONTOLOGY_PATH = ROOT / "energyhomeonto.owx"
 DEFAULT_JOURNAL_PATH = ROOT / "data" / "journal-crud.rq"
 JOURNAL_SEPARATOR = "\n;\n"
 OWLRL_ERROR = URIRef("http://www.daml.org/2002/03/agents/agent-ont#ErrorMessage")
+# Le parseur SPARQL de rdflib (pyparsing) n'est pas thread-safe : deux requêtes
+# analysées en même temps le corrompent durablement. FastAPI exécutant les routes
+# dans plusieurs threads, tout accès SPARQL passe par ce verrou global.
+SPARQL_LOCK = threading.RLock()
 
 
 def journal_path() -> Path:
@@ -57,28 +61,30 @@ def _infer(asserted: Graph) -> Graph:
 
 class RdfStore:
     def __init__(self) -> None:
-        self._lock = threading.Lock()
         self.version = 0
         self.asserted = _load_ontology()
         path = journal_path()
-        if path.exists():
-            for statement in path.read_text(encoding="utf-8").split(JOURNAL_SEPARATOR):
-                if statement.strip():
-                    self.asserted.update(statement)
+        with SPARQL_LOCK:
+            if path.exists():
+                for statement in path.read_text(encoding="utf-8").split(JOURNAL_SEPARATOR):
+                    if statement.strip():
+                        self.asserted.update(statement)
         self.inferred = _infer(self.asserted)
 
     def query(self, sparql: str, inferred: bool = True) -> list[dict[str, str]]:
         graph = self.inferred if inferred else self.asserted
-        return [
-            {str(variable): str(value) for variable, value in row.asdict().items() if value is not None}
-            for row in graph.query(sparql)
-        ]
+        with SPARQL_LOCK:
+            return [
+                {str(variable): str(value) for variable, value in row.asdict().items() if value is not None}
+                for row in graph.query(sparql)
+            ]
 
     def ask(self, sparql: str) -> bool:
-        return bool(self.inferred.query(sparql).askAnswer)
+        with SPARQL_LOCK:
+            return bool(self.inferred.query(sparql).askAnswer)
 
     def update(self, sparql: str) -> None:
-        with self._lock:
+        with SPARQL_LOCK:
             self.asserted.update(sparql)
             path = journal_path()
             path.parent.mkdir(parents=True, exist_ok=True)
