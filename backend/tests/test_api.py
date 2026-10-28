@@ -26,8 +26,8 @@ def test_health_reports_inferred_triples():
 # --- Territoires et acteurs : lecture et filtrage ---------------------------------
 
 def test_territories_list_and_filters():
-    assert {t["id"] for t in client.get(f"{API}/territoires").json()} == {"villeTunis", "quartierLac", "quartierCentre"}
-    assert [t["id"] for t in client.get(f"{API}/territoires", params={"kind": "Ville"}).json()] == ["villeTunis"]
+    assert len(client.get(f"{API}/territoires").json()) == 12
+    assert {t["id"] for t in client.get(f"{API}/territoires", params={"kind": "Ville"}).json()} == {"villeTunis", "villeSfax", "villeSousse", "villeAriana"}
     assert [t["id"] for t in client.get(f"{API}/territoires", params={"q": "lac"}).json()] == ["quartierLac"]
 
 
@@ -43,15 +43,17 @@ def test_territory_infrastructure_uses_reasoning():
 
 def test_actor_detail_with_inverse_properties():
     steg = client.get(f"{API}/acteurs/STEG").json()
-    assert steg["managed_count"] == 11
+    assert steg["managed_count"] == 21
     sarra = client.get(f"{API}/acteurs/sarra").json()
     # estProprietaireDe est déduit de appartientA par owl:inverseOf.
     assert {b["id"] for b in sarra["owned_buildings"]} == {"Maison2", "Maison5"}
+    leila = client.get(f"{API}/acteurs/leila").json()
+    assert {b["id"] for b in leila["owned_buildings"]} == {"Maison6", "Maison16"}
 
 
 def test_actor_filters():
     people = client.get(f"{API}/acteurs", params={"kind": "Personne"}).json()
-    assert {a["id"] for a in people} == {"ahmed", "sarra", "karim"}
+    assert {"ahmed", "sarra", "karim", "leila", "walid"} <= {a["id"] for a in people} and len(people) == 13
     assert [a["id"] for a in client.get(f"{API}/acteurs", params={"q": "trab"}).json()] == ["sarra"]
 
 
@@ -122,23 +124,26 @@ def test_actor_input_validation():
 @pytest.mark.parametrize(
     ("question", "expected"),
     [
-        ("Liste les maisons autonomes qui possèdent un panneau solaire", ["Maison1", "Maison2", "Maison5"]),
-        ("maisons sans panneau solaire", ["Maison3", "Maison4"]),
-        ("maisons non autonomes", ["Maison3", "Maison4"]),
-        ("maisons intelligentes", ["Maison1", "Maison2", "Maison5"]),
-        ("maisons avec une batterie", ["Maison5"]),
+        ("Liste les maisons autonomes qui possèdent un panneau solaire", ["Maison1", "Maison12", "Maison13", "Maison15", "Maison2", "Maison5", "Maison6", "Maison8"]),
+        ("maisons sans panneau solaire", ["Maison10", "Maison11", "Maison14", "Maison16", "Maison17", "Maison3", "Maison4", "Maison7", "Maison9"]),
+        ("maisons non autonomes", ["Maison10", "Maison11", "Maison14", "Maison16", "Maison17", "Maison3", "Maison4", "Maison7", "Maison9"]),
+        ("maisons intelligentes", ["Maison1", "Maison10", "Maison13", "Maison15", "Maison17", "Maison2", "Maison5", "Maison6", "Maison8"]),
+        ("maisons avec une batterie", ["Maison12", "Maison15", "Maison5", "Maison6"]),
         ("maisons de Sarra", ["Maison2", "Maison5"]),
-        ("lignes gérées par la STEG", ["ligneBT1", "ligneHT1", "ligneHT2", "ligneMT1", "ligneMT2"]),
-        ("bâtiments alimentés par une éolienne", ["Maison3", "Maison4", "ecole1", "supermarche1"]),
+        ("lignes gérées par la STEG", ["ligneBT1", "ligneBT2", "ligneBT4", "ligneHT1", "ligneHT2", "ligneHT3", "ligneMT1", "ligneMT2", "ligneMT4"]),
+        ("lignes gérées par Sahel Énergie", ["ligneBT3", "ligneHT4", "ligneMT3"]),
+        ("bâtiments alimentés par une éolienne", ["Maison12", "Maison3", "Maison4", "Maison9", "ecole1", "ecole2", "supermarche1", "usine2"]),
+        ("bâtiments alimentés par la centrale thermique de Radès", ["Maison16", "Maison7", "supermarche2"]),
+        ("maisons du quartier Ennasr", ["Maison12", "Maison17", "Maison6"]),
         ("éoliennes du quartier Les Berges du Lac", ["eolienne1"]),
         ("Dans quel quartier se trouve la maison 1 ?", ["quartierLac"]),
-        ("Quelles sont les batteries ayant une capacité supérieure à 20 ?", ["batterie1", "batterie3"]),
-        ("sources d'énergie avec une puissance entre 5 et 50,5 kW", ["eolienne1", "panneausolaire1", "panneausolaire3", "panneausolaire4"]),
-        ("bâtiments avec une consommation inférieure à 12", ["Maison2", "Maison4", "Maison5"]),
-        ("bâtiments de classe énergétique A", ["Maison1", "Maison5"]),
-        ("la batterie avec la plus grande capacité", ["batterie3"]),
-        ("quel est le panneau solaire le plus puissant", ["panneausolaire4"]),
-        ("lignes souterraines", ["ligne2", "ligneBT1", "ligneMT1", "ligneMT2"]),
+        ("Quelles sont les batteries ayant une capacité supérieure à 20 ?", ["batterie1", "batterie3", "batterie7"]),
+        ("sources d'énergie avec une puissance entre 5 et 50,5 kW", ["centraleHydro2", "eolienne1", "panneausolaire1", "panneausolaire10", "panneausolaire11", "panneausolaire3", "panneausolaire4", "panneausolaire5", "panneausolaire7", "panneausolaire9"]),
+        ("bâtiments avec une consommation inférieure à 12", ["Maison12", "Maison15", "Maison17", "Maison2", "Maison4", "Maison5", "Maison6", "Maison8"]),
+        ("bâtiments de classe énergétique A", ["Maison1", "Maison12", "Maison15", "Maison5", "Maison6"]),
+        ("la batterie avec la plus grande capacité", ["batterie7"]),
+        ("quel est le panneau solaire le plus puissant", ["panneausolaire12"]),
+        ("lignes souterraines", ["ligne2", "ligneBT1", "ligneBT2", "ligneMT1", "ligneMT2", "ligneMT3", "ligneMT4"]),
     ],
 )
 def test_search(question, expected):
@@ -148,7 +153,8 @@ def test_search(question, expected):
 
 
 def test_search_counts():
-    assert search("Combien de maisons à Tunis ?").json()["results"] == [{"nombre": "5"}]
+    assert search("Combien de maisons à Tunis ?").json()["results"] == [{"nombre": "7"}]
+    assert search("Combien de maisons à Sfax ?").json()["results"] == [{"nombre": "3"}]
 
 
 def test_search_describes_individual():
@@ -173,9 +179,9 @@ def test_dashboard_counts_and_deductions():
     assert (body["classes"], body["object_properties"], body["data_properties"]) == (45, 13, 43)
     assert body["inferred_triples"] > body["asserted_triples"]
     families = {family["id"]: family["count"] for family in body["families"]}
-    assert families["Batiment"] == 10 and families["Zone"] == 3
+    assert families["Batiment"] == 27 and families["Zone"] == 12
     deduced = {item["id"]: item["members"] for item in body["defined_classes"]}
-    assert deduced["MaisonAutonome"] == ["Maison1", "Maison2", "Maison5"]
+    assert deduced["MaisonAutonome"] == ["Maison1", "Maison12", "Maison13", "Maison15", "Maison2", "Maison5", "Maison6", "Maison8"]
     # Classes à seuil numérique, calculées en complément d'OWL RL.
-    assert deduced["GrosConsommateur"] == ["hopital1", "supermarche1", "usine1"]
-    assert deduced["SourceForte"] == ["centraleGaz1", "centraleHydro1"]
+    assert deduced["GrosConsommateur"] == ["hopital1", "hopital2", "supermarche1", "supermarche2", "usine1", "usine2"]
+    assert deduced["SourceForte"] == ["centraleGaz1", "centraleGaz2", "centraleHydro1", "eolienne5", "panneausolaire12"]

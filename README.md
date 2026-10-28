@@ -59,9 +59,9 @@ ce que le raisonneur a déduit, scénario de démonstration) ; la barre latéral
 
 | Exigence de la validation | Où la trouver |
 | --- | --- |
-| Ontologie liée à la thématique | `energyhomeonto.owx` : ~45 classes, propriétés d’objet et de données, individus |
+| Ontologie liée à la thématique | `energyhomeonto.owx` : 45 classes, 13 propriétés d’objet, 43 propriétés de données, 120 individus (Tunis, Ariana, Sfax, Sousse) |
 | ObjectProperty, DataProperty, individus, axiomes | Domaines/portées, sous-classes, classes disjointes, classes définies (`MaisonAutonome ≡ Maison ⊓ ∃possede.PanneauSolaire`…), propriétés inverses, transitives et fonctionnelles, restrictions |
-| Axiomes réellement exploités | Raisonneur OWL RL (`backend/app/shared/rdf_store.py`), complété pour les classes définies par un seuil numérique : les requêtes portent sur le graphe inféré (1 352 → ~4 050 triplets). Le tableau de bord liste les 10 classes définies et leurs individus déduits |
+| Axiomes réellement exploités | Raisonneur OWL RL (`backend/app/shared/rdf_store.py`), complété pour les classes définies par un seuil numérique : les requêtes portent sur le graphe inféré (2 142 → ~6 400 triplets). Le tableau de bord liste les 10 classes définies et leurs individus déduits |
 | Interfaces front et back | React (`frontend/`) + FastAPI (`backend/`) |
 | Communication front ↔ back | API REST JSON, proxy Vite `/api` → port 8000 |
 | SPARQL : lecture | `SELECT` dans chaque `queries.py` |
