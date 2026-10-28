@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode } from 'react'
 
 export type Route = { hash: string; label: string; icon: string; ready: boolean }
 
@@ -23,23 +23,6 @@ export const SECTIONS: Array<{ title: string; routes: Route[] }> = [
   },
 ]
 
-type Health = { triplets_asserts: number; triplets_inferes: number }
-
-function ApiStatus() {
-  const [health, setHealth] = useState<Health | null | undefined>(undefined)
-
-  useEffect(() => {
-    const check = () => fetch('/api/health').then((r) => (r.ok ? r.json() : null)).then(setHealth).catch(() => setHealth(null))
-    check()
-    const timer = setInterval(check, 15000)
-    return () => clearInterval(timer)
-  }, [])
-
-  if (health === undefined) return <div className="api-status"><span className="dot" />Connexion à l’API…</div>
-  if (health === null) return <div className="api-status down"><span className="dot" aria-hidden="true" />API injoignable<small>Lancez le backend (port 8000)</small></div>
-  return <div className="api-status up"><span className="dot" aria-hidden="true" />API connectée<small>{health.triplets_inferes.toLocaleString('fr-FR')} triplets après raisonnement</small></div>
-}
-
 export function Layout({ current, children }: { current: string; children: ReactNode }) {
   return <div className="app-shell">
     <aside className="sidebar">
@@ -52,7 +35,6 @@ export function Layout({ current, children }: { current: string; children: React
             : <span key={route.hash} className="nav-link disabled" title="En cours de développement"><span className="nav-icon" aria-hidden="true">{route.icon}</span>{route.label}<em>à venir</em></span>)}
         </div>)}
       </nav>
-      <ApiStatus />
     </aside>
     <main className="content">{children}</main>
   </div>

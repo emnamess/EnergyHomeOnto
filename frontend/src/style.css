@@ -44,12 +44,6 @@ h1, h2, h3 { margin: 0; }
 .nav-link.disabled:hover { background: none; color: #a3aea6; }
 .nav-link em { margin-left: auto; font: normal 9px 'DM Mono', monospace; letter-spacing: .6px; text-transform: uppercase; padding: 2px 6px; border: 1px solid var(--line); border-radius: 4px; }
 .nav-icon { width: 18px; text-align: center; font-size: 15px; }
-.api-status { margin-top: auto; display: grid; grid-template-columns: auto 1fr; align-items: center; column-gap: 8px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font-size: 13px; font-weight: 600; }
-.api-status small { grid-column: 2; font-weight: 400; font-size: 11px; color: var(--muted); }
-.api-status .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); }
-.api-status.up .dot { background: var(--good); }
-.api-status.down { color: var(--danger); }
-.api-status.down .dot { background: var(--danger); }
 .content { padding: 34px clamp(18px, 4vw, 48px) 60px; max-width: 1240px; width: 100%; }
 
 /* ---------- Éléments communs ---------- */
@@ -175,8 +169,6 @@ pre { margin: 10px 0 0; padding: 14px; background: var(--surface-soft); border-r
   .nav-section p, .nav-link.disabled { display: none; }
   .nav-section + .nav-section { margin-top: 0; }
   .nav-link { white-space: nowrap; }
-  .api-status { margin: 0 0 0 auto; padding: 6px 10px; }
-  .api-status small { display: none; }
   .content { padding: 24px 16px 48px; }
   .explorer { grid-template-columns: 1fr; }
   .explorer-list { border-right: 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; }
