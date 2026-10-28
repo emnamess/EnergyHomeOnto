@@ -1,9 +1,10 @@
-# Données RDF
+# Données
 
-`energyhomeonto.ttl` est le graphe RDF local chargé par FastAPI avec `rdflib`.
-Il contient les données nécessaires aux cinq features et fonctionne sans Fuseki,
-Docker ou service externe.
+L’ontologie et ses individus sont lus directement depuis `../energyhomeonto.owx`
+(fichier Protégé, format OWL/XML) : il n’y a plus de copie Turtle à maintenir.
 
-Le fichier source `energyhomeonto.owx` est une ontologie OWL/XML. Pour enrichir
-le graphe avec toutes les données de Protégé, exporter l’ontologie au format
-Turtle puis remplacer ou compléter `energyhomeonto.ttl`.
+Ce dossier contient uniquement `journal-crud.rq`, créé automatiquement par le
+backend : chaque requête SPARQL Update (création, modification, suppression)
+faite depuis l’application y est ajoutée, puis rejouée au démarrage. Ce fichier
+est local à chaque poste (ignoré par Git). Le supprimer remet les données à
+l’état de l’ontologie.

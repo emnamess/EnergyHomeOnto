@@ -14,7 +14,7 @@ features/reseau     ── HTTP/JSON ──►  features/reseau ───── 
 features/territoires── HTTP/JSON ──►  features/territoires ─ SPARQL ─┤
 shared/recherche    ── HTTP/JSON ──►  shared/recherche ───── SPARQL ─┤
                                                                     ▼
-                                               rdflib / energyhomeonto.ttl
+                              rdflib + owlrl (graphe inféré) ◄── owlready2 ◄── energyhomeonto.owx
 ```
 
 ## Pull requests
@@ -27,7 +27,8 @@ intégrés par PR vers `main`.
 
 ## Recherche intelligente
 
-`POST /api/search` reçoit `{ "query": "..." }`. L’analyseur local comprend la
-phrase par des règles codées dans le projet, compose un patron SPARQL depuis les
-classes et propriétés connues, puis l’exécute sur le graphe RDF local. Aucun
-service d’IA distant n’est utilisé.
+`POST /api/search` reçoit `{ "query": "..." }`. spaCy (`fr_core_news_sm`)
+analyse la phrase (lemmes, catégories, dépendances), les termes de l’ontologie y
+sont reconnus, puis une requête SPARQL est composée à partir des domaines et
+portées des propriétés et exécutée sur le graphe inféré. Aucun service d’IA
+distant n’est utilisé. Détails : `README.md` racine, § 5.

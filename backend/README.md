@@ -1,8 +1,8 @@
 # Backend Python
 
-API FastAPI pour EnergyHomeOnto. Les requêtes SPARQL sont exécutées localement
-par `rdflib` sur `data/energyhomeonto.ttl` : aucun serveur Fuseki ni Docker n’est
-nécessaire.
+API FastAPI pour EnergyHomeOnto. L’ontologie `../energyhomeonto.owx` est lue avec
+owlready2, enrichie par le raisonneur OWL RL (owlrl) et interrogée en SPARQL avec
+rdflib : aucun serveur Fuseki ni Docker n’est nécessaire. Guide complet : `../README.md`.
 
 ## Démarrage avec uv
 
@@ -10,7 +10,7 @@ Depuis `backend/` :
 
 ```powershell
 uv venv
-uv pip install -r requirements.txt
+uv pip install -r requirements-dev.txt
 uv run uvicorn app.main:app --reload --port 8000
 ```
 
@@ -20,7 +20,6 @@ sur `http://localhost:8000/docs`.
 ## Tests
 
 ```powershell
-uv pip install -r requirements-dev.txt
 uv run pytest
 ```
 
@@ -29,8 +28,9 @@ Les tests de `tests/` appellent l’API avec `TestClient` sur le graphe RDF loca
 ## Organisation
 
 - `app/features/<feature>/` : code backend de chaque feature individuelle.
-- `app/shared/recherche/` : module commun qui transforme une phrase française en
-  requête SPARQL locale.
-- `app/shared/rdf_store.py` : chargement unique du graphe Turtle et exécution
-  des requêtes.
-- `../data/energyhomeonto.ttl` : données RDF utilisées à l’exécution.
+- `app/shared/recherche/` : module NLP commun (spaCy) qui transforme une phrase
+  française en requête SPARQL.
+- `app/shared/rdf_store.py` : chargement de l’ontologie, raisonnement, `query()`,
+  `ask()` et `update()`.
+- `app/shared/sparql.py` : préfixes et échappement des valeurs.
+- `../data/journal-crud.rq` : modifications CRUD locales, rejouées au démarrage.
