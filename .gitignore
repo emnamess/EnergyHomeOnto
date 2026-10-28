@@ -12,7 +12,6 @@ backend/**/*.pyc
 
 # Local runtime data and secrets
 .env
-data/fuseki/
 *.log
 .DS_Store
 Thumbs.db

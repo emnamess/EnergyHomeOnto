@@ -1,4 +1,9 @@
 # Données RDF
 
-Déposer ici les fichiers RDF de démonstration (`.ttl`, `.nt` ou `.rdf`). Ils
-doivent employer les classes et propriétés déclarées dans `energyhomeonto.owx`.
+`energyhomeonto.ttl` est le graphe RDF local chargé par FastAPI avec `rdflib`.
+Il contient les données nécessaires aux cinq features et fonctionne sans Fuseki,
+Docker ou service externe.
+
+Le fichier source `energyhomeonto.owx` est une ontologie OWL/XML. Pour enrichir
+le graphe avec toutes les données de Protégé, exporter l’ontologie au format
+Turtle puis remplacer ou compléter `energyhomeonto.ttl`.

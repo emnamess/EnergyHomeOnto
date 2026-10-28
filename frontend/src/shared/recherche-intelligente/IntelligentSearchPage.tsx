@@ -50,7 +50,7 @@ export default function App() {
         {error && <p className="notice error">{error} Vérifiez que l’API Python tourne sur le port 8000.</p>}
         {response && <section className="results"><h2>{response.interpretation}</h2><pre>{response.sparql}</pre><p>{response.results.length} résultat(s)</p></section>}
       </section>
-      <footer><span>Une ontologie pour mieux comprendre les ressources énergétiques.</span><span>OWL · SPARQL · Apache Jena</span></footer>
+      <footer><span>Une ontologie pour mieux comprendre les ressources énergétiques.</span><span>OWL · SPARQL · Python</span></footer>
     </main>
   )
 }
