@@ -14,17 +14,20 @@ class SearchResponse(BaseModel):
     interpretation: str
     sparql: str
     results: list[dict[str, str]]
+    analyse: dict
 
 
 @router.post("/search", response_model=SearchResponse)
 def semantic_search(request: SearchRequest) -> SearchResponse:
     try:
         query, results = search(request.query)
-        return SearchResponse(interpretation=query.interpretation, sparql=query.sparql, results=results)
+        return SearchResponse(
+            interpretation=query.interpretation, sparql=query.sparql, results=results, analyse=query.analyse
+        )
     except ValueError as error:
         raise HTTPException(status_code=400, detail=str(error)) from error
     except Exception as error:
         raise HTTPException(
             status_code=503,
-            detail="Impossible d'interroger le graphe RDF local. Vérifiez le fichier data/energyhomeonto.ttl.",
+            detail="Impossible d'interroger le graphe RDF local. Vérifiez le fichier energyhomeonto.owx.",
         ) from error

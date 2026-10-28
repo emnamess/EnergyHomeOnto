@@ -15,3 +15,6 @@ backend/**/*.pyc
 *.log
 .DS_Store
 Thumbs.db
+
+# Modifications CRUD locales (rejouées au démarrage)
+data/journal-crud.rq

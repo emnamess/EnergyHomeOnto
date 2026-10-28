@@ -1,28 +1,41 @@
-NAMESPACE = "http://www.example.org/energyhomeonto#"
+"""Requêtes SPARQL de la feature Territoires et acteurs (lecture, filtrage et CRUD)."""
 
-PREFIX = f"""PREFIX : <{NAMESPACE}>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-"""
+from app.shared.sparql import PREFIXES, most_specific_kind, string
+
+TERRITORY_CLASSES = ("Ville", "Quartier")
+ACTOR_CLASSES = ("Personne", "GestionnaireReseau")
 
 
-def territory_list() -> str:
-    return PREFIX + """
-SELECT ?territory ?name ?kind ?population ?postalCode ?area WHERE {
-  VALUES ?class { :Ville :Quartier }
+def _values(classes: tuple[str, ...], kind: str | None) -> str:
+    selected = [kind] if kind in classes else list(classes)
+    return "VALUES ?class { " + " ".join(f":{c}" for c in selected) + " }"
+
+
+def _text_filter(variable: str, text: str | None) -> str:
+    if not text:
+        return ""
+    return f"FILTER(CONTAINS(LCASE(STR(?{variable})), LCASE({string(text)})))"
+
+
+def territory_list(kind: str | None = None, text: str | None = None) -> str:
+    return PREFIXES + f"""
+SELECT ?territory ?name ?kind ?population ?postalCode ?area WHERE {{
+  {_values(TERRITORY_CLASSES, kind)}
   ?territory a ?class ; :nom ?name .
   BIND(STRAFTER(STR(?class), "#") AS ?kind)
-  OPTIONAL { ?territory :population ?population }
-  OPTIONAL { ?territory :codePostal ?postalCode }
-  OPTIONAL { ?territory :superficie ?area }
-}
+  OPTIONAL {{ ?territory :population ?population }}
+  OPTIONAL {{ ?territory :codePostal ?postalCode }}
+  OPTIONAL {{ ?territory :superficie ?area }}
+  {_text_filter("name", text)}
+}}
 ORDER BY ?kind ?name
 """
 
 
 def territory_detail(identifier: str) -> str:
-    return PREFIX + f"""
+    return PREFIXES + f"""
 SELECT ?name ?kind ?population ?postalCode ?area WHERE {{
-  VALUES ?class {{ :Ville :Quartier }}
+  {_values(TERRITORY_CLASSES, None)}
   :{identifier} a ?class ; :nom ?name .
   BIND(STRAFTER(STR(?class), "#") AS ?kind)
   OPTIONAL {{ :{identifier} :population ?population }}
@@ -32,37 +45,45 @@ SELECT ?name ?kind ?population ?postalCode ?area WHERE {{
 """
 
 
-def territory_infrastructure(identifier: str) -> str:
-    return PREFIX + f"""
-SELECT DISTINCT ?element ?name ?kind WHERE {{
-  ?element :estSitueDans :{identifier} ; a ?class .
+def _elements(pattern: str) -> str:
+    """Éléments liés, avec leur classe la plus précise obtenue par le raisonneur."""
+    return PREFIXES + f"""
+SELECT ?element (SAMPLE(?label) AS ?name) (GROUP_CONCAT(DISTINCT ?kind; separator=", ") AS ?kinds) WHERE {{
+  {pattern}
   OPTIONAL {{ ?element :nom ?givenName }}
-  BIND(COALESCE(?givenName, STRAFTER(STR(?element), "#")) AS ?name)
-  BIND(STRAFTER(STR(?class), "#") AS ?kind)
+  BIND(COALESCE(?givenName, STRAFTER(STR(?element), "#")) AS ?label)
+  {most_specific_kind("element")}
 }}
-ORDER BY ?kind ?name
+GROUP BY ?element
+ORDER BY ?kinds ?name
 """
 
 
-def actor_list() -> str:
-    return PREFIX + """
-SELECT ?actor ?name ?kind ?email ?phone (COUNT(DISTINCT ?equipment) AS ?managedCount) WHERE {
-  VALUES ?class { :Personne :GestionnaireReseau }
+def territory_infrastructure(identifier: str) -> str:
+    # estSitueDans est transitive : une ville contient aussi les éléments de ses quartiers.
+    return _elements(f"?element :estSitueDans :{identifier} .")
+
+
+def actor_list(kind: str | None = None, text: str | None = None) -> str:
+    return PREFIXES + f"""
+SELECT ?actor ?name ?kind ?email ?phone (COUNT(DISTINCT ?equipment) AS ?managedCount) WHERE {{
+  {_values(ACTOR_CLASSES, kind)}
   ?actor a ?class ; :nom ?name .
   BIND(STRAFTER(STR(?class), "#") AS ?kind)
-  OPTIONAL { ?actor :email ?email }
-  OPTIONAL { ?actor :telephone ?phone }
-  OPTIONAL { ?actor :gere ?equipment }
-}
+  OPTIONAL {{ ?actor :email ?email }}
+  OPTIONAL {{ ?actor :telephone ?phone }}
+  OPTIONAL {{ ?actor :gere ?equipment }}
+  {_text_filter("name", text)}
+}}
 GROUP BY ?actor ?name ?kind ?email ?phone
 ORDER BY ?kind ?name
 """
 
 
 def actor_detail(identifier: str) -> str:
-    return PREFIX + f"""
+    return PREFIXES + f"""
 SELECT ?name ?kind ?email ?phone (COUNT(DISTINCT ?equipment) AS ?managedCount) WHERE {{
-  VALUES ?class {{ :Personne :GestionnaireReseau }}
+  {_values(ACTOR_CLASSES, None)}
   :{identifier} a ?class ; :nom ?name .
   BIND(STRAFTER(STR(?class), "#") AS ?kind)
   OPTIONAL {{ :{identifier} :email ?email }}
@@ -74,13 +95,51 @@ GROUP BY ?name ?kind ?email ?phone
 
 
 def managed_equipment(identifier: str) -> str:
-    return PREFIX + f"""
-SELECT DISTINCT ?element ?name ?kind WHERE {{
-  :{identifier} :gere ?element .
-  ?element a ?class .
-  OPTIONAL {{ ?element :nom ?givenName }}
-  BIND(COALESCE(?givenName, STRAFTER(STR(?element), "#")) AS ?name)
-  BIND(STRAFTER(STR(?class), "#") AS ?kind)
+    return _elements(f":{identifier} :gere ?element .")
+
+
+def owned_buildings(identifier: str) -> str:
+    # estProprietaireDe n'est pas saisi : il est déduit de appartientA (owl:inverseOf).
+    return _elements(f":{identifier} :estProprietaireDe ?element .")
+
+
+def actor_exists(identifier: str) -> str:
+    return PREFIXES + f"ASK {{ :{identifier} ?p ?o }}"
+
+
+def _actor_triples(identifier: str, name: str, email: str | None, phone: str | None) -> str:
+    triples = [f":{identifier} :nom {string(name)} ."]
+    if email:
+        triples.append(f":{identifier} :email {string(email)} .")
+    if phone:
+        triples.append(f":{identifier} :telephone {string(phone)} .")
+    return "\n  ".join(triples)
+
+
+def create_actor(identifier: str, kind: str, name: str, email: str | None, phone: str | None) -> str:
+    return PREFIXES + f"""INSERT DATA {{
+  :{identifier} a :{kind}, owl:NamedIndividual .
+  {_actor_triples(identifier, name, email, phone)}
+}}"""
+
+
+def update_actor(identifier: str, kind: str, name: str, email: str | None, phone: str | None) -> str:
+    return PREFIXES + f"""DELETE {{
+  :{identifier} a ?oldClass ; :nom ?oldName ; :email ?oldEmail ; :telephone ?oldPhone .
 }}
-ORDER BY ?kind ?name
-"""
+INSERT {{
+  :{identifier} a :{kind} .
+  {_actor_triples(identifier, name, email, phone)}
+}}
+WHERE {{
+  VALUES ?oldClass {{ {" ".join(f":{c}" for c in ACTOR_CLASSES)} }}
+  :{identifier} a ?oldClass .
+  OPTIONAL {{ :{identifier} :nom ?oldName }}
+  OPTIONAL {{ :{identifier} :email ?oldEmail }}
+  OPTIONAL {{ :{identifier} :telephone ?oldPhone }}
+}}"""
+
+
+def delete_actor(identifier: str) -> str:
+    return PREFIXES + f"""DELETE WHERE {{ :{identifier} ?p ?o }} ;
+DELETE WHERE {{ ?s ?p :{identifier} }}"""

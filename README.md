@@ -1,62 +1,43 @@
 # EnergyHomeOnto — application web sémantique
 
-Application de gestion et d’exploration d’un habitat énergétique à partir de
-l’ontologie `energyhomeonto.owx`. Le backend Python exécute les requêtes SPARQL
-localement avec `rdflib` sur le graphe RDF `data/energyhomeonto.ttl`.
+Application d’exploration et de gestion d’un réseau énergétique intelligent
+(habitat, production, stockage, réseau, territoires) construite sur l’ontologie
+OWL `energyhomeonto.owx`.
 
-## Technologies
+| Couche | Technologies |
+| --- | --- |
+| Ontologie | OWL 2 conçue dans Protégé (`energyhomeonto.owx`) |
+| Données et raisonnement | owlready2 (lecture OWL/XML), rdflib (graphe RDF + SPARQL 1.1), owlrl (raisonneur OWL RL) |
+| Backend | Python 3.11+, FastAPI |
+| NLP / TALN | spaCy 3.8 avec le modèle français `fr_core_news_sm` |
+| Frontend | React 19, TypeScript, Vite |
 
-- Frontend : React, TypeScript et Vite
-- Backend : Python 3.12, FastAPI et `rdflib`
-- Données : OWL/XML comme source et Turtle (`.ttl`) à l’exécution
-- Recherche intelligente : règles locales français → SPARQL, sans API IA externe
+Aucune API de LLM (OpenAI, Gemini…) n’est utilisée. Aucun Docker, Fuseki ou Java n’est nécessaire.
 
-## Cinq features individuelles
+---
 
-| Feature | Frontend | Backend et SPARQL |
-| --- | --- | --- |
-| 1. Bâtiments et habitats | Liste, détail et filtres de bâtiments. | API et requêtes sur les bâtiments, équipements et consommation. |
-| 2. Production énergétique | Catalogue des sources et filtres par type. | API et requêtes sur panneaux, éoliennes, centrales et puissance. |
-| 3. Stockage | Capacités et niveaux de charge. | API et requêtes sur batteries et autres stockages. |
-| 4. Réseau énergétique | Lignes, postes et connexions. | API et requêtes sur le réseau électrique. |
-| 5. Territoires et acteurs | Villes, quartiers, personnes et gestionnaires. | API et requêtes sur les zones, acteurs et équipements gérés. |
+## 1. Démarrage rapide
 
-Chaque membre développe sa feature de manière verticale dans :
+Prérequis : Python 3.11 ou 3.12, [uv](https://docs.astral.sh/uv/), Node.js 20+ avec npm, Git.
 
-```text
-frontend/src/features/<feature>/
-backend/app/features/<feature>/
+```powershell
+git clone https://github.com/emnamess/EnergyHomeOnto.git
+cd EnergyHomeOnto
 ```
 
-La recherche intelligente est un module commun aux cinq membres :
-
-```text
-frontend/src/shared/recherche-intelligente/
-backend/app/shared/recherche/
-backend/app/shared/rdf_store.py
-```
-
-Les branches `feature/<nom>` sont intégrées à `main` avec une pull request qui
-présente l’interface, les routes API et les requêtes SPARQL livrées.
-
-## Démarrage local avec uv
-
-Prérequis : Python 3.12, [uv](https://docs.astral.sh/uv/), Node.js avec npm.
-Docker, Fuseki et Java ne sont pas nécessaires.
-
-Dans une première fenêtre PowerShell :
+**Terminal 1 — backend** (le premier `uv pip install` télécharge spaCy et son modèle français, compter quelques minutes) :
 
 ```powershell
 cd backend
 uv venv
-uv pip install -r requirements.txt
+uv pip install -r requirements-dev.txt
 uv run uvicorn app.main:app --reload --port 8000
 ```
 
-L’API est disponible sur `http://localhost:8000` et sa documentation interactive
-sur `http://localhost:8000/docs`.
+Au démarrage, l’API charge l’ontologie, exécute le raisonneur (≈ 2 s) et le modèle spaCy.
+Vérifier sur <http://localhost:8000/api/health> puis explorer les routes sur <http://localhost:8000/docs>.
 
-Dans une deuxième fenêtre :
+**Terminal 2 — frontend** :
 
 ```powershell
 cd frontend
@@ -64,22 +45,299 @@ npm install
 npm run dev
 ```
 
-Ouvrir ensuite `http://localhost:5173`.
+Ouvrir <http://localhost:5173>. Le menu en haut à droite passe d’une page à l’autre.
 
-## Données RDF et SPARQL
+**Tests** (depuis `backend/`) : `uv run pytest`. Ils doivent tous passer avant chaque pull request.
 
-`data/energyhomeonto.ttl` est chargé une seule fois au démarrage par `rdflib`.
-Il contient un jeu de données opérationnel pour les fonctionnalités du projet.
-Pour charger l’ensemble de votre ontologie, exportez `energyhomeonto.owx` depuis
-Protégé au format Turtle, puis complétez ou remplacez ce fichier.
+> Si la page affiche « Impossible de charger… », le backend n’est pas lancé ou a
+> planté : regarder le terminal 1.
 
-## Recherche intelligente locale
+---
 
-La recherche intelligente analyse la phrase, identifie les concepts connus et
-génère une requête SPARQL contrôlée. Exemple :
+## 2. Conformité au cahier des charges
+
+| Exigence de la validation | Où la trouver |
+| --- | --- |
+| Ontologie liée à la thématique | `energyhomeonto.owx` : ~45 classes, propriétés d’objet et de données, individus |
+| ObjectProperty, DataProperty, individus, axiomes | Domaines/portées, sous-classes, classes disjointes, classes définies (`MaisonAutonome ≡ Maison ⊓ ∃possede.PanneauSolaire`…), propriétés inverses, transitives et fonctionnelles, restrictions |
+| Axiomes réellement exploités | Raisonneur OWL RL (`backend/app/shared/rdf_store.py`) : les requêtes portent sur le graphe inféré (1 352 → ~4 000 triplets) |
+| Interfaces front et back | React (`frontend/`) + FastAPI (`backend/`) |
+| Communication front ↔ back | API REST JSON, proxy Vite `/api` → port 8000 |
+| SPARQL : lecture | `SELECT` dans chaque `queries.py` |
+| SPARQL : CRUD | `INSERT DATA`, `DELETE … INSERT … WHERE`, `DELETE WHERE` (feature 5 : acteurs) |
+| SPARQL : filtrage et recherche | `FILTER(CONTAINS(...))`, `VALUES`, filtres numériques générés par la recherche |
+| Module NLP question → SPARQL | `backend/app/shared/recherche/` avec spaCy (voir § 5) |
+
+**État des features** : la feature 5 (territoires et acteurs) et la recherche
+intelligente sont terminées. Les features 1 à 4 sont à développer par leurs
+responsables en suivant le § 6.
+
+---
+
+## 3. Architecture
 
 ```text
-Liste les maisons autonomes qui possèdent un panneau solaire
+energyhomeonto.owx (Protégé)
+        │  owlready2 : lecture OWL/XML
+        ▼
+graphe asserté (rdflib) ◄── data/journal-crud.rq : modifications CRUD rejouées au démarrage
+        │  owlrl : raisonnement OWL RL
+        ▼
+graphe inféré ──► requêtes SPARQL (rdflib)
+        ▲
+FastAPI : features/<feature>/ et shared/recherche/  ◄── HTTP/JSON ──  React (Vite)
 ```
 
-Le moteur produit la requête puis l’exécute directement sur le graphe RDF local.
+```text
+backend/app/
+  main.py                      enregistrement des routeurs, préchargement au démarrage
+  shared/rdf_store.py          query(), ask(), update() : point d’accès unique au graphe
+  shared/sparql.py             PREFIXES, string(), number(), most_specific_kind()
+  shared/recherche/            module NLP commun (question → SPARQL)
+  features/territoires_acteurs/  exemple complet de feature (lecture, filtres, CRUD)
+  features/<feature>/          à remplir par chaque membre
+backend/tests/                 tests pytest de l’API
+frontend/src/
+  App.tsx                      routage par #hash
+  shared/AppNav.tsx            menu de navigation
+  shared/recherche-intelligente/  page de recherche
+  features/territoires-acteurs/   exemple complet de page
+```
+
+**Points importants**
+
+- `energyhomeonto.owx` est **la seule source** de l’ontologie et des individus.
+  On le modifie dans Protégé, puis on redémarre le backend (ou on laisse `--reload` le faire).
+- Les écritures faites depuis l’application (CRUD) sont ajoutées à
+  `data/journal-crud.rq` (ignoré par Git) et rejouées à chaque démarrage. Elles
+  survivent donc aux modifications de l’ontologie dans Protégé. Supprimer ce
+  fichier remet les données à l’état de l’ontologie.
+- Les lectures se font sur le graphe **inféré** : une maison déclarée `:Maison` qui
+  possède un panneau solaire apparaît aussi comme `:MaisonAutonome`, `estProprietaireDe`
+  est déduit de `appartientA`, `estSitueDans` est transitif, etc.
+
+---
+
+## 4. Modifier l’ontologie
+
+1. Ouvrir `energyhomeonto.owx` dans Protégé.
+2. Garder l’espace de noms `http://www.example.org/energyhomeonto#` et ne pas
+   renommer les classes ou propriétés déjà utilisées par les autres features
+   sans prévenir le groupe.
+3. Donner un `:nom` aux individus que l’interface doit afficher (sinon c’est l’identifiant qui s’affiche).
+4. Lancer **Reasoner → HermiT → Start reasoner** pour vérifier que l’ontologie est cohérente.
+5. Enregistrer **au format OWL/XML** (même fichier), redémarrer le backend, lancer `uv run pytest`.
+6. Les nouvelles classes et propriétés sont reconnues automatiquement par la recherche
+   intelligente (le lexique est construit depuis l’ontologie).
+
+---
+
+## 5. Recherche intelligente (NLP / TALN)
+
+Route : `POST /api/search` avec `{"query": "..."}`. Réponse : interprétation, requête
+SPARQL générée, résultats et analyse spaCy (affichée dans l’interface).
+
+### Chaîne de traitement
+
+| Étape | Outil | Fichier |
+| --- | --- | --- |
+| 1. Tokenisation, lemmatisation, étiquetage morpho-syntaxique (POS), analyse en dépendances | spaCy `fr_core_news_sm` | `analyse.py` |
+| 2. Lexique construit automatiquement depuis l’ontologie (classes, propriétés, individus, synonymes) | rdflib + SPARQL | `vocabulaire.py` |
+| 3. Reconnaissance des entités de l’ontologie dans la phrase (sur les lemmes, multi-mots) | spaCy (lemmes) | `analyse.py` |
+| 4. Détection de la négation, des comparaisons (« supérieur à », « entre … et … »), des superlatifs, du comptage | spaCy (tokens, nombres) | `analyse.py` |
+| 5. Choix de la relation entre deux concepts : domaines/portées OWL + verbe de la phrase (lemme et arbre de dépendances) | spaCy + ontologie | `interpreter.py` |
+| 6. Génération puis exécution SPARQL sur le graphe inféré | rdflib | `interpreter.py`, `service.py` |
+
+### Exemples de questions comprises
+
+- « Liste les maisons autonomes qui possèdent un panneau solaire » (classe définie, inférée)
+- « maisons sans panneau solaire », « maisons non autonomes » (négation → `FILTER NOT EXISTS`)
+- « lignes gérées par la STEG » (verbe *gérer* → `estGerePar`, inverse inféré)
+- « Combien de maisons à Tunis ? » (comptage + `estSitueDans` transitif)
+- « batteries avec une capacité supérieure à 20 », « sources d’énergie avec une puissance entre 5 et 50 »
+- « quel est le panneau solaire le plus puissant » (superlatif → `ORDER BY DESC … LIMIT 1`)
+- « Dans quel quartier se trouve la maison 1 ? », « maisons de Sarra », « Ahmed » (description d’un individu)
+
+### Étendre la recherche pour sa feature
+
+- **Nouveau mot pour un concept** (« habitation » → `Maison`) : ajouter une entrée dans
+  `SYNONYMES` (`vocabulaire.py`). Écrire les formes en minuscules, sans accents, au singulier.
+- **Nouveau verbe** (« raccorder » → `relie`) : ajouter le lemme sans accents dans
+  `INDICES` (`interpreter.py`).
+- **Deux propriétés possibles, mauvais choix** : ajuster l’ordre de `PRIORITE` (`interpreter.py`).
+- Ajouter chaque nouvelle question dans `test_search` (`backend/tests/test_api.py`).
+
+Pour la présentation, citer : **spaCy** (tokenisation, lemmatisation, POS, dépendances,
+modèle `fr_core_news_sm`), **rdflib** (SPARQL), **owlrl** (raisonnement OWL RL),
+**owlready2** (lecture OWL/XML).
+
+---
+
+## 6. Guide : développer sa feature (features 1 à 4)
+
+La feature 5 (`territoires_acteurs`) sert de modèle complet : la copier est le plus
+simple. Exemple ci-dessous pour la feature **Stockage** ; remplacer par `batiments`,
+`production` ou `reseau`.
+
+### Étape 1 — Créer sa branche
+
+```powershell
+git checkout main
+git pull
+git checkout -b feature/stockage
+```
+
+### Étape 2 — Écrire les requêtes SPARQL : `backend/app/features/stockage/queries.py`
+
+```python
+from app.shared.sparql import PREFIXES, most_specific_kind, number, string
+
+
+def storage_list(min_capacity: float | None = None, text: str | None = None) -> str:
+    filters = ""
+    if min_capacity is not None:
+        filters += f"FILTER(?capacity >= {number(min_capacity)})\n"
+    if text:
+        filters += f"FILTER(CONTAINS(LCASE(STR(?storage)), LCASE({string(text)})))\n"
+    return PREFIXES + f"""
+SELECT ?storage ?capacity ?charge (GROUP_CONCAT(DISTINCT ?kind; separator=", ") AS ?kinds) WHERE {{
+  ?storage a :Stockage .
+  OPTIONAL {{ ?storage :capacite ?capacity }}
+  OPTIONAL {{ ?storage :niveauCharge ?charge }}
+  {most_specific_kind("storage")}
+  {filters}
+}}
+GROUP BY ?storage ?capacity ?charge
+ORDER BY DESC(?capacity)
+"""
+```
+
+**Règles de sécurité** (obligatoires) :
+
+- Toute valeur saisie par l’utilisateur passe par `string()` ou `number()` (`app/shared/sparql.py`) :
+  jamais de f-string directe avec du texte utilisateur.
+- Tout identifiant reçu dans une URL est validé avec `is_identifier()` avant d’être mis dans une requête.
+
+### Étape 3 — Ajouter les écritures (CRUD)
+
+Modèle à copier : `create_actor`, `update_actor`, `delete_actor` dans
+`features/territoires_acteurs/queries.py` et `service.py`.
+
+| Opération | SPARQL Update | Exécution |
+| --- | --- | --- |
+| Créer | `INSERT DATA { :id a :Classe, owl:NamedIndividual ; :prop valeur . }` | `update(sparql)` |
+| Modifier | `DELETE { :id :prop ?ancien } INSERT { :id :prop nouvelle } WHERE { OPTIONAL { :id :prop ?ancien } }` | `update(sparql)` |
+| Supprimer | `DELETE WHERE { :id ?p ?o } ; DELETE WHERE { ?s ?p :id }` | `update(sparql)` |
+
+`update()` applique la requête, l’enregistre dans le journal et relance le raisonneur.
+
+### Étape 4 — Schémas, service et routes
+
+- `schemas.py` : modèles Pydantic des réponses et des formulaires (voir `ActorInput`, `Mutation`).
+- `service.py` : appelle `query()` / `ask()` / `update()` de `app.shared.rdf_store` et
+  transforme les lignes en schémas. Lever `HTTPException(404)` si l’élément n’existe pas.
+- `router.py` :
+
+```python
+from fastapi import APIRouter
+from app.features.stockage import service
+from app.features.stockage.schemas import Storage
+
+router = APIRouter(prefix="/stockage", tags=["Stockage"])
+
+
+@router.get("/", response_model=list[Storage])
+def storages(min_capacity: float | None = None, q: str | None = None) -> list[Storage]:
+    return service.list_storages(min_capacity, q)
+```
+
+- Enregistrer le routeur dans `backend/app/main.py` :
+
+```python
+from app.features.stockage.router import router as storage_router
+app.include_router(storage_router, prefix="/api")
+```
+
+Vérifier dans <http://localhost:8000/docs> que les routes répondent.
+
+### Étape 5 — Tests : `backend/tests/test_stockage.py`
+
+```python
+from fastapi.testclient import TestClient
+from app.main import app
+
+client = TestClient(app)
+
+
+def test_storages_filtered_by_capacity():
+    ids = [s["id"] for s in client.get("/api/stockage/", params={"min_capacity": 100}).json()]
+    assert ids == ["stockageH2_1", "batterie3"]
+```
+
+Les tests écrivent dans un journal temporaire (`tests/conftest.py`) : ils ne touchent pas à vos données.
+
+### Étape 6 — Page React : `frontend/src/features/stockage/StoragePage.tsx`
+
+Copier la structure de `features/territoires-acteurs/TerritoriesActorsPage.tsx`
+(liste + filtres + détail + formulaire). Appeler l’API avec des chemins relatifs
+(`fetch('/api/stockage/')`) : le proxy Vite redirige vers FastAPI.
+
+Puis déclarer la page :
+
+1. `frontend/src/shared/AppNav.tsx` : ajouter `{ hash: '#/stockage', label: 'Stockage' }` dans `ROUTES`.
+2. `frontend/src/App.tsx` : ajouter `if (route === '#/stockage') return <StoragePage />`.
+3. Mettre `<AppNav current="#/stockage" />` dans l’en-tête de la page.
+4. Réutiliser les classes CSS existantes de `style.css` (`explorer`, `list-item`, `metrics`, `filters`, `actor-form`…).
+
+Vérifier : `npx tsc -b` (aucune erreur) puis tester dans le navigateur.
+
+### Étape 7 — Enrichir la recherche intelligente
+
+Ajouter les synonymes et verbes de votre domaine (§ 5) et 2 ou 3 questions dans `test_search`.
+
+### Étape 8 — Pull request
+
+```powershell
+cd backend; uv run pytest; cd ..
+git add -A
+git commit -m "Feature stockage : liste, filtres, CRUD et page React"
+git push -u origin feature/stockage
+```
+
+Ouvrir la pull request vers `main` sur GitHub en décrivant les routes, les requêtes
+SPARQL et des captures de l’interface. Un autre membre relit avant la fusion.
+
+### Checklist de la feature avant la PR
+
+- [ ] Au moins une liste avec **filtres** traduits en SPARQL (`FILTER`, `VALUES`)
+- [ ] Une page de **détail**
+- [ ] **CRUD** complet sur au moins un type d’individu (`INSERT DATA`, `DELETE/INSERT WHERE`, `DELETE WHERE`)
+- [ ] Une requête qui exploite une **inférence** (classe définie, inverse, transitivité…)
+- [ ] Valeurs utilisateur échappées avec `string()` / `number()`
+- [ ] Tests pytest qui passent, `npx tsc -b` sans erreur
+- [ ] Synonymes / verbes ajoutés à la recherche intelligente avec des tests
+
+---
+
+## 7. Règles Git de l’équipe
+
+- Une branche par feature (`feature/<nom>`), jamais de commit direct sur `main`.
+- `git pull` sur `main` avant de créer sa branche ; `git merge main` dans sa branche si `main` a avancé.
+- Les fichiers partagés (`main.py`, `App.tsx`, `AppNav.tsx`, `style.css`, `vocabulaire.py`,
+  `interpreter.py`, l’ontologie) se modifient en petites retouches : prévenir le groupe pour éviter les conflits.
+- Si l’historique d’une branche a été réécrit (`git push --force`), **ne pas** cliquer sur
+  « Synchroniser les modifications » dans VS Code : utiliser
+  `git fetch` puis `git reset --hard origin/<branche>`.
+- Ne jamais committer `backend/.venv`, `frontend/node_modules` ni `data/journal-crud.rq` (déjà dans `.gitignore`).
+
+---
+
+## 8. Dépannage
+
+| Symptôme | Solution |
+| --- | --- |
+| `ModuleNotFoundError` au démarrage du backend | `uv pip install -r requirements-dev.txt` dans `backend/` |
+| `Can't find model 'fr_core_news_sm'` | même commande : le modèle est listé dans `requirements.txt` |
+| Données incohérentes après des essais CRUD | arrêter le backend, supprimer `data/journal-crud.rq`, relancer |
+| La recherche ne reconnaît pas un mot | ajouter un synonyme (§ 5) ; vérifier l’onglet « Tokens, lemmes et dépendances » dans l’interface |
+| Port 8000 ou 5173 déjà utilisé | un autre terminal fait déjà tourner le serveur : le fermer ou réutiliser celui-ci |
