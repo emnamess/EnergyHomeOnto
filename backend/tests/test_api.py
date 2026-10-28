@@ -55,6 +55,17 @@ def test_actor_filters():
     assert [a["id"] for a in client.get(f"{API}/acteurs", params={"q": "trab"}).json()] == ["sarra"]
 
 
+def test_concurrent_requests_do_not_break_sparql_parser():
+    # Le frontend charge territoires et acteurs en parallèle : le parseur SPARQL doit le supporter.
+    from concurrent.futures import ThreadPoolExecutor
+
+    urls = [f"{API}/territoires", f"{API}/acteurs"] * 20
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        codes = list(pool.map(lambda url: client.get(url).status_code, urls))
+    assert set(codes) == {200}
+    assert client.get(f"{API}/acteurs").status_code == 200
+
+
 @pytest.mark.parametrize(
     "url",
     [
