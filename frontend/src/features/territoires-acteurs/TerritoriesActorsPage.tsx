@@ -1,5 +1,5 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react'
-import AppNav from '../../shared/AppNav'
+import { PageHeader } from '../../shared/Layout'
 
 type Infrastructure = { id: string; name: string; kind: string }
 type Territory = { id: string; name: string; kind: string; population?: number; postal_code?: string; area_km2?: number }
@@ -116,9 +116,10 @@ export default function TerritoriesActorsPage() {
   }
 
   const selected = territory ?? actor ?? form
-  return <main className="territory-page">
-    <header className="topbar"><span className="brand-mark">E</span><span>EnergyHome</span><span className="tag">TERRITOIRES & ACTEURS</span><AppNav current="#/territoires-acteurs" /></header>
-    <section className="territory-hero"><p className="eyebrow">FEATURE 5</p><h1>Le territoire au cœur<br />du <em>réseau énergétique.</em></h1><p className="intro">Explorez les villes, quartiers et les acteurs qui administrent les équipements énergétiques. Les types affichés tiennent compte des inférences du raisonneur OWL.</p></section>
+  return <>
+    <PageHeader eyebrow="FEATURE 5" title="Territoires & acteurs">
+      Villes, quartiers et acteurs qui administrent les équipements énergétiques. Les types affichés tiennent compte des inférences du raisonneur OWL.
+    </PageHeader>
     <section className="filters">
       <input aria-label="Filtrer par nom" placeholder="Filtrer par nom…" value={text} onChange={(event) => setText(event.target.value)} />
       <select aria-label="Type de territoire" value={territoryKind} onChange={(event) => setTerritoryKind(event.target.value)}><option value="">Tous les territoires</option><option value="Ville">Villes</option><option value="Quartier">Quartiers</option></select>
@@ -157,7 +158,7 @@ export default function TerritoriesActorsPage() {
         </form>}
       </section>
     </section>}
-  </main>
+  </>
 }
 
 function Metric({ label, value }: { label: string; value: string }) { return <div className="metric"><small>{label}</small><strong>{value}</strong></div> }

@@ -1,5 +1,5 @@
-import { FormEvent, useState } from 'react'
-import AppNav from '../AppNav'
+import { FormEvent, useEffect, useState } from 'react'
+import { PageHeader } from '../Layout'
 
 type Token = { texte: string; lemme: string; categorie: string; dependance: string; tete: string }
 type Entity = { texte: string; nature: string; iri: string; negation: boolean }
@@ -23,8 +23,8 @@ const NATURES: Record<string, string> = { classe: 'Classe', objet: 'Relation', d
 
 const display = (value: string) => value.startsWith('http') ? value.split('#').pop() ?? value : value
 
-export default function IntelligentSearchPage() {
-  const [query, setQuery] = useState(EXAMPLES[0])
+export default function IntelligentSearchPage({ initialQuery }: { initialQuery?: string }) {
+  const [query, setQuery] = useState(initialQuery ?? EXAMPLES[0])
   const [response, setResponse] = useState<SearchResponse | null>(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -49,6 +49,10 @@ export default function IntelligentSearchPage() {
     }
   }
 
+  useEffect(() => {
+    if (initialQuery) run(initialQuery)
+  }, [])
+
   function submit(event: FormEvent) {
     event.preventDefault()
     run(query)
@@ -61,14 +65,13 @@ export default function IntelligentSearchPage() {
 
   const columns = response ? [...new Set(response.results.flatMap((row) => Object.keys(row)))] : []
   return (
-    <main className="page">
-      <header className="topbar"><span className="brand-mark">E</span><span>EnergyHome</span><span className="tag">WEB SÉMANTIQUE</span><AppNav current="#/recherche" /></header>
-      <section className="hero">
-        <p className="eyebrow">L’ÉNERGIE, EN CLAIR</p>
-        <h1>Interrogez votre<br /><em>habitat énergétique.</em></h1>
-        <p className="intro">Posez votre question en français. spaCy l’analyse, l’ontologie guide sa traduction en SPARQL, puis la requête s’exécute sur le graphe enrichi par le raisonneur OWL.</p>
-        <form className="search-card" onSubmit={submit}>
-          <label htmlFor="query">VOTRE QUESTION</label>
+    <>
+      <PageHeader eyebrow="MODULE NLP COMMUN" title="Recherche intelligente">
+        Posez votre question en français. spaCy l’analyse, l’ontologie guide sa traduction en SPARQL, puis la requête s’exécute sur le graphe enrichi par le raisonneur OWL.
+      </PageHeader>
+      <section>
+        <form className="card search-card" onSubmit={submit}>
+          <label htmlFor="query">Votre question</label>
           <div className="search-row">
             <input id="query" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Ex. maisons avec un panneau solaire" />
             <button disabled={loading || !query.trim()}>{loading ? 'Recherche…' : 'Rechercher'} <span aria-hidden="true">↗</span></button>
@@ -76,7 +79,7 @@ export default function IntelligentSearchPage() {
           <div className="examples">{EXAMPLES.map((item) => <button type="button" key={item} onClick={() => example(item)}>{item}</button>)}</div>
         </form>
         {error && <p className="notice error">{error}</p>}
-        {response && <section className="results">
+        {response && <section className="card results">
           <h2>{response.interpretation}</h2>
           <p className="muted">{response.results.length} résultat(s)</p>
           {response.results.length > 0 && <div className="table-wrap"><table>
@@ -94,7 +97,6 @@ export default function IntelligentSearchPage() {
           <details><summary>Requête SPARQL générée</summary><pre>{response.sparql}</pre></details>
         </section>}
       </section>
-      <footer><span>Une ontologie pour mieux comprendre les ressources énergétiques.</span><span>OWL · OWL RL · SPARQL · spaCy</span></footer>
-    </main>
+    </>
   )
 }

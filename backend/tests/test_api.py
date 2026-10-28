@@ -164,3 +164,18 @@ def test_search_returns_spacy_analysis():
 
 def test_search_rejects_unsupported_question():
     assert search("quelle est la météo").status_code == 400
+
+
+# --- Tableau de bord ---------------------------------------------------------------
+
+def test_dashboard_counts_and_deductions():
+    body = client.get("/api/tableau-de-bord").json()
+    assert (body["classes"], body["object_properties"], body["data_properties"]) == (45, 13, 43)
+    assert body["inferred_triples"] > body["asserted_triples"]
+    families = {family["id"]: family["count"] for family in body["families"]}
+    assert families["Batiment"] == 10 and families["Zone"] == 3
+    deduced = {item["id"]: item["members"] for item in body["defined_classes"]}
+    assert deduced["MaisonAutonome"] == ["Maison1", "Maison2", "Maison5"]
+    # Classes à seuil numérique, calculées en complément d'OWL RL.
+    assert deduced["GrosConsommateur"] == ["hopital1", "supermarche1", "usine1"]
+    assert deduced["SourceForte"] == ["centraleGaz1", "centraleHydro1"]

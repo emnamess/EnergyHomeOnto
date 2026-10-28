@@ -45,7 +45,8 @@ npm install
 npm run dev
 ```
 
-Ouvrir <http://localhost:5173>. Le menu en haut à droite passe d’une page à l’autre.
+Ouvrir <http://localhost:5173>. L’application s’ouvre sur le **tableau de bord** (chiffres de l’ontologie,
+ce que le raisonneur a déduit, scénario de démonstration) ; la barre latérale mène aux autres pages.
 
 **Tests** (depuis `backend/`) : `uv run pytest`. Ils doivent tous passer avant chaque pull request.
 
@@ -60,7 +61,7 @@ Ouvrir <http://localhost:5173>. Le menu en haut à droite passe d’une page à 
 | --- | --- |
 | Ontologie liée à la thématique | `energyhomeonto.owx` : ~45 classes, propriétés d’objet et de données, individus |
 | ObjectProperty, DataProperty, individus, axiomes | Domaines/portées, sous-classes, classes disjointes, classes définies (`MaisonAutonome ≡ Maison ⊓ ∃possede.PanneauSolaire`…), propriétés inverses, transitives et fonctionnelles, restrictions |
-| Axiomes réellement exploités | Raisonneur OWL RL (`backend/app/shared/rdf_store.py`) : les requêtes portent sur le graphe inféré (1 352 → ~4 000 triplets) |
+| Axiomes réellement exploités | Raisonneur OWL RL (`backend/app/shared/rdf_store.py`), complété pour les classes définies par un seuil numérique : les requêtes portent sur le graphe inféré (1 352 → ~4 050 triplets). Le tableau de bord liste les 10 classes définies et leurs individus déduits |
 | Interfaces front et back | React (`frontend/`) + FastAPI (`backend/`) |
 | Communication front ↔ back | API REST JSON, proxy Vite `/api` → port 8000 |
 | SPARQL : lecture | `SELECT` dans chaque `queries.py` |
@@ -81,7 +82,7 @@ energyhomeonto.owx (Protégé)
         │  owlready2 : lecture OWL/XML
         ▼
 graphe asserté (rdflib) ◄── data/journal-crud.rq : modifications CRUD rejouées au démarrage
-        │  owlrl : raisonnement OWL RL
+        │  owlrl : raisonnement OWL RL + classes à seuil numérique (GrosConsommateur…)
         ▼
 graphe inféré ──► requêtes SPARQL (rdflib)
         ▲
@@ -99,7 +100,8 @@ backend/app/
 backend/tests/                 tests pytest de l’API
 frontend/src/
   App.tsx                      routage par #hash
-  shared/AppNav.tsx            menu de navigation
+  shared/Layout.tsx            barre latérale (SECTIONS), en-tête de page, état de l’API
+  shared/tableau-de-bord/      page d’accueil (backend : app/shared/tableau_de_bord.py)
   shared/recherche-intelligente/  page de recherche
   features/territoires-acteurs/   exemple complet de page
 ```
@@ -284,10 +286,16 @@ Copier la structure de `features/territoires-acteurs/TerritoriesActorsPage.tsx`
 
 Puis déclarer la page :
 
-1. `frontend/src/shared/AppNav.tsx` : ajouter `{ hash: '#/stockage', label: 'Stockage' }` dans `ROUTES`.
-2. `frontend/src/App.tsx` : ajouter `if (route === '#/stockage') return <StoragePage />`.
-3. Mettre `<AppNav current="#/stockage" />` dans l’en-tête de la page.
-4. Réutiliser les classes CSS existantes de `style.css` (`explorer`, `list-item`, `metrics`, `filters`, `actor-form`…).
+1. `frontend/src/shared/Layout.tsx` : dans `SECTIONS`, passer `ready: true` sur l’entrée `#/stockage`
+   (elle est déjà présente, grisée « à venir »).
+2. `frontend/src/App.tsx` : ajouter
+   `if (route === '#/stockage') return <Layout current={route}><StoragePage /></Layout>`.
+3. Commencer la page par `<PageHeader eyebrow="FEATURE 3" title="Stockage">description</PageHeader>`
+   (importé de `../../shared/Layout`) : la barre latérale est fournie par `Layout`.
+4. Réutiliser les classes CSS existantes de `style.css` (`card`, `filters`, `explorer`, `list-item`,
+   `metrics`, `actor-form`…) et les couleurs déclarées en variables dans `:root`.
+5. Optionnel : ajouter une étape au scénario de démonstration (`SCENARIO` dans
+   `shared/tableau-de-bord/DashboardPage.tsx`).
 
 Vérifier : `npx tsc -b` (aucune erreur) puis tester dans le navigateur.
 
@@ -323,7 +331,7 @@ SPARQL et des captures de l’interface. Un autre membre relit avant la fusion.
 
 - Une branche par feature (`feature/<nom>`), jamais de commit direct sur `main`.
 - `git pull` sur `main` avant de créer sa branche ; `git merge main` dans sa branche si `main` a avancé.
-- Les fichiers partagés (`main.py`, `App.tsx`, `AppNav.tsx`, `style.css`, `vocabulaire.py`,
+- Les fichiers partagés (`main.py`, `App.tsx`, `Layout.tsx`, `style.css`, `vocabulaire.py`,
   `interpreter.py`, l’ontologie) se modifient en petites retouches : prévenir le groupe pour éviter les conflits.
 - Si l’historique d’une branche a été réécrit (`git push --force`), **ne pas** cliquer sur
   « Synchroniser les modifications » dans VS Code : utiliser
