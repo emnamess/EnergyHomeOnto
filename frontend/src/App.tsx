@@ -1,5 +1,5 @@
-import IntelligentSearchPage from './shared/recherche-intelligente/IntelligentSearchPage'
+import TerritoriesActorsPage from './features/territoires-acteurs/TerritoriesActorsPage'
 
 export default function App() {
-  return <IntelligentSearchPage />
+  return <TerritoriesActorsPage />
 }

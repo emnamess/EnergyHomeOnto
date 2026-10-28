@@ -26,5 +26,5 @@ async def semantic_search(request: SearchRequest) -> SearchResponse:
     except Exception as error:
         raise HTTPException(
             status_code=503,
-            detail="Impossible d'interroger Fuseki. Vérifiez le dataset et son endpoint SPARQL.",
+            detail="Impossible d'interroger le graphe RDF local. Vérifiez le fichier data/energyhomeonto.ttl.",
         ) from error

@@ -1,0 +1,57 @@
+@prefix : <http://www.example.org/energyhomeonto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.example.org/energyhomeonto> a owl:Ontology .
+
+:Ville a owl:Class .
+:Quartier a owl:Class .
+:Zone a owl:Class .
+:Personne a owl:Class .
+:GestionnaireReseau a owl:Class .
+:Acteur a owl:Class .
+:Maison a owl:Class .
+:MaisonAutonome a owl:Class .
+:Ecole a owl:Class .
+:Hopital a owl:Class .
+:Mairie a owl:Class .
+:Batterie a owl:Class .
+:PanneauSolaire a owl:Class .
+:Eolienne a owl:Class .
+:LigneElectrique a owl:Class .
+:PosteTransformation a owl:Class .
+
+:Ville <http://www.w3.org/2000/01/rdf-schema#subClassOf> :Zone .
+:Quartier <http://www.w3.org/2000/01/rdf-schema#subClassOf> :Zone .
+:Personne <http://www.w3.org/2000/01/rdf-schema#subClassOf> :Acteur .
+:GestionnaireReseau <http://www.w3.org/2000/01/rdf-schema#subClassOf> :Acteur .
+:MaisonAutonome <http://www.w3.org/2000/01/rdf-schema#subClassOf> :Maison .
+
+:villeTunis a :Ville ; :nom "Tunis" ; :population 1056000 ; :codePostal "1000" ; :superficie 212.6 .
+:quartierLac a :Quartier ; :nom "Les Berges du Lac" ; :population 25000 ; :codePostal "1053" ; :superficie 13.0 ; :estSitueDans :villeTunis .
+:quartierCentre a :Quartier ; :nom "Centre-ville" ; :population 60000 ; :codePostal "1000" ; :superficie 6.5 ; :estSitueDans :villeTunis .
+
+:ahmed a :Personne ; :nom "Ahmed Ben Ali" ; :email "ahmed.benali@example.tn" ; :telephone "+216 20 000 001" .
+:sarra a :Personne ; :nom "Sarra Trabelsi" ; :email "sarra.trabelsi@example.tn" ; :telephone "+216 20 000 002" .
+:karim a :Personne ; :nom "Karim Gharbi" ; :email "karim.gharbi@example.tn" ; :telephone "+216 20 000 003" .
+:STEG a :GestionnaireReseau ; :nom "STEG" ; :email "contact@steg.example.tn" ; :telephone "+216 71 000 000" .
+
+:Maison1 a :Maison ; :nom "Maison 1" ; :estSitueDans :quartierLac ; :appartientA :ahmed ; :possede :panneausolaire1 .
+:Maison2 a :Maison ; :nom "Maison 2" ; :estSitueDans :quartierLac ; :appartientA :sarra ; :possede :panneausolaire2 .
+:Maison3 a :Maison, :MaisonAutonome ; :nom "Maison 3" ; :estSitueDans :quartierLac ; :possede :eolienne1, :batterie1 .
+:Maison4 a :Maison ; :nom "Maison 4" ; :estSitueDans :quartierCentre ; :appartientA :karim .
+:Maison5 a :Maison ; :nom "Maison 5" ; :estSitueDans :quartierCentre ; :appartientA :ahmed .
+:ecole1 a :Ecole ; :nom "École du Lac" ; :estSitueDans :quartierLac .
+:hopital1 a :Hopital ; :nom "Hôpital central" ; :estSitueDans :quartierCentre .
+:mairie1 a :Mairie ; :nom "Mairie de Tunis" ; :estSitueDans :quartierCentre .
+
+:panneausolaire1 a :PanneauSolaire ; :nom "Panneau solaire 1" ; :estSitueDans :quartierLac .
+:panneausolaire2 a :PanneauSolaire ; :nom "Panneau solaire 2" ; :estSitueDans :quartierLac .
+:eolienne1 a :Eolienne ; :nom "Éolienne 1" ; :estSitueDans :quartierLac .
+:batterie1 a :Batterie ; :nom "Batterie 1" ; :estSitueDans :quartierLac .
+
+:ligne1 a :LigneElectrique ; :nom "Ligne Lac 1" ; :estSitueDans :quartierLac .
+:ligne2 a :LigneElectrique ; :nom "Ligne Centre 1" ; :estSitueDans :quartierCentre .
+:poste1 a :PosteTransformation ; :nom "Poste Lac" ; :estSitueDans :quartierLac .
+:poste2 a :PosteTransformation ; :nom "Poste Centre" ; :estSitueDans :quartierCentre .
+:STEG :gere :ligne1, :ligne2, :poste1, :poste2 .
