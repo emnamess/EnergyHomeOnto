@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import AppNav from '../../shared/AppNav'
 
 type Infrastructure = { id: string; name: string; kind: string }
 type Territory = { id: string; name: string; kind: string; population?: number; postal_code?: string; area_km2?: number }
@@ -44,7 +45,7 @@ export default function TerritoriesActorsPage() {
   const selected = territory ?? actor
   const related = territory?.infrastructure ?? actor?.managed_equipment ?? []
   return <main className="territory-page">
-    <header className="topbar"><span className="brand-mark">E</span><span>EnergyHome</span><span className="tag">TERRITOIRES & ACTEURS</span></header>
+    <header className="topbar"><span className="brand-mark">E</span><span>EnergyHome</span><span className="tag">TERRITOIRES & ACTEURS</span><AppNav current="#/territoires-acteurs" /></header>
     <section className="territory-hero"><p className="eyebrow">FEATURE 5</p><h1>Le territoire au cœur<br />du <em>réseau énergétique.</em></h1><p className="intro">Explorez les villes, quartiers et les acteurs qui administrent les équipements énergétiques.</p></section>
     {loading && <p className="notice">Chargement des données sémantiques…</p>}
     {error && <p className="notice error">{error} Vérifiez que FastAPI est démarré.</p>}

@@ -38,7 +38,7 @@
 
 :Maison1 a :Maison ; :nom "Maison 1" ; :estSitueDans :quartierLac ; :appartientA :ahmed ; :possede :panneausolaire1 .
 :Maison2 a :Maison ; :nom "Maison 2" ; :estSitueDans :quartierLac ; :appartientA :sarra ; :possede :panneausolaire2 .
-:Maison3 a :Maison, :MaisonAutonome ; :nom "Maison 3" ; :estSitueDans :quartierLac ; :possede :eolienne1, :batterie1 .
+:Maison3 a :MaisonAutonome ; :nom "Maison 3" ; :estSitueDans :quartierLac ; :possede :panneausolaire3, :eolienne1, :batterie1 .
 :Maison4 a :Maison ; :nom "Maison 4" ; :estSitueDans :quartierCentre ; :appartientA :karim .
 :Maison5 a :Maison ; :nom "Maison 5" ; :estSitueDans :quartierCentre ; :appartientA :ahmed .
 :ecole1 a :Ecole ; :nom "École du Lac" ; :estSitueDans :quartierLac .
@@ -47,6 +47,7 @@
 
 :panneausolaire1 a :PanneauSolaire ; :nom "Panneau solaire 1" ; :estSitueDans :quartierLac .
 :panneausolaire2 a :PanneauSolaire ; :nom "Panneau solaire 2" ; :estSitueDans :quartierLac .
+:panneausolaire3 a :PanneauSolaire ; :nom "Panneau solaire 3" ; :estSitueDans :quartierLac .
 :eolienne1 a :Eolienne ; :nom "Éolienne 1" ; :estSitueDans :quartierLac .
 :batterie1 a :Batterie ; :nom "Batterie 1" ; :estSitueDans :quartierLac .
 

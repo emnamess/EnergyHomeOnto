@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react'
+import AppNav from '../AppNav'
 
 type SearchResponse = {
   interpretation: string
@@ -6,7 +7,9 @@ type SearchResponse = {
   results: Array<Record<string, string>>
 }
 
-export default function App() {
+const localName = (uri: string) => uri.split('#').pop() ?? uri
+
+export default function IntelligentSearchPage() {
   const [query, setQuery] = useState('Liste les maisons autonomes qui possèdent un panneau solaire')
   const [response, setResponse] = useState<SearchResponse | null>(null)
   const [error, setError] = useState('')
@@ -23,7 +26,8 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query }),
       })
-      if (!result.ok) throw new Error(`Le serveur répond avec le statut ${result.status}.`)
+      if (result.status === 400) throw new Error((await result.json()).detail)
+      if (!result.ok) throw new Error(`Le serveur répond avec le statut ${result.status}. Vérifiez que l’API Python tourne sur le port 8000.`)
       setResponse(await result.json())
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : 'La recherche a échoué.')
@@ -34,7 +38,7 @@ export default function App() {
 
   return (
     <main className="page">
-      <header className="topbar"><span className="brand-mark">E</span><span>EnergyHome</span><span className="tag">WEB SÉMANTIQUE</span></header>
+      <header className="topbar"><span className="brand-mark">E</span><span>EnergyHome</span><span className="tag">WEB SÉMANTIQUE</span><AppNav current="#/recherche" /></header>
       <section className="hero">
         <p className="eyebrow">L’ÉNERGIE, EN CLAIR</p>
         <h1>Interrogez votre<br /><em>habitat énergétique.</em></h1>
@@ -45,10 +49,15 @@ export default function App() {
             <input id="query" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Ex. maisons avec un panneau solaire" />
             <button disabled={loading || !query.trim()}>{loading ? 'Recherche…' : 'Rechercher'} <span aria-hidden="true">↗</span></button>
           </div>
-          <p className="hint">Essayez : « maisons autonomes avec un panneau solaire »</p>
+          <p className="hint">Essayez : « maisons avec un panneau solaire sans batterie » ou « maisons non autonomes sans éolienne »</p>
         </form>
-        {error && <p className="notice error">{error} Vérifiez que l’API Python tourne sur le port 8000.</p>}
-        {response && <section className="results"><h2>{response.interpretation}</h2><pre>{response.sparql}</pre><p>{response.results.length} résultat(s)</p></section>}
+        {error && <p className="notice error">{error}</p>}
+        {response && <section className="results">
+          <h2>{response.interpretation}</h2>
+          <p className="muted">{response.results.length} résultat(s)</p>
+          {response.results.length > 0 && <ul className="result-list">{response.results.map((row) => <li key={row.maison}><strong>{row.nom ?? localName(row.maison)}</strong><small>{localName(row.maison)}</small></li>)}</ul>}
+          <details><summary>Requête SPARQL générée</summary><pre>{response.sparql}</pre></details>
+        </section>}
       </section>
       <footer><span>Une ontologie pour mieux comprendre les ressources énergétiques.</span><span>OWL · SPARQL · Python</span></footer>
     </main>

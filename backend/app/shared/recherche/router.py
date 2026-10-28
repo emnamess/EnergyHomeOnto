@@ -17,9 +17,9 @@ class SearchResponse(BaseModel):
 
 
 @router.post("/search", response_model=SearchResponse)
-async def semantic_search(request: SearchRequest) -> SearchResponse:
+def semantic_search(request: SearchRequest) -> SearchResponse:
     try:
-        query, results = await search(request.query)
+        query, results = search(request.query)
         return SearchResponse(interpretation=query.interpretation, sparql=query.sparql, results=results)
     except ValueError as error:
         raise HTTPException(status_code=400, detail=str(error)) from error

@@ -22,6 +22,7 @@ ORDER BY ?kind ?name
 def territory_detail(identifier: str) -> str:
     return PREFIX + f"""
 SELECT ?name ?kind ?population ?postalCode ?area WHERE {{
+  VALUES ?class {{ :Ville :Quartier }}
   :{identifier} a ?class ; :nom ?name .
   BIND(STRAFTER(STR(?class), "#") AS ?kind)
   OPTIONAL {{ :{identifier} :population ?population }}
@@ -61,6 +62,7 @@ ORDER BY ?kind ?name
 def actor_detail(identifier: str) -> str:
     return PREFIX + f"""
 SELECT ?name ?kind ?email ?phone (COUNT(DISTINCT ?equipment) AS ?managedCount) WHERE {{
+  VALUES ?class {{ :Personne :GestionnaireReseau }}
   :{identifier} a ?class ; :nom ?name .
   BIND(STRAFTER(STR(?class), "#") AS ?kind)
   OPTIONAL {{ :{identifier} :email ?email }}

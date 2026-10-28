@@ -17,6 +17,15 @@ uv run uvicorn app.main:app --reload --port 8000
 L’API est disponible sur `http://localhost:8000` et sa documentation interactive
 sur `http://localhost:8000/docs`.
 
+## Tests
+
+```powershell
+uv pip install -r requirements-dev.txt
+uv run pytest
+```
+
+Les tests de `tests/` appellent l’API avec `TestClient` sur le graphe RDF local.
+
 ## Organisation
 
 - `app/features/<feature>/` : code backend de chaque feature individuelle.
