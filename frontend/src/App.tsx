@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import TerritoriesActorsPage from './features/territoires-acteurs/TerritoriesActorsPage'
+import MaintenancePage from './features/maintenance/MaintenancePage'
 import IntelligentSearchPage from './shared/recherche-intelligente/IntelligentSearchPage'
 import { ROUTES } from './shared/AppNav'
 
@@ -14,5 +15,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
-  return route === '#/recherche' ? <IntelligentSearchPage /> : <TerritoriesActorsPage />
+  if (route === '#/recherche') return <IntelligentSearchPage />
+  if (route === '#/maintenance') return <MaintenancePage />
+  return <TerritoriesActorsPage />
 }
