@@ -36,29 +36,29 @@ def _actor(row: dict[str, str], identifier: str | None = None) -> Actor:
     )
 
 
-async def list_territories() -> list[Territory]:
-    return [_territory(row) for row in await execute_sparql(queries.territory_list())]
+def list_territories() -> list[Territory]:
+    return [_territory(row) for row in execute_sparql(queries.territory_list())]
 
 
-async def get_territory(identifier: str) -> TerritoryDetail:
+def get_territory(identifier: str) -> TerritoryDetail:
     identifier = _safe_identifier(identifier)
-    rows = await execute_sparql(queries.territory_detail(identifier))
+    rows = execute_sparql(queries.territory_detail(identifier))
     if not rows:
         raise HTTPException(status_code=404, detail="Territoire introuvable.")
     territory = _territory({**rows[0], "territory": f"#{identifier}"})
-    infrastructure = [_infrastructure(row) for row in await execute_sparql(queries.territory_infrastructure(identifier))]
+    infrastructure = [_infrastructure(row) for row in execute_sparql(queries.territory_infrastructure(identifier))]
     return TerritoryDetail(**territory.model_dump(), infrastructure=infrastructure)
 
 
-async def list_actors() -> list[Actor]:
-    return [_actor(row) for row in await execute_sparql(queries.actor_list())]
+def list_actors() -> list[Actor]:
+    return [_actor(row) for row in execute_sparql(queries.actor_list())]
 
 
-async def get_actor(identifier: str) -> ActorDetail:
+def get_actor(identifier: str) -> ActorDetail:
     identifier = _safe_identifier(identifier)
-    rows = await execute_sparql(queries.actor_detail(identifier))
+    rows = execute_sparql(queries.actor_detail(identifier))
     if not rows:
         raise HTTPException(status_code=404, detail="Acteur introuvable.")
     actor = _actor(rows[0], identifier)
-    equipment = [_infrastructure(row) for row in await execute_sparql(queries.managed_equipment(identifier))]
+    equipment = [_infrastructure(row) for row in execute_sparql(queries.managed_equipment(identifier))]
     return ActorDetail(**actor.model_dump(), managed_equipment=equipment)
