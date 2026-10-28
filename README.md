@@ -290,7 +290,7 @@ Puis déclarer la page :
    (elle est déjà présente, grisée « à venir »).
 2. `frontend/src/App.tsx` : ajouter
    `if (route === '#/stockage') return <Layout current={route}><StoragePage /></Layout>`.
-3. Commencer la page par `<PageHeader eyebrow="FEATURE 3" title="Stockage">description</PageHeader>`
+3. Commencer la page par `<PageHeader eyebrow="Feature 3" title="Stockage">description</PageHeader>`
    (importé de `../../shared/Layout`) : la barre latérale est fournie par `Layout`.
 4. Réutiliser les classes CSS existantes de `style.css` (`card`, `filters`, `explorer`, `list-item`,
    `metrics`, `actor-form`…) et les couleurs déclarées en variables dans `:root`.

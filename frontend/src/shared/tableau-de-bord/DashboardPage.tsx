@@ -46,7 +46,7 @@ export default function DashboardPage() {
   }
 
   return <>
-    <PageHeader eyebrow="VUE D’ENSEMBLE" title="Tableau de bord">
+    <PageHeader eyebrow="Vue d’ensemble" title="Tableau de bord">
       Une ontologie OWL du réseau énergétique intelligent, enrichie par un raisonneur et interrogeable en français.
     </PageHeader>
 

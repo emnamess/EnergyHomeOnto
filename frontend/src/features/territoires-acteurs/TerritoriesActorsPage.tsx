@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useEffect, useState } from 'react'
+import { FormEvent, KeyboardEvent, ReactNode, useCallback, useEffect, useState } from 'react'
 import { PageHeader } from '../../shared/Layout'
 
 type Infrastructure = { id: string; name: string; kind: string }
@@ -8,10 +8,13 @@ type Actor = { id: string; name: string; kind: string; email?: string; phone?: s
 type ActorDetail = Actor & { managed_equipment: Infrastructure[]; owned_buildings: Infrastructure[] }
 type ActorForm = { name: string; kind: string; email: string; phone: string }
 type Mutation = { id: string; sparql: string }
+type Tab = 'territoires' | 'acteurs'
 
 const API = '/api/territoires-acteurs'
 const EMPTY_FORM: ActorForm = { name: '', kind: 'Personne', email: '', phone: '' }
-const shortKind = (kind: string) => kind.replace(/([a-z])([A-Z])/g, '$1 $2')
+const KIND_LABELS: Record<string, string> = { Ville: 'Ville', Quartier: 'Quartier', Personne: 'Personne', GestionnaireReseau: 'Gestionnaire réseau' }
+const kindLabel = (kind: string) => KIND_LABELS[kind] ?? kind.replace(/([a-z])([A-Z])/g, '$1 $2')
+const fr = (value?: number) => value === undefined ? '—' : value.toLocaleString('fr-FR')
 
 async function readJson<T>(response: Response): Promise<T> {
   if (!response.ok) {
@@ -21,44 +24,71 @@ async function readJson<T>(response: Response): Promise<T> {
   return response.json()
 }
 
+// Ligne de tableau cliquable à la souris et au clavier (Entrée / Espace).
+function rowProps(selected: boolean, onSelect: () => void) {
+  return {
+    className: selected ? 'selected' : undefined,
+    tabIndex: 0,
+    'aria-selected': selected,
+    onClick: onSelect,
+    onKeyDown: (event: KeyboardEvent) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault()
+        onSelect()
+      }
+    },
+  }
+}
+
 export default function TerritoriesActorsPage() {
+  const [tab, setTab] = useState<Tab>('territoires')
   const [territories, setTerritories] = useState<Territory[]>([])
   const [actors, setActors] = useState<Actor[]>([])
   const [territory, setTerritory] = useState<TerritoryDetail | null>(null)
   const [actor, setActor] = useState<ActorDetail | null>(null)
   const [text, setText] = useState('')
-  const [territoryKind, setTerritoryKind] = useState('')
-  const [actorKind, setActorKind] = useState('')
+  const [kind, setKind] = useState('')
   const [form, setForm] = useState<ActorForm | null>(null)
   const [lastUpdate, setLastUpdate] = useState<Mutation | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
   const loadLists = useCallback(async () => {
-    const params = (kind: string) => new URLSearchParams({ ...(kind && { kind }), ...(text.trim() && { q: text.trim() }) })
+    const params = (forTab: Tab) => new URLSearchParams({ ...(tab === forTab && kind && { kind }), ...(text.trim() && { q: text.trim() }) })
     try {
       const [territoryList, actorList] = await Promise.all([
-        fetch(`${API}/territoires?${params(territoryKind)}`).then(readJson<Territory[]>),
-        fetch(`${API}/acteurs?${params(actorKind)}`).then(readJson<Actor[]>),
+        fetch(`${API}/territoires?${params('territoires')}`).then(readJson<Territory[]>),
+        fetch(`${API}/acteurs?${params('acteurs')}`).then(readJson<Actor[]>),
       ])
       setTerritories(territoryList)
       setActors(actorList)
       setError('')
     } catch (cause) {
-      setError(cause instanceof Error ? `${cause.message} Vérifiez que FastAPI est démarré.` : 'Erreur de chargement.')
+      setError(cause instanceof Error ? `${cause.message} Vérifiez que le backend est démarré.` : 'Erreur de chargement.')
     } finally {
       setLoading(false)
     }
-  }, [text, territoryKind, actorKind])
+  }, [text, kind, tab])
 
   useEffect(() => {
     const timer = setTimeout(loadLists, 250)
     return () => clearTimeout(timer)
   }, [loadLists])
 
-  async function chooseTerritory(id: string) {
+  function closeDetail() {
+    setTerritory(null)
     setActor(null)
     setForm(null)
+  }
+
+  function changeTab(next: Tab) {
+    setTab(next)
+    setKind('')
+    closeDetail()
+  }
+
+  async function chooseTerritory(id: string) {
+    closeDetail()
     try {
       setTerritory(await fetch(`${API}/territoires/${id}`).then(readJson<TerritoryDetail>))
     } catch (cause) {
@@ -67,8 +97,7 @@ export default function TerritoriesActorsPage() {
   }
 
   async function chooseActor(id: string) {
-    setTerritory(null)
-    setForm(null)
+    closeDetail()
     try {
       setActor(await fetch(`${API}/acteurs/${id}`).then(readJson<ActorDetail>))
     } catch (cause) {
@@ -77,13 +106,8 @@ export default function TerritoriesActorsPage() {
   }
 
   function startCreate() {
-    setTerritory(null)
-    setActor(null)
+    closeDetail()
     setForm(EMPTY_FORM)
-  }
-
-  function startEdit(current: ActorDetail) {
-    setForm({ name: current.name, kind: current.kind, email: current.email ?? '', phone: current.phone ?? '' })
   }
 
   async function saveActor(event: FormEvent) {
@@ -108,58 +132,111 @@ export default function TerritoriesActorsPage() {
     if (!window.confirm(`Supprimer « ${current.name} » du graphe RDF ?`)) return
     try {
       setLastUpdate(await fetch(`${API}/acteurs/${current.id}`, { method: 'DELETE' }).then(readJson<Mutation>))
-      setActor(null)
+      closeDetail()
       await loadLists()
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : 'Suppression impossible.')
     }
   }
 
-  const selected = territory ?? actor ?? form
+  const panelOpen = territory !== null || actor !== null || form !== null
   return <>
-    <PageHeader eyebrow="FEATURE 5" title="Territoires & acteurs">
+    <PageHeader eyebrow="Feature 5" title="Territoires & acteurs">
       Villes, quartiers et acteurs qui administrent les équipements énergétiques. Les types affichés tiennent compte des inférences du raisonneur OWL.
     </PageHeader>
-    <section className="filters">
-      <input aria-label="Filtrer par nom" placeholder="Filtrer par nom…" value={text} onChange={(event) => setText(event.target.value)} />
-      <select aria-label="Type de territoire" value={territoryKind} onChange={(event) => setTerritoryKind(event.target.value)}><option value="">Tous les territoires</option><option value="Ville">Villes</option><option value="Quartier">Quartiers</option></select>
-      <select aria-label="Type d’acteur" value={actorKind} onChange={(event) => setActorKind(event.target.value)}><option value="">Tous les acteurs</option><option value="Personne">Personnes</option><option value="GestionnaireReseau">Gestionnaires réseau</option></select>
-      <button type="button" className="primary" onClick={startCreate}>+ Nouvel acteur</button>
-    </section>
-    {loading && <p className="notice">Chargement des données sémantiques…</p>}
+
+    <div className="tabs" role="tablist">
+      <button type="button" role="tab" aria-selected={tab === 'territoires'} className={tab === 'territoires' ? 'tab active' : 'tab'} onClick={() => changeTab('territoires')}>Territoires <span className="count">{territories.length}</span></button>
+      <button type="button" role="tab" aria-selected={tab === 'acteurs'} className={tab === 'acteurs' ? 'tab active' : 'tab'} onClick={() => changeTab('acteurs')}>Acteurs <span className="count">{actors.length}</span></button>
+    </div>
+
+    <div className="filters">
+      <input aria-label="Rechercher par nom" placeholder="Rechercher par nom…" value={text} onChange={(event) => setText(event.target.value)} />
+      {tab === 'territoires'
+        ? <select aria-label="Type de territoire" value={kind} onChange={(event) => setKind(event.target.value)}><option value="">Tous les types</option><option value="Ville">Villes</option><option value="Quartier">Quartiers</option></select>
+        : <select aria-label="Type d’acteur" value={kind} onChange={(event) => setKind(event.target.value)}><option value="">Tous les types</option><option value="Personne">Personnes</option><option value="GestionnaireReseau">Gestionnaires réseau</option></select>}
+      {tab === 'acteurs' && <button type="button" className="button primary" onClick={startCreate}>+ Nouvel acteur</button>}
+    </div>
+
     {error && <p className="notice error">{error}</p>}
-    {lastUpdate && <details className="notice update-notice"><summary>Requête SPARQL Update exécutée (:{lastUpdate.id})</summary><pre>{lastUpdate.sparql}</pre></details>}
-    {!loading && <section className="explorer">
-      <aside className="explorer-list">
-        <p className="list-title">TERRITOIRES</p>
-        {territories.length === 0 && <p className="muted list-empty">Aucun résultat.</p>}
-        {territories.map((item) => <button key={item.id} className={territory?.id === item.id ? 'list-item active' : 'list-item'} onClick={() => chooseTerritory(item.id)}><span>{item.name}</span><small>{shortKind(item.kind)}</small></button>)}
-        <p className="list-title actors-title">ACTEURS</p>
-        {actors.length === 0 && <p className="muted list-empty">Aucun résultat.</p>}
-        {actors.map((item) => <button key={item.id} className={actor?.id === item.id ? 'list-item active' : 'list-item'} onClick={() => chooseActor(item.id)}><span>{item.name}</span><small>{shortKind(item.kind)}</small></button>)}
-      </aside>
-      <section className="detail-panel">
-        {!selected && <div className="empty-state"><span>⌁</span><h2>Sélectionnez un territoire ou un acteur</h2><p>Les données viennent de l’ontologie OWL via des requêtes SPARQL.</p></div>}
-        {territory && <><p className="eyebrow">{shortKind(territory.kind)}</p><h2>{territory.name}</h2><div className="metrics"><Metric label="Population" value={territory.population?.toLocaleString('fr-FR') ?? '—'} /><Metric label="Code postal" value={territory.postal_code ?? '—'} /><Metric label="Superficie" value={territory.area_km2 ? `${territory.area_km2} km²` : '—'} /></div><Related title="Éléments situés dans ce territoire" items={territory.infrastructure} /></>}
-        {actor && !form && <>
-          <div className="detail-head"><p className="eyebrow">{shortKind(actor.kind)}</p><div className="actions"><button type="button" onClick={() => startEdit(actor)}>Modifier</button><button type="button" className="danger" onClick={() => deleteActor(actor)}>Supprimer</button></div></div>
-          <h2>{actor.name}</h2>
-          <div className="metrics"><Metric label="Email" value={actor.email ?? '—'} /><Metric label="Téléphone" value={actor.phone ?? '—'} /><Metric label="Éléments gérés" value={String(actor.managed_count)} /></div>
-          {actor.kind === 'GestionnaireReseau' && <Related title="Équipements réseau gérés" items={actor.managed_equipment} />}
-          {actor.kind === 'Personne' && <Related title="Bâtiments possédés (déduit de appartientA)" items={actor.owned_buildings} />}
+    {lastUpdate && <details className="notice update-notice"><summary>Requête SPARQL Update exécutée sur :{lastUpdate.id}</summary><pre>{lastUpdate.sparql}</pre></details>}
+
+    <div className={panelOpen ? 'workspace with-panel' : 'workspace'}>
+      <div className="card table-card">
+        {loading ? <p className="notice">Chargement des données sémantiques…</p> : tab === 'territoires'
+          ? <DataTable empty={territories.length === 0 ? 'Aucun territoire ne correspond.' : ''}>
+              <thead><tr><th>Nom</th><th>Type</th><th className="secondary">Code postal</th><th className="num">Population</th><th className="num">Superficie (km²)</th></tr></thead>
+              <tbody>{territories.map((item) => <tr key={item.id} {...rowProps(territory?.id === item.id, () => chooseTerritory(item.id))}>
+                <td className="strong">{item.name}</td><td><span className="badge">{kindLabel(item.kind)}</span></td><td className="secondary">{item.postal_code ?? '—'}</td><td className="num">{fr(item.population)}</td><td className="num">{fr(item.area_km2)}</td>
+              </tr>)}</tbody>
+            </DataTable>
+          : <DataTable empty={actors.length === 0 ? 'Aucun acteur ne correspond.' : ''}>
+              <thead><tr><th>Nom</th><th>Type</th><th className="secondary">Email</th><th className="secondary">Téléphone</th><th className="num">Éléments gérés</th></tr></thead>
+              <tbody>{actors.map((item) => <tr key={item.id} {...rowProps(actor?.id === item.id, () => chooseActor(item.id))}>
+                <td className="strong">{item.name}</td><td><span className="badge">{kindLabel(item.kind)}</span></td><td className="secondary">{item.email ?? '—'}</td><td className="secondary nowrap">{item.phone ?? '—'}</td><td className="num">{item.managed_count}</td>
+              </tr>)}</tbody>
+            </DataTable>}
+      </div>
+
+      {panelOpen && <aside className="card detail-card">
+        <button type="button" className="close" aria-label="Fermer le détail" onClick={closeDetail}>×</button>
+
+        {territory && <>
+          <span className="badge">{kindLabel(territory.kind)}</span>
+          <h2>{territory.name}</h2>
+          <dl className="facts">
+            <div><dt>Population</dt><dd>{fr(territory.population)}</dd></div>
+            <div><dt>Code postal</dt><dd>{territory.postal_code ?? '—'}</dd></div>
+            <div><dt>Superficie</dt><dd>{territory.area_km2 === undefined ? '—' : `${fr(territory.area_km2)} km²`}</dd></div>
+          </dl>
+          <Related title="Éléments situés dans ce territoire" items={territory.infrastructure} />
         </>}
+
+        {actor && !form && <>
+          <span className="badge">{kindLabel(actor.kind)}</span>
+          <h2>{actor.name}</h2>
+          <div className="actions"><button type="button" className="button" onClick={() => setForm({ name: actor.name, kind: actor.kind, email: actor.email ?? '', phone: actor.phone ?? '' })}>Modifier</button><button type="button" className="button danger" onClick={() => deleteActor(actor)}>Supprimer</button></div>
+          <dl className="facts">
+            <div><dt>Email</dt><dd>{actor.email ?? '—'}</dd></div>
+            <div><dt>Téléphone</dt><dd>{actor.phone ?? '—'}</dd></div>
+            <div><dt>Éléments gérés</dt><dd>{actor.managed_count}</dd></div>
+          </dl>
+          {actor.kind === 'GestionnaireReseau'
+            ? <Related title="Équipements réseau gérés" items={actor.managed_equipment} />
+            : <Related title="Bâtiments possédés" note="déduit de appartientA (propriété inverse)" items={actor.owned_buildings} />}
+        </>}
+
         {form && <form className="actor-form" onSubmit={saveActor}>
-          <p className="eyebrow">{actor ? 'MODIFIER L’ACTEUR' : 'NOUVEL ACTEUR'}</p>
-          <label>Nom<input required maxLength={120} value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></label>
-          <label>Type<select value={form.kind} onChange={(event) => setForm({ ...form, kind: event.target.value })}><option value="Personne">Personne</option><option value="GestionnaireReseau">Gestionnaire réseau</option></select></label>
-          <label>Email<input type="email" maxLength={200} value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} /></label>
-          <label>Téléphone<input maxLength={40} value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} /></label>
-          <div className="actions"><button type="submit" className="primary">Enregistrer</button><button type="button" onClick={() => setForm(null)}>Annuler</button></div>
+          <h2>{actor ? `Modifier ${actor.name}` : 'Nouvel acteur'}</h2>
+          <Field label="Nom"><input required maxLength={120} value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></Field>
+          <Field label="Type"><select value={form.kind} onChange={(event) => setForm({ ...form, kind: event.target.value })}><option value="Personne">Personne</option><option value="GestionnaireReseau">Gestionnaire réseau</option></select></Field>
+          <Field label="Email"><input type="email" maxLength={200} value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} /></Field>
+          <Field label="Téléphone"><input maxLength={40} value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} /></Field>
+          <div className="actions"><button type="submit" className="button primary">Enregistrer</button><button type="button" className="button" onClick={() => actor ? setForm(null) : closeDetail()}>Annuler</button></div>
         </form>}
-      </section>
-    </section>}
+      </aside>}
+    </div>
   </>
 }
 
-function Metric({ label, value }: { label: string; value: string }) { return <div className="metric"><small>{label}</small><strong>{value}</strong></div> }
-function Related({ title, items }: { title: string; items: Infrastructure[] }) { return <section className="related"><h3>{title}</h3>{items.length === 0 ? <p className="muted">Aucun élément associé.</p> : <div className="related-grid">{items.map((item) => <article key={item.id}><span>{shortKind(item.kind)}</span><strong>{item.name}</strong></article>)}</div>}</section> }
+function DataTable({ empty, children }: { empty: string; children: ReactNode }) {
+  return <div className="table-scroll">
+    <table className="data-table">{children}</table>
+    {empty && <p className="table-empty">{empty}</p>}
+  </div>
+}
+
+function Field({ label, children }: { label: string; children: ReactNode }) {
+  return <label className="field"><span>{label}</span>{children}</label>
+}
+
+function Related({ title, note, items }: { title: string; note?: string; items: Infrastructure[] }) {
+  return <section className="related">
+    <h3>{title} <span className="count">{items.length}</span></h3>
+    {note && <p className="muted">{note}</p>}
+    {items.length === 0 ? <p className="muted">Aucun élément associé.</p> : <div className="table-scroll related-scroll"><table className="data-table compact">
+      <thead><tr><th>Nom</th><th>Type (avec inférences)</th></tr></thead>
+      <tbody>{items.map((item) => <tr key={item.id}><td className="strong">{item.name}</td><td><span className="badges">{item.kind.split(', ').map((value) => <span key={value} className="badge">{kindLabel(value)}</span>)}</span></td></tr>)}</tbody>
+    </table></div>}
+  </section>
+}

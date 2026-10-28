@@ -66,7 +66,7 @@ export default function IntelligentSearchPage({ initialQuery }: { initialQuery?:
   const columns = response ? [...new Set(response.results.flatMap((row) => Object.keys(row)))] : []
   return (
     <>
-      <PageHeader eyebrow="MODULE NLP COMMUN" title="Recherche intelligente">
+      <PageHeader eyebrow="Module NLP commun" title="Recherche intelligente">
         Posez votre question en français. spaCy l’analyse, l’ontologie guide sa traduction en SPARQL, puis la requête s’exécute sur le graphe enrichi par le raisonneur OWL.
       </PageHeader>
       <section>
