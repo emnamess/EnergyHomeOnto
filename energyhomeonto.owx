@@ -1167,6 +1167,87 @@
     <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#emissionCO2</IRI><Literal xml:lang="fr">Émissions en gCO2/kWh.</Literal></AnnotationAssertion>
     <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#niveauCharge</IRI><Literal xml:lang="fr">Niveau de charge en %.</Literal></AnnotationAssertion>
     <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#surface</IRI><Literal xml:lang="fr">Surface en m².</Literal></AnnotationAssertion>
+    <!-- Feature 6 : maintenance et cycle de vie des équipements -->
+    <Declaration><Class IRI="#EquipementMaintenable"/></Declaration>
+    <Declaration><Class IRI="#Intervention"/></Declaration>
+    <Declaration><Class IRI="#InterventionPreventive"/></Declaration>
+    <Declaration><Class IRI="#InterventionCorrective"/></Declaration>
+    <Declaration><Class IRI="#EquipementEntretenu"/></Declaration>
+    <Declaration><Class IRI="#EquipementDejaRepare"/></Declaration>
+    <EquivalentClasses><Class IRI="#EquipementMaintenable"/><ObjectUnionOf><Class IRI="#SourceEnergie"/><Class IRI="#Stockage"/><Class IRI="#EquipementReseau"/></ObjectUnionOf></EquivalentClasses>
+    <SubClassOf><Class IRI="#InterventionPreventive"/><Class IRI="#Intervention"/></SubClassOf>
+    <SubClassOf><Class IRI="#InterventionCorrective"/><Class IRI="#Intervention"/></SubClassOf>
+    <DisjointClasses><Class IRI="#InterventionPreventive"/><Class IRI="#InterventionCorrective"/></DisjointClasses>
+    <DisjointClasses><Class IRI="#Intervention"/><Class IRI="#Batiment"/><Class IRI="#LigneElectrique"/><Class IRI="#SourceEnergie"/><Class IRI="#Stockage"/><Class IRI="#EquipementReseau"/></DisjointClasses>
+    <SubClassOf><Class IRI="#Intervention"/><ObjectExactCardinality cardinality="1"><ObjectProperty IRI="#concerne"/><Class IRI="#EquipementMaintenable"/></ObjectExactCardinality></SubClassOf>
+    <EquivalentClasses><Class IRI="#EquipementEntretenu"/><ObjectIntersectionOf><Class IRI="#EquipementMaintenable"/><ObjectSomeValuesFrom><ObjectProperty IRI="#aSubi"/><Class IRI="#InterventionPreventive"/></ObjectSomeValuesFrom></ObjectIntersectionOf></EquivalentClasses>
+    <EquivalentClasses><Class IRI="#EquipementDejaRepare"/><ObjectIntersectionOf><Class IRI="#EquipementMaintenable"/><ObjectSomeValuesFrom><ObjectProperty IRI="#aSubi"/><Class IRI="#InterventionCorrective"/></ObjectSomeValuesFrom></ObjectIntersectionOf></EquivalentClasses>
+    <Declaration><ObjectProperty IRI="#concerne"/></Declaration>
+    <Declaration><ObjectProperty IRI="#aSubi"/></Declaration>
+    <FunctionalObjectProperty><ObjectProperty IRI="#concerne"/></FunctionalObjectProperty>
+    <ObjectPropertyDomain><ObjectProperty IRI="#concerne"/><Class IRI="#Intervention"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#concerne"/><Class IRI="#EquipementMaintenable"/></ObjectPropertyRange>
+    <InverseObjectProperties><ObjectProperty IRI="#concerne"/><ObjectProperty IRI="#aSubi"/></InverseObjectProperties>
+    <Declaration><DataProperty IRI="#dateIntervention"/></Declaration>
+    <DataPropertyDomain><DataProperty IRI="#dateIntervention"/><Class IRI="#Intervention"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#dateIntervention"/><Datatype abbreviatedIRI="xsd:date"/></DataPropertyRange>
+    <FunctionalDataProperty><DataProperty IRI="#dateIntervention"/></FunctionalDataProperty>
+    <Declaration><DataProperty IRI="#coutIntervention"/></Declaration>
+    <DataPropertyDomain><DataProperty IRI="#coutIntervention"/><Class IRI="#Intervention"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#coutIntervention"/><Datatype abbreviatedIRI="xsd:double"/></DataPropertyRange>
+    <FunctionalDataProperty><DataProperty IRI="#coutIntervention"/></FunctionalDataProperty>
+    <Declaration><DataProperty IRI="#descriptionIntervention"/></Declaration>
+    <DataPropertyDomain><DataProperty IRI="#descriptionIntervention"/><Class IRI="#Intervention"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#descriptionIntervention"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <FunctionalDataProperty><DataProperty IRI="#descriptionIntervention"/></FunctionalDataProperty>
+    <Declaration><DataProperty IRI="#prestataire"/></Declaration>
+    <DataPropertyDomain><DataProperty IRI="#prestataire"/><Class IRI="#Intervention"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#prestataire"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <FunctionalDataProperty><DataProperty IRI="#prestataire"/></FunctionalDataProperty>
+    <Declaration><NamedIndividual IRI="#intervention1"/></Declaration>
+    <ClassAssertion><Class IRI="#InterventionPreventive"/><NamedIndividual IRI="#intervention1"/></ClassAssertion>
+    <ObjectPropertyAssertion><ObjectProperty IRI="#concerne"/><NamedIndividual IRI="#intervention1"/><NamedIndividual IRI="#panneausolaire1"/></ObjectPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#dateIntervention"/><NamedIndividual IRI="#intervention1"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#date">2025-03-12</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#coutIntervention"/><NamedIndividual IRI="#intervention1"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">250.0</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#descriptionIntervention"/><NamedIndividual IRI="#intervention1"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Nettoyage des modules et contrôle de l&apos;onduleur</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#prestataire"/><NamedIndividual IRI="#intervention1"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Entreprise d&apos;installation solaire</Literal></DataPropertyAssertion>
+    <Declaration><NamedIndividual IRI="#intervention2"/></Declaration>
+    <ClassAssertion><Class IRI="#InterventionCorrective"/><NamedIndividual IRI="#intervention2"/></ClassAssertion>
+    <ObjectPropertyAssertion><ObjectProperty IRI="#concerne"/><NamedIndividual IRI="#intervention2"/><NamedIndividual IRI="#batterie3"/></ObjectPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#dateIntervention"/><NamedIndividual IRI="#intervention2"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#date">2026-02-20</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#coutIntervention"/><NamedIndividual IRI="#intervention2"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">1800.0</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#descriptionIntervention"/><NamedIndividual IRI="#intervention2"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Remplacement de deux éléments défectueux</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#prestataire"/><NamedIndividual IRI="#intervention2"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Fournisseur de batteries</Literal></DataPropertyAssertion>
+    <Declaration><NamedIndividual IRI="#intervention3"/></Declaration>
+    <ClassAssertion><Class IRI="#InterventionPreventive"/><NamedIndividual IRI="#intervention3"/></ClassAssertion>
+    <ObjectPropertyAssertion><ObjectProperty IRI="#concerne"/><NamedIndividual IRI="#intervention3"/><NamedIndividual IRI="#eolienne1"/></ObjectPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#dateIntervention"/><NamedIndividual IRI="#intervention3"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#date">2026-05-15</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#coutIntervention"/><NamedIndividual IRI="#intervention3"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">1200.0</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#descriptionIntervention"/><NamedIndividual IRI="#intervention3"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Contrôle des pales et graissage du roulement principal</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#prestataire"/><NamedIndividual IRI="#intervention3"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Maintenancier éolien</Literal></DataPropertyAssertion>
+    <Declaration><NamedIndividual IRI="#intervention4"/></Declaration>
+    <ClassAssertion><Class IRI="#InterventionCorrective"/><NamedIndividual IRI="#intervention4"/></ClassAssertion>
+    <ObjectPropertyAssertion><ObjectProperty IRI="#concerne"/><NamedIndividual IRI="#intervention4"/><NamedIndividual IRI="#poste1"/></ObjectPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#dateIntervention"/><NamedIndividual IRI="#intervention4"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#date">2025-11-03</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#coutIntervention"/><NamedIndividual IRI="#intervention4"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">6500.0</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#descriptionIntervention"/><NamedIndividual IRI="#intervention4"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Remplacement d&apos;un relais de protection</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#prestataire"/><NamedIndividual IRI="#intervention4"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Service technique réseau</Literal></DataPropertyAssertion>
+    <Declaration><NamedIndividual IRI="#intervention5"/></Declaration>
+    <ClassAssertion><Class IRI="#InterventionPreventive"/><NamedIndividual IRI="#intervention5"/></ClassAssertion>
+    <ObjectPropertyAssertion><ObjectProperty IRI="#concerne"/><NamedIndividual IRI="#intervention5"/><NamedIndividual IRI="#groupeElectrogene1"/></ObjectPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#dateIntervention"/><NamedIndividual IRI="#intervention5"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#date">2026-09-01</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#coutIntervention"/><NamedIndividual IRI="#intervention5"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">300.0</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#descriptionIntervention"/><NamedIndividual IRI="#intervention5"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Vidange et remplacement des filtres</Literal></DataPropertyAssertion>
+    <DataPropertyAssertion><DataProperty IRI="#prestataire"/><NamedIndividual IRI="#intervention5"/><Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Atelier mécanique</Literal></DataPropertyAssertion>
+    <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#EquipementMaintenable</IRI><Literal xml:lang="fr">Équipement dont on suit la durée de vie : source, stockage ou équipement réseau.</Literal></AnnotationAssertion>
+    <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#Intervention</IRI><Literal xml:lang="fr">Opération de maintenance réalisée sur un équipement.</Literal></AnnotationAssertion>
+    <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#InterventionPreventive</IRI><Literal xml:lang="fr">Entretien planifié pour éviter une panne (nettoyage, contrôle, vidange...).</Literal></AnnotationAssertion>
+    <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#InterventionCorrective</IRI><Literal xml:lang="fr">Réparation effectuée après une panne ou un défaut.</Literal></AnnotationAssertion>
+    <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#EquipementEntretenu</IRI><Literal xml:lang="fr">Équipement ayant reçu au moins une intervention préventive (classe définie).</Literal></AnnotationAssertion>
+    <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#EquipementDejaRepare</IRI><Literal xml:lang="fr">Équipement ayant subi au moins une intervention corrective (classe définie).</Literal></AnnotationAssertion>
+    <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#concerne</IRI><Literal xml:lang="fr">Équipement sur lequel porte l&apos;intervention.</Literal></AnnotationAssertion>
+    <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#aSubi</IRI><Literal xml:lang="fr">Interventions subies par un équipement (inverse de concerne).</Literal></AnnotationAssertion>
+    <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#coutIntervention</IRI><Literal xml:lang="fr">Coût de l&apos;intervention en TND.</Literal></AnnotationAssertion>
 </Ontology>
 
 

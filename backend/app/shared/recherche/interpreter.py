@@ -25,6 +25,7 @@ INDICES = {
     "situer": ["estSitueDans"], "trouver": ["estSitueDans"], "localiser": ["estSitueDans"], "dans": ["estSitueDans"],
     "relier": ["relie"], "connecter": ["relie"], "raccorder": ["relie"],
     "stocker": ["stockeDans"], "installer": ["estInstalleDans"],
+    "concerner": ["concerne"], "subir": ["aSubi"],
 }
 # Ordre de préférence quand aucun verbe ne départage plusieurs propriétés possibles.
 PRIORITE = [

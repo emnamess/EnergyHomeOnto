@@ -25,6 +25,9 @@ ONTOLOGY_PATH = ROOT / "energyhomeonto.owx"
 DEFAULT_JOURNAL_PATH = ROOT / "data" / "journal-crud.rq"
 JOURNAL_SEPARATOR = "\n;\n"
 OWLRL_ERROR = URIRef("http://www.daml.org/2002/03/agents/agent-ont#ErrorMessage")
+# Le parseur SPARQL de rdflib (pyparsing) n'est pas thread-safe et son état est global :
+# FastAPI traite les requêtes simultanées dans plusieurs threads, on les exécute donc une par une.
+SPARQL_LOCK = threading.Lock()
 
 
 def journal_path() -> Path:
@@ -57,7 +60,7 @@ def _infer(asserted: Graph) -> Graph:
 
 class RdfStore:
     def __init__(self) -> None:
-        self._lock = threading.Lock()
+        self._lock = SPARQL_LOCK
         self.version = 0
         self.asserted = _load_ontology()
         path = journal_path()
@@ -68,14 +71,16 @@ class RdfStore:
         self.inferred = _infer(self.asserted)
 
     def query(self, sparql: str, inferred: bool = True) -> list[dict[str, str]]:
-        graph = self.inferred if inferred else self.asserted
-        return [
-            {str(variable): str(value) for variable, value in row.asdict().items() if value is not None}
-            for row in graph.query(sparql)
-        ]
+        with self._lock:
+            graph = self.inferred if inferred else self.asserted
+            return [
+                {str(variable): str(value) for variable, value in row.asdict().items() if value is not None}
+                for row in graph.query(sparql)
+            ]
 
     def ask(self, sparql: str) -> bool:
-        return bool(self.inferred.query(sparql).askAnswer)
+        with self._lock:
+            return bool(self.inferred.query(sparql).askAnswer)
 
     def update(self, sparql: str) -> None:
         with self._lock:

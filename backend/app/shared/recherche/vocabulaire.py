@@ -46,6 +46,11 @@ SYNONYMES = {
     "niveauCharge": ["charge"],
     "puissance": ["puissant"],
     "EquipementReseau": ["equipement"],
+    "Intervention": ["maintenance"],
+    "InterventionPreventive": ["entretien"],
+    "InterventionCorrective": ["reparation", "depannage"],
+    "EquipementEntretenu": ["entretenu"],
+    "EquipementDejaRepare": ["repare", "deja repare"],
 }
 
 
