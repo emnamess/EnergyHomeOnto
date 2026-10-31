@@ -28,7 +28,7 @@ export default function App() {
   const query = params.get('q') ?? undefined
   if (route === '#/recherche') return <Layout current={route}><IntelligentSearchPage key={query} initialQuery={query} /></Layout>
   if (route === '#/territoires-acteurs') return <Layout current={route}><TerritoriesActorsPage /></Layout>
-  if (route === '#/stockage') return <Layout current={route}><StockagePage /></Layout>
-  if (route === '#/maintenance') return <Layout current={route}><MaintenancePage /></Layout>
+  if (route === '#/stockage') return <Layout current={route}><StockagePage key={params.get('batiment')} initialBuilding={params.get('batiment') ?? undefined} /></Layout>
+  if (route === '#/maintenance') return <Layout current={route}><MaintenancePage key={params.get('equipement')} initialEquipment={params.get('equipement') ?? undefined} /></Layout>
   return <Layout current="#/tableau-de-bord"><DashboardPage /></Layout>
 }

@@ -64,5 +64,8 @@ export function Tabs<T extends string>({ value, tabs, onChange }: { value: T; ta
 
 export function UpdateNotice({ mutation }: { mutation: { id: string; sparql: string } | null }) {
   if (!mutation) return null
-  return <details className="notice update-notice"><summary>Requête SPARQL Update exécutée sur :{mutation.id}</summary><pre>{mutation.sparql}</pre></details>
+  return <div className="notice update-notice">
+    <p className="update-head"><strong>Modification enregistrée dans le graphe RDF.</strong> <a href="#/tableau-de-bord">Voir l’effet sur le tableau de bord →</a></p>
+    <details><summary>Requête SPARQL Update exécutée sur :{mutation.id}</summary><pre>{mutation.sparql}</pre></details>
+  </div>
 }

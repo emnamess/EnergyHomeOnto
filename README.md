@@ -75,6 +75,27 @@ responsables en suivant le § 6.
 
 ---
 
+## Scénario de démonstration (soutenance)
+
+**Persona :** responsable énergie de la ville. **Mission :** sécuriser l’alimentation des
+bâtiments publics et anticiper l’usure des équipements. Le tableau de bord affiche des
+**alertes**, chacune définie par une règle de l’ontologie et calculée sur le graphe inféré
+(`backend/app/shared/tableau_de_bord.py`, route `GET /api/tableau-de-bord/alertes`).
+
+| Étape | Page | Ce que l’on montre |
+| --- | --- | --- |
+| 1. Diagnostiquer | Tableau de bord | 3 alertes : bâtiments publics sans stockage (École de Sahloul, Mairie de Sousse), équipement en fin de vie sans entretien (batteries de l’hôpital de Sfax), maisons énergivores non autonomes |
+| 2. Analyser | Recherche intelligente | « bâtiments publics sans stockage » : spaCy → SPARQL retrouve les mêmes bâtiments |
+| 3. Agir | Stockage (bouton « Traiter ») | Créer une batterie pour l’école : le raisonneur la classe `BatimentAvecStockage`, l’alerte disparaît |
+| 4. Entretenir | Maintenance (bouton « Traiter ») | Planifier une intervention préventive : l’équipement devient `EquipementEntretenu`, l’alerte disparaît |
+| 5. Bilan | Tableau de bord | Le compteur d’alertes baisse ; les maisons énergivores restent pour la feature Production à venir |
+
+Le test `backend/tests/test_scenario.py` vérifie ce scénario de bout en bout.
+**Pour répéter la démonstration**, arrêter le backend, supprimer `data/journal-crud.rq`
+(les modifications faites dans l’application) puis relancer : les alertes reviennent.
+
+---
+
 ## 3. Architecture
 
 ```text
