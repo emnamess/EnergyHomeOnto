@@ -211,7 +211,7 @@ export default function BuildingsPage() {
     }
   }
 
-  const panelOpen = building !== null || form !== null
+  const panelOpen = building !== null
 
   return (
     <>
@@ -251,51 +251,55 @@ export default function BuildingsPage() {
         </section>
       )}
 
-      <div className="filters">
+      <div className="filters" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
         <input
+          style={{ flex: '1 1 200px', minWidth: '160px' }}
           aria-label="Rechercher par nom ou identifiant"
           placeholder="Rechercher par nom ou identifiant…"
           value={text}
           onChange={(event) => setText(event.target.value)}
         />
         <select
+          style={{ flex: '0 1 180px' }}
           aria-label="Type de bâtiment"
           value={kindFilter}
           onChange={(event) => setKindFilter(event.target.value)}
         >
           <option value="">Tous les types</option>
           <option value="Maison">Maisons (toutes)</option>
-          <option value="MaisonAutonome">Maison autonome (inféré)</option>
-          <option value="MaisonIntelligente">Maison intelligente (inféré)</option>
+          <option value="MaisonAutonome">Maison autonome</option>
+          <option value="MaisonIntelligente">Maison intelligente</option>
           <option value="BatimentPublic">Bâtiments publics</option>
           <option value="Ecole">Écoles</option>
           <option value="Hopital">Hôpitaux</option>
           <option value="Mairie">Mairies</option>
-          <option value="BatimentIndustriel">Bâtiments industriels</option>
-          <option value="BatimentCommercial">Bâtiments commerciaux</option>
-          <option value="GrosConsommateur">Gros consommateurs (inféré)</option>
-          <option value="BatimentEconome">Bâtiments économes (inféré)</option>
+          <option value="BatimentIndustriel">Industriels</option>
+          <option value="BatimentCommercial">Commerciaux</option>
+          <option value="GrosConsommateur">Gros consommateurs</option>
+          <option value="BatimentEconome">Économes</option>
         </select>
         <select
+          style={{ flex: '0 1 130px' }}
           aria-label="Classe énergétique"
           value={energyFilter}
           onChange={(event) => setEnergyFilter(event.target.value)}
         >
-          <option value="">Toutes classes énergétiques</option>
+          <option value="">Toutes classes</option>
           {['A', 'B', 'C', 'D', 'E', 'F', 'G'].map((c) => (
             <option key={c} value={c}>Classe {c}</option>
           ))}
         </select>
         <select
+          style={{ flex: '0 1 150px' }}
           aria-label="Raccordement réseau"
           value={gridFilter}
           onChange={(event) => setGridFilter(event.target.value)}
         >
-          <option value="">Raccordement (tous)</option>
-          <option value="true">Raccordé au réseau</option>
-          <option value="false">Autonome / Hors-réseau</option>
+          <option value="">Tous réseaux</option>
+          <option value="true">Raccordé</option>
+          <option value="false">Hors-réseau</option>
         </select>
-        <button type="button" className="button primary" onClick={startCreate}>
+        <button type="button" className="button primary" style={{ whiteSpace: 'nowrap' }} onClick={startCreate}>
           + Nouveau bâtiment
         </button>
       </div>
@@ -304,7 +308,7 @@ export default function BuildingsPage() {
       <UpdateNotice mutation={lastUpdate} />
 
       <div className={panelOpen ? 'workspace with-panel' : 'workspace'}>
-        <div className="card table-card">
+        <div className="card table-card" style={{ overflowX: 'auto' }}>
           {loading ? (
             <p className="notice">Chargement des données sémantiques…</p>
           ) : (
@@ -315,7 +319,7 @@ export default function BuildingsPage() {
                   <th>Type</th>
                   <th className="num">Consommation</th>
                   <th className="num secondary">Surface</th>
-                  <th>Classe</th>
+                  <th style={{ textAlign: 'center' }}>Classe</th>
                   <th className="secondary">Réseau</th>
                 </tr>
               </thead>
@@ -331,7 +335,7 @@ export default function BuildingsPage() {
                     </td>
                     <td className="num">{item.consumption !== undefined ? `${item.consumption} kWh` : '—'}</td>
                     <td className="num secondary">{item.surface !== undefined ? `${fr(item.surface)} m²` : '—'}</td>
-                    <td>
+                    <td style={{ textAlign: 'center' }}>
                       {item.energy_class ? (
                         <span
                           style={{
@@ -499,151 +503,195 @@ export default function BuildingsPage() {
                 </div>
               </>
             )}
-
-            {form && (
-              <form className="actor-form" onSubmit={saveBuilding}>
-                <h2>{building ? 'Modifier le bâtiment' : 'Nouveau bâtiment'}</h2>
-
-                <Field label="Nom / Désignation">
-                  <input
-                    required
-                    maxLength={120}
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    placeholder="Ex: Villa Verte 1"
-                  />
-                </Field>
-
-                <Field label="Type de bâtiment">
-                  <select
-                    value={form.kind}
-                    onChange={(e) => setForm({ ...form, kind: e.target.value })}
-                  >
-                    <option value="Maison">Maison</option>
-                    <option value="BatimentPublic">Bâtiment public</option>
-                    <option value="Ecole">École</option>
-                    <option value="Hopital">Hôpital</option>
-                    <option value="Mairie">Mairie</option>
-                    <option value="BatimentIndustriel">Bâtiment industriel</option>
-                    <option value="BatimentCommercial">Bâtiment commercial</option>
-                  </select>
-                </Field>
-
-                <div className="form-row">
-                  <Field label="Consommation (kWh)">
-                    <input
-                      type="number"
-                      step="0.1"
-                      min="0"
-                      value={form.consumption}
-                      onChange={(e) => setForm({ ...form, consumption: e.target.value })}
-                      placeholder="Ex: 12.5"
-                    />
-                  </Field>
-                  <Field label="Surface (m²)">
-                    <input
-                      type="number"
-                      step="0.1"
-                      min="0"
-                      value={form.surface}
-                      onChange={(e) => setForm({ ...form, surface: e.target.value })}
-                      placeholder="Ex: 120"
-                    />
-                  </Field>
-                </div>
-
-                <div className="form-row">
-                  <Field label="Occupants">
-                    <input
-                      type="number"
-                      min="0"
-                      value={form.occupants}
-                      onChange={(e) => setForm({ ...form, occupants: e.target.value })}
-                      placeholder="Ex: 4"
-                    />
-                  </Field>
-                  <Field label="Étages">
-                    <input
-                      type="number"
-                      min="0"
-                      value={form.floors}
-                      onChange={(e) => setForm({ ...form, floors: e.target.value })}
-                      placeholder="Ex: 2"
-                    />
-                  </Field>
-                </div>
-
-                <div className="form-row">
-                  <Field label="Classe énergétique">
-                    <select
-                      value={form.energy_class}
-                      onChange={(e) => setForm({ ...form, energy_class: e.target.value })}
-                    >
-                      {['A', 'B', 'C', 'D', 'E', 'F', 'G'].map((c) => (
-                        <option key={c} value={c}>Classe {c}</option>
-                      ))}
-                    </select>
-                  </Field>
-                  <Field label="Raccordement réseau">
-                    <select
-                      value={form.grid_connected ? 'true' : 'false'}
-                      onChange={(e) => setForm({ ...form, grid_connected: e.target.value === 'true' })}
-                    >
-                      <option value="true">Raccordé au réseau</option>
-                      <option value="false">Hors-réseau (Autonome)</option>
-                    </select>
-                  </Field>
-                </div>
-
-                {options && (
-                  <>
-                    <Field label="Propriétaire (appartientA)">
-                      <select
-                        value={form.owner}
-                        onChange={(e) => setForm({ ...form, owner: e.target.value })}
-                      >
-                        <option value="">-- Aucun propriétaire --</option>
-                        {options.owners.map((o) => (
-                          <option key={o.id} value={o.id}>{o.name} ({o.id})</option>
-                        ))}
-                      </select>
-                    </Field>
-
-                    <Field label="Localisation (estSitueDans)">
-                      <select
-                        value={form.zone}
-                        onChange={(e) => setForm({ ...form, zone: e.target.value })}
-                      >
-                        <option value="">-- Aucune zone --</option>
-                        {options.zones.map((z) => (
-                          <option key={z.id} value={z.id}>{z.name} ({humanize(z.kind)})</option>
-                        ))}
-                      </select>
-                    </Field>
-
-                    <Field label="Source d'énergie possédée (déclenche MaisonAutonome)">
-                      <select
-                        value={form.sources[0] ?? ''}
-                        onChange={(e) => setForm({ ...form, sources: e.target.value ? [e.target.value] : [] })}
-                      >
-                        <option value="">-- Aucune source --</option>
-                        {options.sources.map((s) => (
-                          <option key={s.id} value={s.id}>{s.name} ({humanize(s.kind)})</option>
-                        ))}
-                      </select>
-                    </Field>
-                  </>
-                )}
-
-                <div className="actions" style={{ marginTop: '10px' }}>
-                  <button type="submit" className="button primary">Enregistrer</button>
-                  <button type="button" className="button" onClick={() => setForm(null)}>Annuler</button>
-                </div>
-              </form>
-            )}
           </aside>
         )}
       </div>
+
+      {form && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(23, 37, 29, 0.45)',
+            backdropFilter: 'blur(3px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            padding: '20px',
+            overflowY: 'auto',
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setForm(null)
+          }}
+        >
+          <div
+            className="card"
+            style={{
+              maxWidth: '620px',
+              width: '100%',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              position: 'relative',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+              padding: '24px 28px',
+            }}
+          >
+            <button
+              type="button"
+              className="close"
+              aria-label="Fermer"
+              onClick={() => setForm(null)}
+              style={{ top: '16px', right: '16px' }}
+            >
+              ×
+            </button>
+            <form className="actor-form" onSubmit={saveBuilding}>
+              <h2>{building ? `Modifier « ${building.name} »` : 'Nouveau bâtiment'}</h2>
+              <p className="muted" style={{ marginTop: '-6px', marginBottom: '8px' }}>
+                Saisissez les caractéristiques du bâtiment. Si vous lui associez un panneau solaire, il sera
+                automatiquement classifié <strong>MaisonAutonome</strong> par le raisonneur OWL.
+              </p>
+
+              <Field label="Nom / Désignation">
+                <input
+                  required
+                  maxLength={120}
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  placeholder="Ex: Villa Verte 1"
+                />
+              </Field>
+
+              <Field label="Type de bâtiment">
+                <select
+                  value={form.kind}
+                  onChange={(e) => setForm({ ...form, kind: e.target.value })}
+                >
+                  <option value="Maison">Maison</option>
+                  <option value="BatimentPublic">Bâtiment public</option>
+                  <option value="Ecole">École</option>
+                  <option value="Hopital">Hôpital</option>
+                  <option value="Mairie">Mairie</option>
+                  <option value="BatimentIndustriel">Bâtiment industriel</option>
+                  <option value="BatimentCommercial">Bâtiment commercial</option>
+                </select>
+              </Field>
+
+              <div className="form-row">
+                <Field label="Consommation (kWh)">
+                  <input
+                    type="number"
+                    step="0.1"
+                    min="0"
+                    value={form.consumption}
+                    onChange={(e) => setForm({ ...form, consumption: e.target.value })}
+                    placeholder="Ex: 12.5"
+                  />
+                </Field>
+                <Field label="Surface (m²)">
+                  <input
+                    type="number"
+                    step="0.1"
+                    min="0"
+                    value={form.surface}
+                    onChange={(e) => setForm({ ...form, surface: e.target.value })}
+                    placeholder="Ex: 120"
+                  />
+                </Field>
+              </div>
+
+              <div className="form-row">
+                <Field label="Occupants">
+                  <input
+                    type="number"
+                    min="0"
+                    value={form.occupants}
+                    onChange={(e) => setForm({ ...form, occupants: e.target.value })}
+                    placeholder="Ex: 4"
+                  />
+                </Field>
+                <Field label="Étages">
+                  <input
+                    type="number"
+                    min="0"
+                    value={form.floors}
+                    onChange={(e) => setForm({ ...form, floors: e.target.value })}
+                    placeholder="Ex: 2"
+                  />
+                </Field>
+              </div>
+
+              <div className="form-row">
+                <Field label="Classe énergétique">
+                  <select
+                    value={form.energy_class}
+                    onChange={(e) => setForm({ ...form, energy_class: e.target.value })}
+                  >
+                    {['A', 'B', 'C', 'D', 'E', 'F', 'G'].map((c) => (
+                      <option key={c} value={c}>Classe {c}</option>
+                    ))}
+                  </select>
+                </Field>
+                <Field label="Raccordement réseau">
+                  <select
+                    value={form.grid_connected ? 'true' : 'false'}
+                    onChange={(e) => setForm({ ...form, grid_connected: e.target.value === 'true' })}
+                  >
+                    <option value="true">Raccordé au réseau</option>
+                    <option value="false">Hors-réseau (Autonome)</option>
+                  </select>
+                </Field>
+              </div>
+
+              {options && (
+                <>
+                  <Field label="Propriétaire (appartientA)">
+                    <select
+                      value={form.owner}
+                      onChange={(e) => setForm({ ...form, owner: e.target.value })}
+                    >
+                      <option value="">-- Aucun propriétaire --</option>
+                      {options.owners.map((o) => (
+                        <option key={o.id} value={o.id}>{o.name} ({o.id})</option>
+                      ))}
+                    </select>
+                  </Field>
+
+                  <Field label="Localisation (estSitueDans)">
+                    <select
+                      value={form.zone}
+                      onChange={(e) => setForm({ ...form, zone: e.target.value })}
+                    >
+                      <option value="">-- Aucune zone --</option>
+                      {options.zones.map((z) => (
+                        <option key={z.id} value={z.id}>{z.name} ({humanize(z.kind)})</option>
+                      ))}
+                    </select>
+                  </Field>
+
+                  <Field label="Source d'énergie possédée (déclenche MaisonAutonome)">
+                    <select
+                      value={form.sources[0] ?? ''}
+                      onChange={(e) => setForm({ ...form, sources: e.target.value ? [e.target.value] : [] })}
+                    >
+                      <option value="">-- Aucune source --</option>
+                      {options.sources.map((s) => (
+                        <option key={s.id} value={s.id}>{s.name} ({humanize(s.kind)})</option>
+                      ))}
+                    </select>
+                  </Field>
+                </>
+              )}
+
+              <div className="actions" style={{ marginTop: '16px' }}>
+                <button type="submit" className="button primary">Enregistrer</button>
+                <button type="button" className="button" onClick={() => setForm(null)}>Annuler</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   )
 }
