@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useEffect, useState } from 'react'
+import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { PageHeader } from '../../shared/Layout'
 import { Badges, DataTable, Facts, Field, Section, UpdateNotice, fr, humanize, readJson, rowProps, withUnit } from '../../shared/ui'
 
@@ -36,7 +36,8 @@ const kwh = (value?: number | null) => withUnit(value, 'kWh')
 const chargeLevel = (value: number | null) => value == null ? 'inconnu' : value < 50 ? 'faible' : value < 80 ? 'moyen' : 'eleve'
 const toNumber = (value: string) => value.trim() === '' ? null : Number(value)
 
-export default function StockagePage() {
+// initialBuilding : arrivée depuis une alerte du tableau de bord (#/stockage?batiment=ecole2).
+export default function StockagePage({ initialBuilding }: { initialBuilding?: string }) {
   const [storages, setStorages] = useState<Storage[]>([])
   const [indicators, setIndicators] = useState<Indicators | null>(null)
   const [options, setOptions] = useState<Options>({ sources: [], buildings: [] })
@@ -75,6 +76,16 @@ export default function StockagePage() {
     const timer = setTimeout(loadLists, 250)
     return () => clearTimeout(timer)
   }, [loadLists])
+
+  // Préremplit le formulaire de création avec le bâtiment à secourir.
+  const prefilled = useRef(false)
+  useEffect(() => {
+    const building = options.buildings.find((item) => item.id === initialBuilding)
+    if (!building || prefilled.current) return
+    prefilled.current = true
+    setStorage(null)
+    setForm({ ...EMPTY_FORM, name: `Batterie de secours – ${building.name}`, buildings: [building.id] })
+  }, [initialBuilding, options.buildings])
 
   function closeDetail() {
     setStorage(null)

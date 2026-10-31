@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useEffect, useState } from 'react'
+import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { PageHeader } from '../../shared/Layout'
 import { Badges, DataTable, Facts, Field, Section, Tabs, UpdateNotice, humanize, readJson, rowProps, withUnit } from '../../shared/ui'
 
@@ -27,7 +27,8 @@ const money = (value?: number | null) => withUnit(value, 'TND')
 const years = (value?: number | null) => value == null ? '—' : `${value} an${Math.abs(value) > 1 ? 's' : ''}`
 const formatDate = (value: string) => new Date(`${value}T00:00:00`).toLocaleDateString('fr-FR')
 
-export default function MaintenancePage() {
+// initialEquipment : arrivée depuis une alerte du tableau de bord (#/maintenance?equipement=batterie7).
+export default function MaintenancePage({ initialEquipment }: { initialEquipment?: string }) {
   const [tab, setTab] = useState<Tab>('equipements')
   const [equipmentList, setEquipmentList] = useState<Equipment[]>([])
   const [allEquipment, setAllEquipment] = useState<Equipment[]>([])
@@ -68,6 +69,16 @@ export default function MaintenancePage() {
     const timer = setTimeout(loadLists, 250)
     return () => clearTimeout(timer)
   }, [loadLists])
+
+  // Préremplit une intervention préventive sur l'équipement signalé.
+  const prefilled = useRef(false)
+  useEffect(() => {
+    if (prefilled.current || !allEquipment.some((item) => item.id === initialEquipment)) return
+    prefilled.current = true
+    setEquipment(null)
+    setIntervention(null)
+    setForm({ ...emptyForm(initialEquipment), description: 'Remplacement préventif de l’équipement en fin de vie' })
+  }, [initialEquipment, allEquipment])
 
   function closeDetail() {
     setEquipment(null)

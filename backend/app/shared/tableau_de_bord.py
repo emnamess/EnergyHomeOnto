@@ -1,4 +1,6 @@
-"""Chiffres clés de l'ontologie et des inférences pour la page d'accueil."""
+"""Chiffres clés de l'ontologie, inférences et alertes du scénario pour la page d'accueil."""
+
+import datetime
 
 from fastapi import APIRouter
 from pydantic import BaseModel
@@ -47,6 +49,85 @@ class Dashboard(BaseModel):
     inferred_triples: int
     families: list[Family]
     defined_classes: list[DefinedClass]
+
+
+class AlertItem(BaseModel):
+    id: str
+    name: str
+    detail: str
+    action: str | None  # lien vers la page qui permet de traiter l'alerte
+
+
+class Alert(BaseModel):
+    id: str
+    title: str
+    rule: str  # règle de l'ontologie qui définit l'alerte, affichée pour la soutenance
+    severity: str  # critique | attention | info
+    items: list[AlertItem]
+
+
+def _label(row: dict[str, str], variable: str) -> str:
+    return row.get("nom") or local_name(row[variable])
+
+
+def alerts() -> list[Alert]:
+    """Diagnostic du scénario : chaque alerte est une requête sur le graphe inféré par le raisonneur."""
+    year = datetime.date.today().year
+    unprotected = query(PREFIXES + """SELECT ?b ?nom ?kind WHERE {
+  ?b a :BatimentPublic ; a owl:NamedIndividual ; a ?k .
+  VALUES ?k { :Ecole :Hopital :Mairie }
+  BIND(STRAFTER(STR(?k), "#") AS ?kind)
+  FILTER NOT EXISTS { ?b a :BatimentAvecStockage }
+  OPTIONAL { ?b :nom ?nom }
+} ORDER BY ?nom""")
+    ageing = query(PREFIXES + f"""SELECT ?e ?nom ?remaining WHERE {{
+  ?e a :EquipementMaintenable ; a owl:NamedIndividual ; :anneeInstallation ?annee ; :dureeVie ?duree .
+  BIND(?annee + ?duree - {year} AS ?remaining)
+  FILTER(?remaining <= 2)
+  FILTER NOT EXISTS {{ ?e a :EquipementEntretenu }}
+  OPTIONAL {{ ?e :nom ?nom }}
+}} ORDER BY ?remaining""")
+    energy_hungry = query(PREFIXES + """SELECT ?m ?nom ?classe ?conso WHERE {
+  ?m a :Maison ; a owl:NamedIndividual ; :classeEnergetique ?classe ; :consommation ?conso .
+  FILTER(STR(?classe) IN ("E", "F", "G"))
+  FILTER NOT EXISTS { ?m a :MaisonAutonome }
+  OPTIONAL { ?m :nom ?nom }
+} ORDER BY DESC(?conso)""")
+
+    def years(value: str) -> str:
+        remaining = int(value)
+        if remaining < 0:
+            return f"fin de vie dépassée depuis {-remaining} an{'s' if remaining < -1 else ''}"
+        return "fin de vie cette année" if remaining == 0 else f"fin de vie dans {remaining} an{'s' if remaining > 1 else ''}"
+
+    return [
+        Alert(
+            id="batiments-non-secourus", severity="critique",
+            title="Bâtiments publics sans stockage d’énergie",
+            rule="BatimentPublic ⊓ ¬BatimentAvecStockage — BatimentAvecStockage ≡ Batiment ⊓ ∃estAlimentePar.Stockage",
+            items=[AlertItem(id=local_name(r["b"]), name=_label(r, "b"), detail=r["kind"].replace("Ecole", "École").replace("Hopital", "Hôpital"),
+                             action=f"#/stockage?batiment={local_name(r['b'])}") for r in unprotected],
+        ),
+        Alert(
+            id="fin-de-vie", severity="attention",
+            title="Équipements en fin de vie sans entretien préventif",
+            rule="EquipementMaintenable ⊓ ¬EquipementEntretenu — EquipementEntretenu ≡ EquipementMaintenable ⊓ ∃aSubi.InterventionPreventive",
+            items=[AlertItem(id=local_name(r["e"]), name=_label(r, "e"), detail=years(r["remaining"]),
+                             action=f"#/maintenance?equipement={local_name(r['e'])}") for r in ageing],
+        ),
+        Alert(
+            id="maisons-energivores", severity="info",
+            title="Maisons énergivores non autonomes",
+            rule="Maison ⊓ ¬MaisonAutonome, classe énergétique E à G — à transmettre à l’équipe Production (feature à venir)",
+            items=[AlertItem(id=local_name(r["m"]), name=_label(r, "m"), detail=f"classe {r['classe']} · {float(r['conso']):g} kWh", action=None)
+                   for r in energy_hungry],
+        ),
+    ]
+
+
+@router.get("/tableau-de-bord/alertes", response_model=list[Alert])
+def dashboard_alerts() -> list[Alert]:
+    return alerts()
 
 
 def _count(sparql: str) -> int:
