@@ -9,6 +9,7 @@ from app.shared.recherche.vocabulaire import vocabulaire
 from app.features.territoires_acteurs.router import router as territories_actors_router
 from app.features.maintenance.router import router as maintenance_router
 from app.features.stockage.router import router as storage_router
+from app.features.batiments.router import router as batiments_router
 
 
 @asynccontextmanager
@@ -25,6 +26,7 @@ app.include_router(search_router, prefix="/api")
 app.include_router(territories_actors_router, prefix="/api")
 app.include_router(maintenance_router, prefix="/api")
 app.include_router(storage_router, prefix="/api")
+app.include_router(batiments_router, prefix="/api")
 
 
 @app.get("/api/health")

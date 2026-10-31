@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import TerritoriesActorsPage from './features/territoires-acteurs/TerritoriesActorsPage'
+import BuildingsPage from './features/batiments/BuildingsPage'
 import MaintenancePage from './features/maintenance/MaintenancePage'
 import StockagePage from './features/stockage/StockagePage'
 import IntelligentSearchPage from './shared/recherche-intelligente/IntelligentSearchPage'
@@ -17,6 +18,7 @@ export default function App() {
   }, [])
 
   if (route === '#/recherche') return <IntelligentSearchPage />
+  if (route === '#/batiments') return <BuildingsPage />
   if (route === '#/maintenance') return <MaintenancePage />
   if (route === '#/stockage') return <StockagePage />
   return <TerritoriesActorsPage />
