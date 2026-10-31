@@ -17,7 +17,7 @@ YEAR = datetime.date.today().year
 def test_equipment_list_covers_every_maintainable_equipment():
     equipment = {item["id"]: item for item in client.get(f"{API}/equipements").json()}
     # EquipementMaintenable ≡ SourceEnergie ⊔ Stockage ⊔ EquipementReseau (9 sources, 5 stockages, 6 équipements réseau).
-    assert len(equipment) == 20
+    assert len(equipment) == 50
     assert equipment["batterie1"]["category"] == "Stockage"
     assert equipment["batterie1"]["kind"] == "BatterieLithium"
     assert equipment["poste1"]["category"] == "EquipementReseau"
@@ -38,11 +38,12 @@ def test_equipment_without_installation_year_is_flagged():
 
 def test_equipment_filters():
     storage = {item["id"] for item in client.get(f"{API}/equipements", params={"category": "Stockage"}).json()}
-    assert storage == {"batterie1", "batterie2", "batterie3", "stockageH2_1", "superCondo1"}
+    assert storage == {f"batterie{n}" for n in range(1, 8)} | {"stockageH2_1", "stockageH2_2", "superCondo1", "superCondo2"}
     assert [item["id"] for item in client.get(f"{API}/equipements", params={"q": "eolienne"}).json()] == ["eolienne1", "eolienne2"]
-    # batterie1 arrive en fin de vie en 2033 : c'est le premier équipement concerné.
+    # batterie7 a dépassé sa fin de vie (2025) ; batterie1 et groupeElectrogene2 l'atteignent en 2033.
     soon = client.get(f"{API}/equipements", params={"horizon": 2033 - YEAR}).json()
-    assert [item["id"] for item in soon] == ["batterie1"]
+    assert [item["id"] for item in soon][0] == "batterie7"
+    assert {item["id"] for item in soon} == {"batterie7", "batterie1", "groupeElectrogene2"}
 
 
 def test_equipment_detail_uses_reasoning():
@@ -158,7 +159,7 @@ def test_intervention_input_validation(payload):
         ("équipements entretenus", ["eolienne1", "groupeElectrogene1", "panneausolaire1"]),
         ("batteries ayant subi une réparation", ["batterie3"]),
         ("interventions qui concernent une éolienne", ["intervention3"]),
-        ("éoliennes sans entretien", ["eolienne2"]),
+        ("éoliennes sans entretien", ["eolienne2", "eolienne3", "eolienne4", "eolienne5"]),
         ("interventions avec un coût d'intervention supérieur à 1000", ["intervention2", "intervention3", "intervention4"]),
     ],
 )

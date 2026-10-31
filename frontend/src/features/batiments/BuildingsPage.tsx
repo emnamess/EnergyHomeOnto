@@ -1,5 +1,5 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react'
-import AppNav from '../../shared/AppNav'
+import { PageHeader } from '../../shared/Layout'
 
 type Building = {
   id: string
@@ -218,26 +218,15 @@ export default function BuildingsPage() {
   const selected = building ?? form
 
   return (
-    <main className="territory-page">
-      <header className="topbar">
-        <span className="brand-mark">E</span>
-        <span>EnergyHome</span>
-        <span className="tag">BÂTIMENTS</span>
-        <AppNav current="#/batiments" />
-      </header>
-
-      <section className="territory-hero">
-        <p className="eyebrow">FEATURE BÂTIMENTS</p>
-        <h1>
-          L'habitat connecté et durable<br />
-          du <em>réseau intelligent.</em>
-        </h1>
-        <p className="intro">
-          Explorez les maisons, bâtiments publics, commerces et usines.
-          Le raisonneur OWL RL infère automatiquement les <strong>maisons autonomes</strong> (panneaux solaires),
-          les <strong>propriétaires</strong> (propriété inverse) et la <strong>localisation</strong> (transitivité).
-        </p>
-      </section>
+    <div className="page-body">
+      <PageHeader
+        eyebrow="FEATURE BÂTIMENTS"
+        title="L'habitat connecté et durable du réseau intelligent."
+      >
+        Explorez les maisons, bâtiments publics, commerces et usines.
+        Le raisonneur OWL RL infère automatiquement les <strong>maisons autonomes</strong> (panneaux solaires),
+        les <strong>propriétaires</strong> (propriété inverse) et la <strong>localisation</strong> (transitivité).
+      </PageHeader>
 
       {indicators && (
         <section className="filters" style={{ marginBottom: '22px' }}>
@@ -596,8 +585,7 @@ export default function BuildingsPage() {
             )}
           </section>
         </section>
-      )}
-    </main>
+    </div>
   )
 }
 

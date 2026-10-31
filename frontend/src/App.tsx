@@ -4,22 +4,33 @@ import BuildingsPage from './features/batiments/BuildingsPage'
 import MaintenancePage from './features/maintenance/MaintenancePage'
 import StockagePage from './features/stockage/StockagePage'
 import IntelligentSearchPage from './shared/recherche-intelligente/IntelligentSearchPage'
-import { ROUTES } from './shared/AppNav'
+import DashboardPage from './shared/tableau-de-bord/DashboardPage'
+import { Layout } from './shared/Layout'
 
-const currentRoute = () => ROUTES.find((route) => route.hash === window.location.hash)?.hash ?? ROUTES[0].hash
+// « #/recherche?q=maisons » -> route « #/recherche » et paramètre q.
+function readLocation() {
+  const [route, search = ''] = window.location.hash.split('?')
+  return { route, params: new URLSearchParams(search) }
+}
 
 export default function App() {
-  const [route, setRoute] = useState(currentRoute)
+  const [location, setLocation] = useState(readLocation)
 
   useEffect(() => {
-    const onHashChange = () => setRoute(currentRoute())
+    const onHashChange = () => {
+      setLocation(readLocation())
+      window.scrollTo(0, 0)
+    }
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
-  if (route === '#/recherche') return <IntelligentSearchPage />
-  if (route === '#/batiments') return <BuildingsPage />
-  if (route === '#/maintenance') return <MaintenancePage />
-  if (route === '#/stockage') return <StockagePage />
-  return <TerritoriesActorsPage />
+  const { route, params } = location
+  const query = params.get('q') ?? undefined
+  if (route === '#/recherche') return <Layout current={route}><IntelligentSearchPage key={query} initialQuery={query} /></Layout>
+  if (route === '#/territoires-acteurs') return <Layout current={route}><TerritoriesActorsPage /></Layout>
+  if (route === '#/batiments') return <Layout current={route}><BuildingsPage /></Layout>
+  if (route === '#/stockage') return <Layout current={route}><StockagePage key={params.get('batiment')} initialBuilding={params.get('batiment') ?? undefined} /></Layout>
+  if (route === '#/maintenance') return <Layout current={route}><MaintenancePage key={params.get('equipement')} initialEquipment={params.get('equipement') ?? undefined} /></Layout>
+  return <Layout current="#/tableau-de-bord"><DashboardPage /></Layout>
 }
