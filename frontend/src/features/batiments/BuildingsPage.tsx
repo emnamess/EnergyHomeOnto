@@ -585,6 +585,7 @@ export default function BuildingsPage() {
             )}
           </section>
         </section>
+      )}
     </div>
   )
 }
