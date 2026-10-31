@@ -33,6 +33,14 @@ SYNONYMES = {
     "CompteurIntelligent": ["compteur"],
     "GestionnaireReseau": ["gestionnaire", "operateur"],
     "StockageHydrogene": ["hydrogene"],
+    "Stockage": ["reserve", "reserve d energie", "systeme de stockage"],
+    "Batterie": ["accumulateur"],
+    "BatterieLithium": ["lithium", "batterie lithium ion"],
+    "BatteriePlomb": ["plomb"],
+    "SuperCondensateur": ["supercondensateur", "condensateur", "supercapacite"],
+    "BatimentAvecStockage": ["batiment secouru"],
+    "nombreCyclesCharge": ["cycle", "cycle de charge"],
+    "tempsRecharge": ["duree de recharge"],
     "Acteur": ["intervenant"],
     "nombreEtages": ["etage"],
     "nombreOccupants": ["occupant", "habitant"],
@@ -46,6 +54,11 @@ SYNONYMES = {
     "niveauCharge": ["charge"],
     "puissance": ["puissant"],
     "EquipementReseau": ["equipement"],
+    "Intervention": ["maintenance"],
+    "InterventionPreventive": ["entretien"],
+    "InterventionCorrective": ["reparation", "depannage"],
+    "EquipementEntretenu": ["entretenu"],
+    "EquipementDejaRepare": ["repare", "deja repare"],
 }
 
 

@@ -8,6 +8,8 @@ from app.shared.recherche.router import router as search_router
 from app.shared.recherche.vocabulaire import vocabulaire
 from app.shared.tableau_de_bord import router as dashboard_router
 from app.features.territoires_acteurs.router import router as territories_actors_router
+from app.features.maintenance.router import router as maintenance_router
+from app.features.stockage.router import router as storage_router
 
 
 @asynccontextmanager
@@ -23,6 +25,8 @@ app = FastAPI(title="EnergyHomeOnto API", version="0.2.0", lifespan=lifespan)
 app.include_router(dashboard_router, prefix="/api")
 app.include_router(search_router, prefix="/api")
 app.include_router(territories_actors_router, prefix="/api")
+app.include_router(maintenance_router, prefix="/api")
+app.include_router(storage_router, prefix="/api")
 
 
 @app.get("/api/health")

@@ -1,5 +1,6 @@
-import { FormEvent, KeyboardEvent, ReactNode, useCallback, useEffect, useState } from 'react'
+import { FormEvent, useCallback, useEffect, useState } from 'react'
 import { PageHeader } from '../../shared/Layout'
+import { DataTable, Facts, Field, Section, Tabs, UpdateNotice, fr, humanize, readJson, rowProps } from '../../shared/ui'
 
 type Infrastructure = { id: string; name: string; kind: string }
 type Territory = { id: string; name: string; kind: string; population?: number; postal_code?: string; area_km2?: number }
@@ -13,32 +14,7 @@ type Tab = 'territoires' | 'acteurs'
 const API = '/api/territoires-acteurs'
 const EMPTY_FORM: ActorForm = { name: '', kind: 'Personne', email: '', phone: '' }
 const KIND_LABELS: Record<string, string> = { Ville: 'Ville', Quartier: 'Quartier', Personne: 'Personne', GestionnaireReseau: 'Gestionnaire réseau' }
-const kindLabel = (kind: string) => KIND_LABELS[kind] ?? kind.replace(/([a-z])([A-Z])/g, '$1 $2')
-const fr = (value?: number) => value === undefined ? '—' : value.toLocaleString('fr-FR')
-
-async function readJson<T>(response: Response): Promise<T> {
-  if (!response.ok) {
-    const body = await response.json().catch(() => null)
-    throw new Error(typeof body?.detail === 'string' ? body.detail : `Erreur ${response.status}.`)
-  }
-  return response.json()
-}
-
-// Ligne de tableau cliquable à la souris et au clavier (Entrée / Espace).
-function rowProps(selected: boolean, onSelect: () => void) {
-  return {
-    className: selected ? 'selected' : undefined,
-    tabIndex: 0,
-    'aria-selected': selected,
-    onClick: onSelect,
-    onKeyDown: (event: KeyboardEvent) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault()
-        onSelect()
-      }
-    },
-  }
-}
+const kindLabel = (kind: string) => KIND_LABELS[kind] ?? humanize(kind)
 
 export default function TerritoriesActorsPage() {
   const [tab, setTab] = useState<Tab>('territoires')
@@ -145,10 +121,10 @@ export default function TerritoriesActorsPage() {
       Villes, quartiers et acteurs qui administrent les équipements énergétiques. Les types affichés tiennent compte des inférences du raisonneur OWL.
     </PageHeader>
 
-    <div className="tabs" role="tablist">
-      <button type="button" role="tab" aria-selected={tab === 'territoires'} className={tab === 'territoires' ? 'tab active' : 'tab'} onClick={() => changeTab('territoires')}>Territoires <span className="count">{territories.length}</span></button>
-      <button type="button" role="tab" aria-selected={tab === 'acteurs'} className={tab === 'acteurs' ? 'tab active' : 'tab'} onClick={() => changeTab('acteurs')}>Acteurs <span className="count">{actors.length}</span></button>
-    </div>
+    <Tabs value={tab} onChange={changeTab} tabs={[
+      { id: 'territoires', label: 'Territoires', count: territories.length },
+      { id: 'acteurs', label: 'Acteurs', count: actors.length },
+    ]} />
 
     <div className="filters">
       <input aria-label="Rechercher par nom" placeholder="Rechercher par nom…" value={text} onChange={(event) => setText(event.target.value)} />
@@ -159,7 +135,7 @@ export default function TerritoriesActorsPage() {
     </div>
 
     {error && <p className="notice error">{error}</p>}
-    {lastUpdate && <details className="notice update-notice"><summary>Requête SPARQL Update exécutée sur :{lastUpdate.id}</summary><pre>{lastUpdate.sparql}</pre></details>}
+    <UpdateNotice mutation={lastUpdate} />
 
     <div className={panelOpen ? 'workspace with-panel' : 'workspace'}>
       <div className="card table-card">
@@ -184,11 +160,11 @@ export default function TerritoriesActorsPage() {
         {territory && <>
           <span className="badge">{kindLabel(territory.kind)}</span>
           <h2>{territory.name}</h2>
-          <dl className="facts">
-            <div><dt>Population</dt><dd>{fr(territory.population)}</dd></div>
-            <div><dt>Code postal</dt><dd>{territory.postal_code ?? '—'}</dd></div>
-            <div><dt>Superficie</dt><dd>{territory.area_km2 === undefined ? '—' : `${fr(territory.area_km2)} km²`}</dd></div>
-          </dl>
+          <Facts items={[
+            ['Population', fr(territory.population)],
+            ['Code postal', territory.postal_code ?? '—'],
+            ['Superficie', territory.area_km2 === undefined ? '—' : `${fr(territory.area_km2)} km²`],
+          ]} />
           <Related title="Éléments situés dans ce territoire" items={territory.infrastructure} />
         </>}
 
@@ -196,11 +172,7 @@ export default function TerritoriesActorsPage() {
           <span className="badge">{kindLabel(actor.kind)}</span>
           <h2>{actor.name}</h2>
           <div className="actions"><button type="button" className="button" onClick={() => setForm({ name: actor.name, kind: actor.kind, email: actor.email ?? '', phone: actor.phone ?? '' })}>Modifier</button><button type="button" className="button danger" onClick={() => deleteActor(actor)}>Supprimer</button></div>
-          <dl className="facts">
-            <div><dt>Email</dt><dd>{actor.email ?? '—'}</dd></div>
-            <div><dt>Téléphone</dt><dd>{actor.phone ?? '—'}</dd></div>
-            <div><dt>Éléments gérés</dt><dd>{actor.managed_count}</dd></div>
-          </dl>
+          <Facts items={[['Email', actor.email ?? '—'], ['Téléphone', actor.phone ?? '—'], ['Éléments gérés', actor.managed_count]]} />
           {actor.kind === 'GestionnaireReseau'
             ? <Related title="Équipements réseau gérés" items={actor.managed_equipment} />
             : <Related title="Bâtiments possédés" note="déduit de appartientA (propriété inverse)" items={actor.owned_buildings} />}
@@ -219,24 +191,11 @@ export default function TerritoriesActorsPage() {
   </>
 }
 
-function DataTable({ empty, children }: { empty: string; children: ReactNode }) {
-  return <div className="table-scroll">
-    <table className="data-table">{children}</table>
-    {empty && <p className="table-empty">{empty}</p>}
-  </div>
-}
-
-function Field({ label, children }: { label: string; children: ReactNode }) {
-  return <label className="field"><span>{label}</span>{children}</label>
-}
-
 function Related({ title, note, items }: { title: string; note?: string; items: Infrastructure[] }) {
-  return <section className="related">
-    <h3>{title} <span className="count">{items.length}</span></h3>
-    {note && <p className="muted">{note}</p>}
-    {items.length === 0 ? <p className="muted">Aucun élément associé.</p> : <div className="table-scroll related-scroll"><table className="data-table compact">
+  return <Section title={title} count={items.length} note={note}>
+    {items.length === 0 ? <p className="muted">Aucun élément associé.</p> : <div className="related-scroll"><DataTable compact>
       <thead><tr><th>Nom</th><th>Type (avec inférences)</th></tr></thead>
       <tbody>{items.map((item) => <tr key={item.id}><td className="strong">{item.name}</td><td><span className="badges">{item.kind.split(', ').map((value) => <span key={value} className="badge">{kindLabel(value)}</span>)}</span></td></tr>)}</tbody>
-    </table></div>}
-  </section>
+    </DataTable></div>}
+  </Section>
 }

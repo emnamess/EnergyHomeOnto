@@ -59,18 +59,18 @@ ce que le raisonneur a déduit, scénario de démonstration) ; la barre latéral
 
 | Exigence de la validation | Où la trouver |
 | --- | --- |
-| Ontologie liée à la thématique | `energyhomeonto.owx` : 45 classes, 13 propriétés d’objet, 43 propriétés de données, 120 individus (Tunis, Ariana, Sfax, Sousse) |
+| Ontologie liée à la thématique | `energyhomeonto.owx` : 51 classes, 15 propriétés d’objet, 47 propriétés de données, 125 individus (Tunis, Ariana, Sfax, Sousse) |
 | ObjectProperty, DataProperty, individus, axiomes | Domaines/portées, sous-classes, classes disjointes, classes définies (`MaisonAutonome ≡ Maison ⊓ ∃possede.PanneauSolaire`…), propriétés inverses, transitives et fonctionnelles, restrictions |
-| Axiomes réellement exploités | Raisonneur OWL RL (`backend/app/shared/rdf_store.py`), complété pour les classes définies par un seuil numérique : les requêtes portent sur le graphe inféré (2 142 → ~6 400 triplets). Le tableau de bord liste les 10 classes définies et leurs individus déduits |
+| Axiomes réellement exploités | Raisonneur OWL RL (`backend/app/shared/rdf_store.py`), complété pour les classes définies par un seuil numérique : les requêtes portent sur le graphe inféré (2 265 → ~6 900 triplets). Le tableau de bord liste les 13 classes définies et leurs individus déduits |
 | Interfaces front et back | React (`frontend/`) + FastAPI (`backend/`) |
 | Communication front ↔ back | API REST JSON, proxy Vite `/api` → port 8000 |
 | SPARQL : lecture | `SELECT` dans chaque `queries.py` |
-| SPARQL : CRUD | `INSERT DATA`, `DELETE … INSERT … WHERE`, `DELETE WHERE` (feature 5 : acteurs) |
+| SPARQL : CRUD | `INSERT DATA`, `DELETE … INSERT … WHERE`, `DELETE WHERE` (feature 3 : stockages, feature 5 : acteurs, feature 6 : interventions) |
 | SPARQL : filtrage et recherche | `FILTER(CONTAINS(...))`, `VALUES`, filtres numériques générés par la recherche |
 | Module NLP question → SPARQL | `backend/app/shared/recherche/` avec spaCy (voir § 5) |
 
-**État des features** : la feature 5 (territoires et acteurs) et la recherche
-intelligente sont terminées. Les features 1 à 4 sont à développer par leurs
+**État des features** : la feature 3 (stockage), la feature 5 (territoires et acteurs), la feature 6
+(maintenance et cycle de vie des équipements) et la recherche intelligente sont terminées. Les features 1, 2 et 4 sont à développer par leurs
 responsables en suivant le § 6.
 
 ---
@@ -96,6 +96,8 @@ backend/app/
   shared/sparql.py             PREFIXES, string(), number(), most_specific_kind()
   shared/recherche/            module NLP commun (question → SPARQL)
   features/territoires_acteurs/  exemple complet de feature (lecture, filtres, CRUD)
+  features/stockage/           feature 3 : stockages, indicateurs, sources et bâtiments alimentés
+  features/maintenance/        feature 6 : cycle de vie des équipements et interventions
   features/<feature>/          à remplir par chaque membre
 backend/tests/                 tests pytest de l’API
 frontend/src/
@@ -104,6 +106,8 @@ frontend/src/
   shared/tableau-de-bord/      page d’accueil (backend : app/shared/tableau_de_bord.py)
   shared/recherche-intelligente/  page de recherche
   features/territoires-acteurs/   exemple complet de page
+  features/stockage/              page Stockage (feature 3)
+  features/maintenance/           page Maintenance (feature 6)
 ```
 
 **Points importants**
@@ -158,6 +162,7 @@ SPARQL générée, résultats et analyse spaCy (affichée dans l’interface).
 - « Combien de maisons à Tunis ? » (comptage + `estSitueDans` transitif)
 - « batteries avec une capacité supérieure à 20 », « sources d’énergie avec une puissance entre 5 et 50 »
 - « quel est le panneau solaire le plus puissant » (superlatif → `ORDER BY DESC … LIMIT 1`)
+- « bâtiments avec batterie », « stockages rechargés par un panneau solaire », « batteries avec plus de 2000 cycles »
 - « Dans quel quartier se trouve la maison 1 ? », « maisons de Sarra », « Ahmed » (description d’un individu)
 
 ### Étendre la recherche pour sa feature
@@ -177,8 +182,9 @@ modèle `fr_core_news_sm`), **rdflib** (SPARQL), **owlrl** (raisonnement OWL RL)
 
 ## 6. Guide : développer sa feature (features 1 à 4)
 
-La feature 5 (`territoires_acteurs`) sert de modèle complet : la copier est le plus
-simple. Exemple ci-dessous pour la feature **Stockage** ; remplacer par `batiments`,
+Les features 3 (`stockage`), 5 (`territoires_acteurs`) et 6 (`maintenance`) servent de
+modèles complets : en copier une est le plus simple. L’exemple ci-dessous est une version
+simplifiée de la feature **Stockage** ; pour votre feature, remplacer par `batiments`,
 `production` ou `reseau`.
 
 ### Étape 1 — Créer sa branche

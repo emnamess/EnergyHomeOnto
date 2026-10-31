@@ -176,6 +176,40 @@ pre { margin: 10px 0 0; padding: 14px; background: var(--surface-soft); border-r
 .actor-form { display: grid; gap: 14px; }
 .field { display: grid; gap: 6px; }
 
+/* ---------- Formulaires des features ---------- */
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.filters .small-input { flex: 0 1 180px; min-width: 150px; }
+fieldset { margin: 0; padding: 10px 12px 12px; border: 1px solid var(--line); border-radius: 8px; }
+legend { padding: 0 4px; font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 6px; max-height: 180px; overflow-y: auto; }
+.check { display: flex; align-items: center; gap: 8px; font-weight: 400; color: var(--ink); }
+.check input { padding: 0; }
+
+/* ---------- Stockage ---------- */
+.overview .tiles { margin-bottom: 16px; }
+.capacity-card .bar-chart { margin-top: 10px; }
+.charge { display: inline-flex; align-items: center; gap: 8px; min-width: 120px; }
+.charge-track { flex: 1; min-width: 60px; height: 6px; border-radius: 999px; background: var(--line-soft); overflow: hidden; }
+.charge-track i { display: block; height: 100%; border-radius: 999px; background: #9aa69e; }
+.charge.eleve .charge-track i { background: var(--accent-2); }
+.charge.moyen .charge-track i { background: #c58b2b; }
+.charge.faible .charge-track i { background: var(--danger); }
+.charge-value { font-size: 13.5px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.charge.large { display: flex; }
+.charge.large .charge-track { height: 10px; }
+.charge.large .charge-value { font-size: 15px; font-weight: 600; }
+.gauge { display: grid; gap: 6px; font-size: 14px; color: var(--muted); }
+.badge.inferred { background: #f6eedd; color: #7a5413; }
+
+/* ---------- Maintenance : état et interventions ---------- */
+.status { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500; white-space: nowrap; }
+.status-dot { width: 9px; height: 9px; border-radius: 50%; background: #9aa69e; }
+.status.en-service .status-dot { background: var(--accent-2); }
+.status.a-remplacer .status-dot { background: #c58b2b; }
+.status.fin-de-vie { color: var(--danger); }
+.status.fin-de-vie .status-dot { background: var(--danger); }
+.badge.planned { margin-left: 6px; background: #e7eef8; color: #2d5487; }
+
 /* ---------- Écrans étroits ---------- */
 @media (max-width: 1100px) {
   .dashboard-grid { grid-template-columns: 1fr; }
@@ -197,4 +231,5 @@ pre { margin: 10px 0 0; padding: 14px; background: var(--surface-soft); border-r
   .search-row { flex-direction: column; }
   .search-row button { padding: 12px; }
   .filters select, .filters .button { flex: 1; }
+  .form-row { grid-template-columns: 1fr; }
 }

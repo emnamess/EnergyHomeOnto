@@ -176,7 +176,8 @@ def test_search_rejects_unsupported_question():
 
 def test_dashboard_counts_and_deductions():
     body = client.get("/api/tableau-de-bord").json()
-    assert (body["classes"], body["object_properties"], body["data_properties"]) == (45, 13, 43)
+    # 45 classes de départ + 6 de la feature maintenance ; 13 + 2 propriétés d'objet ; 43 + 4 de données.
+    assert (body["classes"], body["object_properties"], body["data_properties"]) == (51, 15, 47)
     assert body["inferred_triples"] > body["asserted_triples"]
     families = {family["id"]: family["count"] for family in body["families"]}
     assert families["Batiment"] == 27 and families["Zone"] == 12
