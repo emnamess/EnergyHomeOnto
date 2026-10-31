@@ -64,12 +64,12 @@ Ouvrir <http://localhost:5173>. Le menu en haut à droite passe d’une page à 
 | Interfaces front et back | React (`frontend/`) + FastAPI (`backend/`) |
 | Communication front ↔ back | API REST JSON, proxy Vite `/api` → port 8000 |
 | SPARQL : lecture | `SELECT` dans chaque `queries.py` |
-| SPARQL : CRUD | `INSERT DATA`, `DELETE … INSERT … WHERE`, `DELETE WHERE` (feature 5 : acteurs, feature 6 : interventions) |
+| SPARQL : CRUD | `INSERT DATA`, `DELETE … INSERT … WHERE`, `DELETE WHERE` (feature 3 : stockages, feature 5 : acteurs, feature 6 : interventions) |
 | SPARQL : filtrage et recherche | `FILTER(CONTAINS(...))`, `VALUES`, filtres numériques générés par la recherche |
 | Module NLP question → SPARQL | `backend/app/shared/recherche/` avec spaCy (voir § 5) |
 
-**État des features** : la feature 5 (territoires et acteurs), la feature 6
-(maintenance et cycle de vie des équipements) et la recherche intelligente sont terminées. Les features 1 à 4 sont à développer par leurs
+**État des features** : la feature 3 (stockage), la feature 5 (territoires et acteurs), la feature 6
+(maintenance et cycle de vie des équipements) et la recherche intelligente sont terminées. Les features 1, 2 et 4 sont à développer par leurs
 responsables en suivant le § 6.
 
 ---
@@ -95,6 +95,7 @@ backend/app/
   shared/sparql.py             PREFIXES, string(), number(), most_specific_kind()
   shared/recherche/            module NLP commun (question → SPARQL)
   features/territoires_acteurs/  exemple complet de feature (lecture, filtres, CRUD)
+  features/stockage/           feature 3 : stockages, indicateurs, sources et bâtiments alimentés
   features/maintenance/        feature 6 : cycle de vie des équipements et interventions
   features/<feature>/          à remplir par chaque membre
 backend/tests/                 tests pytest de l’API
@@ -103,6 +104,7 @@ frontend/src/
   shared/AppNav.tsx            menu de navigation
   shared/recherche-intelligente/  page de recherche
   features/territoires-acteurs/   exemple complet de page
+  features/stockage/              page Stockage (feature 3)
   features/maintenance/           page Maintenance (feature 6)
 ```
 
@@ -158,6 +160,7 @@ SPARQL générée, résultats et analyse spaCy (affichée dans l’interface).
 - « Combien de maisons à Tunis ? » (comptage + `estSitueDans` transitif)
 - « batteries avec une capacité supérieure à 20 », « sources d’énergie avec une puissance entre 5 et 50 »
 - « quel est le panneau solaire le plus puissant » (superlatif → `ORDER BY DESC … LIMIT 1`)
+- « bâtiments avec batterie », « stockages rechargés par un panneau solaire », « batteries avec plus de 2000 cycles »
 - « Dans quel quartier se trouve la maison 1 ? », « maisons de Sarra », « Ahmed » (description d’un individu)
 
 ### Étendre la recherche pour sa feature

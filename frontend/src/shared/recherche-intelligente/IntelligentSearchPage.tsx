@@ -19,6 +19,7 @@ const EXAMPLES = [
   'quel est le panneau solaire le plus puissant',
   'Dans quel quartier se trouve la maison 1 ?',
   'éoliennes sans entretien',
+  'bâtiments avec batterie',
 ]
 const NATURES: Record<string, string> = { classe: 'Classe', objet: 'Relation', donnee: 'Donnée', individu: 'Individu' }
 

@@ -1,5 +1,6 @@
 export const ROUTES = [
   { hash: '#/territoires-acteurs', label: 'Territoires & acteurs' },
+  { hash: '#/stockage', label: 'Stockage' },
   { hash: '#/maintenance', label: 'Maintenance' },
   { hash: '#/recherche', label: 'Recherche' },
 ]

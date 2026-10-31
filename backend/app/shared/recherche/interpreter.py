@@ -24,7 +24,8 @@ INDICES = {
     "gerer": ["estGerePar", "gere"], "exploiter": ["estGerePar", "gere"],
     "situer": ["estSitueDans"], "trouver": ["estSitueDans"], "localiser": ["estSitueDans"], "dans": ["estSitueDans"],
     "relier": ["relie"], "connecter": ["relie"], "raccorder": ["relie"],
-    "stocker": ["stockeDans"], "installer": ["estInstalleDans"],
+    "stocker": ["stockeDans"], "remplir": ["stockeDans"], "recharger": ["stockeDans"], "charger": ["stockeDans"],
+    "accumuler": ["stockeDans"], "installer": ["estInstalleDans"],
     "concerner": ["concerne"], "subir": ["aSubi"],
 }
 # Ordre de préférence quand aucun verbe ne départage plusieurs propriétés possibles.
