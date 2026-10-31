@@ -1,5 +1,6 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react'
 import { PageHeader } from '../../shared/Layout'
+import { DataTable, Facts, Field, Section, UpdateNotice, fr, humanize, readJson, rowProps } from '../../shared/ui'
 
 type Building = {
   id: string
@@ -85,16 +86,6 @@ const EMPTY_FORM: BuildingForm = {
   sources: [],
 }
 
-const shortKind = (kind: string) => kind.replace(/([a-z])([A-Z])/g, '$1 $2')
-
-async function readJson<T>(response: Response): Promise<T> {
-  if (!response.ok) {
-    const body = await response.json().catch(() => null)
-    throw new Error(typeof body?.detail === 'string' ? body.detail : `Erreur ${response.status}.`)
-  }
-  return response.json()
-}
-
 export default function BuildingsPage() {
   const [buildings, setBuildings] = useState<Building[]>([])
   const [building, setBuilding] = useState<BuildingDetail | null>(null)
@@ -128,7 +119,7 @@ export default function BuildingsPage() {
       if (opts) setOptions(opts)
       setError('')
     } catch (cause) {
-      setError(cause instanceof Error ? `${cause.message} Vérifiez que FastAPI est démarré.` : 'Erreur de chargement.')
+      setError(cause instanceof Error ? `${cause.message} Vérifiez que le backend est démarré.` : 'Erreur de chargement.')
     } finally {
       setLoading(false)
     }
@@ -138,6 +129,11 @@ export default function BuildingsPage() {
     const timer = setTimeout(loadData, 250)
     return () => clearTimeout(timer)
   }, [loadData])
+
+  function closeDetail() {
+    setBuilding(null)
+    setForm(null)
+  }
 
   async function chooseBuilding(id: string) {
     setForm(null)
@@ -208,17 +204,17 @@ export default function BuildingsPage() {
     try {
       const mutation = await fetch(`${API}/${current.id}`, { method: 'DELETE' }).then(readJson<Mutation>)
       setLastUpdate(mutation)
-      setBuilding(null)
+      closeDetail()
       await loadData()
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : 'Suppression impossible.')
     }
   }
 
-  const selected = building ?? form
+  const panelOpen = building !== null || form !== null
 
   return (
-    <div className="page-body">
+    <>
       <PageHeader
         eyebrow="FEATURE BÂTIMENTS"
         title="L'habitat connecté et durable du réseau intelligent."
@@ -229,25 +225,36 @@ export default function BuildingsPage() {
       </PageHeader>
 
       {indicators && (
-        <section className="filters" style={{ marginBottom: '22px' }}>
-          <div className="metrics" style={{ width: '100%', borderBottom: 'none', paddingBottom: 0 }}>
-            <Metric label="Total Bâtiments" value={String(indicators.total_count)} />
-            <Metric
-              label="Consommation moyenne"
-              value={indicators.avg_consumption ? `${indicators.avg_consumption} kWh` : '—'}
-            />
-            <Metric
-              label="Surface cumulée"
-              value={indicators.total_surface ? `${indicators.total_surface.toLocaleString('fr-FR')} m²` : '—'}
-            />
+        <section className="overview" aria-label="Indicateurs clés">
+          <div className="tiles">
+            <div className="tile">
+              <span className="card-label">Total Bâtiments</span>
+              <p className="tile-value">{indicators.total_count}</p>
+              <span className="muted">du réseau</span>
+            </div>
+            <div className="tile">
+              <span className="card-label">Consommation moyenne</span>
+              <p className="tile-value">{indicators.avg_consumption ? `${indicators.avg_consumption} kWh` : '—'}</p>
+              <span className="muted">par bâtiment</span>
+            </div>
+            <div className="tile">
+              <span className="card-label">Surface totale</span>
+              <p className="tile-value">{indicators.total_surface ? `${fr(indicators.total_surface)} m²` : '—'}</p>
+              <span className="muted">surface cumulée</span>
+            </div>
+            <div className="tile">
+              <span className="card-label">Occupants moyens</span>
+              <p className="tile-value">{indicators.avg_occupants ?? '—'}</p>
+              <span className="muted">personnes par édifice</span>
+            </div>
           </div>
         </section>
       )}
 
-      <section className="filters">
+      <div className="filters">
         <input
-          aria-label="Filtrer par nom ou identifiant"
-          placeholder="Filtrer par nom ou identifiant…"
+          aria-label="Rechercher par nom ou identifiant"
+          placeholder="Rechercher par nom ou identifiant…"
           value={text}
           onChange={(event) => setText(event.target.value)}
         />
@@ -288,163 +295,216 @@ export default function BuildingsPage() {
           <option value="true">Raccordé au réseau</option>
           <option value="false">Autonome / Hors-réseau</option>
         </select>
-        <button type="button" className="primary" onClick={startCreate}>
+        <button type="button" className="button primary" onClick={startCreate}>
           + Nouveau bâtiment
         </button>
-      </section>
+      </div>
 
-      {loading && <p className="notice">Chargement des données sémantiques…</p>}
       {error && <p className="notice error">{error}</p>}
-      {lastUpdate && (
-        <details className="notice update-notice">
-          <summary>Requête SPARQL Update exécutée (:{lastUpdate.id})</summary>
-          <pre>{lastUpdate.sparql}</pre>
-        </details>
-      )}
+      <UpdateNotice mutation={lastUpdate} />
 
-      {!loading && (
-        <section className="explorer">
-          <aside className="explorer-list">
-            <p className="list-title">BÂTIMENTS ({buildings.length})</p>
-            {buildings.length === 0 && <p className="muted list-empty">Aucun résultat.</p>}
-            {buildings.map((item) => (
-              <button
-                key={item.id}
-                className={building?.id === item.id ? 'list-item active' : 'list-item'}
-                onClick={() => chooseBuilding(item.id)}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span>{item.name}</span>
-                  {item.energy_class && (
-                    <span
-                      style={{
-                        fontSize: '10px',
-                        padding: '2px 6px',
-                        borderRadius: '4px',
-                        background: item.energy_class <= 'B' ? '#e6eee4' : '#f6eedd',
-                        color: item.energy_class <= 'B' ? '#24533c' : '#8a5f16',
-                        fontWeight: 700,
-                      }}
-                    >
-                      {item.energy_class}
-                    </span>
-                  )}
-                </div>
-                <small>{shortKind(item.kind)}</small>
-              </button>
-            ))}
-          </aside>
+      <div className={panelOpen ? 'workspace with-panel' : 'workspace'}>
+        <div className="card table-card">
+          {loading ? (
+            <p className="notice">Chargement des données sémantiques…</p>
+          ) : (
+            <DataTable empty={buildings.length === 0 ? 'Aucun bâtiment ne correspond.' : ''}>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Type</th>
+                  <th className="num">Consommation</th>
+                  <th className="num secondary">Surface</th>
+                  <th>Classe</th>
+                  <th className="secondary">Réseau</th>
+                </tr>
+              </thead>
+              <tbody>
+                {buildings.map((item) => (
+                  <tr
+                    key={item.id}
+                    {...rowProps(building?.id === item.id, () => chooseBuilding(item.id))}
+                  >
+                    <td className="strong">{item.name}</td>
+                    <td>
+                      <span className="badge">{humanize(item.kind.split(',')[0].trim())}</span>
+                    </td>
+                    <td className="num">{item.consumption !== undefined ? `${item.consumption} kWh` : '—'}</td>
+                    <td className="num secondary">{item.surface !== undefined ? `${fr(item.surface)} m²` : '—'}</td>
+                    <td>
+                      {item.energy_class ? (
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            padding: '1px 8px',
+                            borderRadius: '4px',
+                            fontWeight: 700,
+                            fontSize: '12px',
+                            background: item.energy_class <= 'B' ? 'var(--accent-soft)' : '#f6eedd',
+                            color: item.energy_class <= 'B' ? 'var(--accent)' : '#8a5f16',
+                          }}
+                        >
+                          {item.energy_class}
+                        </span>
+                      ) : (
+                        '—'
+                      )}
+                    </td>
+                    <td className="secondary">
+                      {item.grid_connected ? (
+                        <span className="muted">Raccordé</span>
+                      ) : (
+                        <span className="badge" style={{ background: '#fef3c7', color: '#92400e' }}>
+                          ⚡ Hors-réseau
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </DataTable>
+          )}
+        </div>
 
-          <section className="detail-panel">
-            {!selected && (
-              <div className="empty-state">
-                <span>⌂</span>
-                <h2>Sélectionnez un bâtiment</h2>
-                <p>Les données et inférences proviennent de l'ontologie OWL via le raisonneur OWL RL.</p>
-              </div>
-            )}
+        {panelOpen && (
+          <aside className="card detail-card">
+            <button
+              type="button"
+              className="close"
+              aria-label="Fermer le panneau"
+              onClick={closeDetail}
+            >
+              ×
+            </button>
 
             {building && !form && (
               <>
-                <div className="detail-head">
-                  <p className="eyebrow">{shortKind(building.kind)}</p>
-                  <div className="actions">
-                    <button type="button" onClick={() => startEdit(building)}>Modifier</button>
-                    <button type="button" className="danger" onClick={() => deleteBuilding(building)}>Supprimer</button>
-                  </div>
+                <div>
+                  <span className="eyebrow">{humanize(building.kind.split(',')[0].trim())}</span>
+                  <h2>{building.name}</h2>
                 </div>
 
-                <h2>{building.name}</h2>
-
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '18px' }}>
+                <div className="chips" style={{ margin: '4px 0 8px' }}>
                   {building.is_autonomous && (
-                    <span className="status-badge en-service">
-                      ✓ Maison autonome (inféré : Panneau solaire)
+                    <span className="chip" style={{ background: 'var(--accent)', color: '#fff' }}>
+                      ✓ Maison autonome (inféré)
                     </span>
                   )}
                   {building.is_smart && (
-                    <span className="status-badge en-service">
-                      ✓ Maison intelligente (inféré : Compteur)
+                    <span className="chip" style={{ background: 'var(--accent-soft)', color: 'var(--accent)' }}>
+                      ✓ Maison intelligente (inféré)
                     </span>
                   )}
                   {building.inferred_classes
                     .filter((c) => !['MaisonAutonome', 'MaisonIntelligente'].includes(c))
                     .map((c) => (
-                      <span key={c} className="status-badge">
-                        inféré : {shortKind(c)}
+                      <span key={c} className="chip">
+                        inféré : {humanize(c)}
                       </span>
                     ))}
                 </div>
 
-                <div className="metrics">
-                  <Metric label="Consommation" value={building.consumption !== undefined ? `${building.consumption} kWh` : '—'} />
-                  <Metric label="Surface" value={building.surface !== undefined ? `${building.surface} m²` : '—'} />
-                  <Metric label="Classe énergétique" value={building.energy_class ?? '—'} />
-                  <Metric label="Occupants" value={building.occupants !== undefined ? String(building.occupants) : '—'} />
-                  <Metric label="Étages" value={building.floors !== undefined ? String(building.floors) : '—'} />
-                  <Metric label="Raccordement réseau" value={building.grid_connected ? 'Oui (Raccordé)' : 'Non (Hors-réseau)'} />
-                </div>
-
-                {building.owner && (
-                  <section className="related">
-                    <h3>Propriétaire (déduit par inverse de appartientA)</h3>
-                    <div className="related-grid">
-                      <article>
-                        <span>{shortKind(building.owner.kind)}</span>
-                        <strong>{building.owner.name}</strong>
-                        {building.owner.email && <small className="muted">{building.owner.email}</small>}
-                        {building.owner.phone && <small className="muted">{building.owner.phone}</small>}
-                      </article>
-                    </div>
-                  </section>
-                )}
-
-                <Related
-                  title="Localisation (transitivité :estSitueDans)"
-                  items={building.zones}
+                <Facts
+                  items={[
+                    ['Consommation', building.consumption !== undefined ? `${building.consumption} kWh` : '—'],
+                    ['Surface', building.surface !== undefined ? `${fr(building.surface)} m²` : '—'],
+                    ['Classe énergétique', building.energy_class ?? '—'],
+                    ['Nombre d’occupants', building.occupants ? String(building.occupants) : '—'],
+                    ['Nombre d’étages', building.floors ? String(building.floors) : '—'],
+                    ['Réseau électrique', building.grid_connected ? 'Raccordé' : 'Autonome (Hors-réseau)'],
+                  ]}
                 />
 
-                <section className="related">
-                  <h3>Sources d'énergie & Stockages</h3>
-                  {building.sources.length === 0 ? (
-                    <p className="muted">Aucune source d'énergie déclarée.</p>
-                  ) : (
-                    <div className="related-grid">
-                      {building.sources.map((s) => (
-                        <article key={s.id}>
-                          <span>{s.owned ? 'Possédé & Alimente' : 'Alimente'}</span>
-                          <strong>{s.name}</strong>
-                          <small className="muted">{shortKind(s.kind)} {s.power_kw ? `(${s.power_kw} kW)` : ''}</small>
-                        </article>
-                      ))}
-                    </div>
-                  )}
-                </section>
+                {building.owner && (
+                  <Section title="Propriétaire (inverse appartientA)">
+                    <p className="muted" style={{ marginBottom: '8px' }}>
+                      Déduit automatiquement via <code>owl:inverseOf :estProprietaireDe</code>.
+                    </p>
+                    <Facts
+                      items={[
+                        ['Nom', building.owner.name],
+                        ['Qualité', humanize(building.owner.kind)],
+                        ['Email', building.owner.email ?? '—'],
+                        ['Téléphone', building.owner.phone ?? '—'],
+                      ]}
+                    />
+                  </Section>
+                )}
 
-                <section className="related">
-                  <h3>Équipements installés (compteurs)</h3>
-                  {building.equipment.length === 0 ? (
-                    <p className="muted">Aucun équipement spécifique installé.</p>
+                <Section title="Localisation (transitivité :estSitueDans)">
+                  <p className="muted" style={{ marginBottom: '8px' }}>
+                    Le raisonneur remonte la chaîne transitive (Quartier $\rightarrow$ Ville).
+                  </p>
+                  <div className="chips">
+                    {building.zones.map((z) => (
+                      <span key={z.id} className="chip">
+                        {z.name} <small>({humanize(z.kind)})</small>
+                      </span>
+                    ))}
+                  </div>
+                </Section>
+
+                <Section title="Sources d'énergie & Stockage" count={building.sources.length}>
+                  {building.sources.length === 0 ? (
+                    <p className="muted">Aucune source déclarée.</p>
                   ) : (
-                    <div className="related-grid">
-                      {building.equipment.map((e) => (
-                        <article key={e.id}>
-                          <span>{shortKind(e.kind)}</span>
-                          <strong>{e.name}</strong>
-                          {e.identifier_number && <small className="muted">N° {e.identifier_number}</small>}
-                        </article>
+                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '8px' }}>
+                      {building.sources.map((s) => (
+                        <li
+                          key={s.id}
+                          style={{
+                            padding: '8px 10px',
+                            border: '1px solid var(--line-soft)',
+                            borderRadius: '8px',
+                            fontSize: '13.5px',
+                          }}
+                        >
+                          <strong>{s.name}</strong> <span className="muted">({humanize(s.kind)})</span>
+                          {s.power_kw ? ` — ${s.power_kw} kW` : ''}
+                          {s.owned && <span className="badge" style={{ marginLeft: '8px' }}>Possédé</span>}
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   )}
-                </section>
+                </Section>
+
+                {building.equipment.length > 0 && (
+                  <Section title="Équipements installés" count={building.equipment.length}>
+                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '8px' }}>
+                      {building.equipment.map((e) => (
+                        <li
+                          key={e.id}
+                          style={{
+                            padding: '8px 10px',
+                            border: '1px solid var(--line-soft)',
+                            borderRadius: '8px',
+                            fontSize: '13.5px',
+                          }}
+                        >
+                          <strong>{e.name}</strong> <span className="muted">({humanize(e.kind)})</span>
+                          {e.identifier_number && <span> — N° {e.identifier_number}</span>}
+                        </li>
+                      ))}
+                    </ul>
+                  </Section>
+                )}
+
+                <div className="actions" style={{ marginTop: '14px' }}>
+                  <button type="button" className="button" onClick={() => startEdit(building)}>
+                    Modifier
+                  </button>
+                  <button type="button" className="button danger" onClick={() => deleteBuilding(building)}>
+                    Supprimer
+                  </button>
+                </div>
               </>
             )}
 
             {form && (
-              <form className="actor-form" onSubmit={saveBuilding} style={{ maxWidth: '500px' }}>
-                <p className="eyebrow">{building ? 'MODIFIER LE BÂTIMENT' : 'NOUVEAU BÂTIMENT'}</p>
-                <label>
-                  Nom / Désignation
+              <form className="actor-form" onSubmit={saveBuilding}>
+                <h2>{building ? 'Modifier le bâtiment' : 'Nouveau bâtiment'}</h2>
+
+                <Field label="Nom / Désignation">
                   <input
                     required
                     maxLength={120}
@@ -452,9 +512,9 @@ export default function BuildingsPage() {
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     placeholder="Ex: Villa Verte 1"
                   />
-                </label>
-                <label>
-                  Type de bâtiment
+                </Field>
+
+                <Field label="Type de bâtiment">
                   <select
                     value={form.kind}
                     onChange={(e) => setForm({ ...form, kind: e.target.value })}
@@ -467,10 +527,10 @@ export default function BuildingsPage() {
                     <option value="BatimentIndustriel">Bâtiment industriel</option>
                     <option value="BatimentCommercial">Bâtiment commercial</option>
                   </select>
-                </label>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                  <label>
-                    Consommation (kWh)
+                </Field>
+
+                <div className="form-row">
+                  <Field label="Consommation (kWh)">
                     <input
                       type="number"
                       step="0.1"
@@ -479,9 +539,8 @@ export default function BuildingsPage() {
                       onChange={(e) => setForm({ ...form, consumption: e.target.value })}
                       placeholder="Ex: 12.5"
                     />
-                  </label>
-                  <label>
-                    Surface (m²)
+                  </Field>
+                  <Field label="Surface (m²)">
                     <input
                       type="number"
                       step="0.1"
@@ -490,11 +549,11 @@ export default function BuildingsPage() {
                       onChange={(e) => setForm({ ...form, surface: e.target.value })}
                       placeholder="Ex: 120"
                     />
-                  </label>
+                  </Field>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                  <label>
-                    Occupants
+
+                <div className="form-row">
+                  <Field label="Occupants">
                     <input
                       type="number"
                       min="0"
@@ -502,9 +561,8 @@ export default function BuildingsPage() {
                       onChange={(e) => setForm({ ...form, occupants: e.target.value })}
                       placeholder="Ex: 4"
                     />
-                  </label>
-                  <label>
-                    Étages
+                  </Field>
+                  <Field label="Étages">
                     <input
                       type="number"
                       min="0"
@@ -512,11 +570,11 @@ export default function BuildingsPage() {
                       onChange={(e) => setForm({ ...form, floors: e.target.value })}
                       placeholder="Ex: 2"
                     />
-                  </label>
+                  </Field>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                  <label>
-                    Classe énergétique
+
+                <div className="form-row">
+                  <Field label="Classe énergétique">
                     <select
                       value={form.energy_class}
                       onChange={(e) => setForm({ ...form, energy_class: e.target.value })}
@@ -525,96 +583,67 @@ export default function BuildingsPage() {
                         <option key={c} value={c}>Classe {c}</option>
                       ))}
                     </select>
-                  </label>
-                  <label>
-                    Raccordé au réseau
+                  </Field>
+                  <Field label="Raccordement réseau">
                     <select
                       value={form.grid_connected ? 'true' : 'false'}
                       onChange={(e) => setForm({ ...form, grid_connected: e.target.value === 'true' })}
                     >
-                      <option value="true">Oui (Raccordé)</option>
-                      <option value="false">Non (Autonome)</option>
+                      <option value="true">Raccordé au réseau</option>
+                      <option value="false">Hors-réseau (Autonome)</option>
                     </select>
-                  </label>
+                  </Field>
                 </div>
+
                 {options && (
                   <>
-                    <label>
-                      Propriétaire (appartientA)
+                    <Field label="Propriétaire (appartientA)">
                       <select
                         value={form.owner}
                         onChange={(e) => setForm({ ...form, owner: e.target.value })}
                       >
-                        <option value="">-- Aucun --</option>
+                        <option value="">-- Aucun propriétaire --</option>
                         {options.owners.map((o) => (
                           <option key={o.id} value={o.id}>{o.name} ({o.id})</option>
                         ))}
                       </select>
-                    </label>
-                    <label>
-                      Zone géographique (estSitueDans)
+                    </Field>
+
+                    <Field label="Localisation (estSitueDans)">
                       <select
                         value={form.zone}
                         onChange={(e) => setForm({ ...form, zone: e.target.value })}
                       >
-                        <option value="">-- Aucune --</option>
+                        <option value="">-- Aucune zone --</option>
                         {options.zones.map((z) => (
-                          <option key={z.id} value={z.id}>{z.name} ({shortKind(z.kind)})</option>
+                          <option key={z.id} value={z.id}>{z.name} ({humanize(z.kind)})</option>
                         ))}
                       </select>
-                    </label>
-                    <label>
-                      Source d'énergie possédée (possede)
+                    </Field>
+
+                    <Field label="Source d'énergie possédée (déclenche MaisonAutonome)">
                       <select
                         value={form.sources[0] ?? ''}
                         onChange={(e) => setForm({ ...form, sources: e.target.value ? [e.target.value] : [] })}
                       >
-                        <option value="">-- Aucune --</option>
+                        <option value="">-- Aucune source --</option>
                         {options.sources.map((s) => (
-                          <option key={s.id} value={s.id}>{s.name} ({shortKind(s.kind)})</option>
+                          <option key={s.id} value={s.id}>{s.name} ({humanize(s.kind)})</option>
                         ))}
                       </select>
-                    </label>
+                    </Field>
                   </>
                 )}
+
                 <div className="actions" style={{ marginTop: '10px' }}>
-                  <button type="submit" className="primary">Enregistrer</button>
-                  <button type="button" onClick={() => setForm(null)}>Annuler</button>
+                  <button type="submit" className="button primary">Enregistrer</button>
+                  <button type="button" className="button" onClick={() => setForm(null)}>Annuler</button>
                 </div>
               </form>
             )}
-          </section>
-        </section>
-      )}
-    </div>
-  )
-}
-
-function Metric({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="metric">
-      <small>{label}</small>
-      <strong>{value}</strong>
-    </div>
-  )
-}
-
-function Related({ title, items }: { title: string; items: ZoneItem[] }) {
-  return (
-    <section className="related">
-      <h3>{title}</h3>
-      {items.length === 0 ? (
-        <p className="muted">Aucun élément associé.</p>
-      ) : (
-        <div className="related-grid">
-          {items.map((item) => (
-            <article key={item.id}>
-              <span>{shortKind(item.kind)}</span>
-              <strong>{item.name}</strong>
-            </article>
-          ))}
-        </div>
-      )}
-    </section>
+          </aside>
+        )}
+      </div>
+    </>
   )
 }
