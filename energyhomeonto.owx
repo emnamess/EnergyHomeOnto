@@ -1167,6 +1167,3733 @@
     <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#emissionCO2</IRI><Literal xml:lang="fr">Émissions en gCO2/kWh.</Literal></AnnotationAssertion>
     <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#niveauCharge</IRI><Literal xml:lang="fr">Niveau de charge en %.</Literal></AnnotationAssertion>
     <AnnotationAssertion><AnnotationProperty abbreviatedIRI="rdfs:comment"/><IRI>#surface</IRI><Literal xml:lang="fr">Surface en m².</Literal></AnnotationAssertion>
+    <!-- Jeu de données enrichi : villes de Sfax, Sousse et Ariana -->
+    <Declaration>
+        <NamedIndividual IRI="#villeSfax"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#villeSousse"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#villeAriana"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#quartierLafayette"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#quartierMedinaSfax"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#quartierSahloul"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#quartierKhezama"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#leila"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#youssef"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ines"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#mehdi"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#nour"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#slim"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#rania"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#hichem"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#amira"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#walid"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#greenGrid"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#sahelEnergie"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Maison6"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Maison7"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Maison8"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Maison9"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Maison10"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Maison11"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Maison12"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Maison13"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Maison14"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Maison15"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Maison16"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Maison17"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ecole2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#hopital2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#mairie2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#supermarche2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#usine2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#panneausolaire5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#panneausolaire6"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#panneausolaire7"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#panneausolaire8"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#panneausolaire9"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#panneausolaire10"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#panneausolaire11"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#panneausolaire12"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#eolienne3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#eolienne4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#eolienne5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#centraleGaz2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#centraleHydro2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#groupeElectrogene2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#batterie4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#batterie5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#batterie6"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#batterie7"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#stockageH2_2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#superCondo2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ligneBT2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ligneBT3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ligneBT4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ligneMT3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ligneMT4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ligneHT3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ligneHT4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#poste3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#poste4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#poste5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#compteur5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#compteur6"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#compteur7"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#compteur8"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#compteur9"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#compteur10"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#compteur11"/>
+    </Declaration>
+    <ClassAssertion>
+        <Class IRI="#Ville"/>
+        <NamedIndividual IRI="#villeSfax"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Ville"/>
+        <NamedIndividual IRI="#villeSousse"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Ville"/>
+        <NamedIndividual IRI="#villeAriana"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Quartier"/>
+        <NamedIndividual IRI="#quartierLafayette"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Quartier"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Quartier"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Quartier"/>
+        <NamedIndividual IRI="#quartierMedinaSfax"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Quartier"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Quartier"/>
+        <NamedIndividual IRI="#quartierKhezama"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Personne"/>
+        <NamedIndividual IRI="#leila"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Personne"/>
+        <NamedIndividual IRI="#youssef"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Personne"/>
+        <NamedIndividual IRI="#ines"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Personne"/>
+        <NamedIndividual IRI="#mehdi"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Personne"/>
+        <NamedIndividual IRI="#nour"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Personne"/>
+        <NamedIndividual IRI="#slim"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Personne"/>
+        <NamedIndividual IRI="#rania"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Personne"/>
+        <NamedIndividual IRI="#hichem"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Personne"/>
+        <NamedIndividual IRI="#amira"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Personne"/>
+        <NamedIndividual IRI="#walid"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#GestionnaireReseau"/>
+        <NamedIndividual IRI="#greenGrid"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#GestionnaireReseau"/>
+        <NamedIndividual IRI="#sahelEnergie"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Maison"/>
+        <NamedIndividual IRI="#Maison6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Maison"/>
+        <NamedIndividual IRI="#Maison7"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Maison"/>
+        <NamedIndividual IRI="#Maison8"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Maison"/>
+        <NamedIndividual IRI="#Maison9"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Maison"/>
+        <NamedIndividual IRI="#Maison10"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Maison"/>
+        <NamedIndividual IRI="#Maison11"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Maison"/>
+        <NamedIndividual IRI="#Maison12"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Maison"/>
+        <NamedIndividual IRI="#Maison13"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Maison"/>
+        <NamedIndividual IRI="#Maison14"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Maison"/>
+        <NamedIndividual IRI="#Maison15"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Maison"/>
+        <NamedIndividual IRI="#Maison16"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Maison"/>
+        <NamedIndividual IRI="#Maison17"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Ecole"/>
+        <NamedIndividual IRI="#ecole2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Hopital"/>
+        <NamedIndividual IRI="#hopital2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Mairie"/>
+        <NamedIndividual IRI="#mairie2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BatimentCommercial"/>
+        <NamedIndividual IRI="#supermarche2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BatimentIndustriel"/>
+        <NamedIndividual IRI="#usine2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PanneauSolaire"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PanneauSolaire"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PanneauSolaire"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PanneauSolaire"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PanneauSolaire"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PanneauSolaire"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PanneauSolaire"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PanneauSolaire"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Eolienne"/>
+        <NamedIndividual IRI="#eolienne3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Eolienne"/>
+        <NamedIndividual IRI="#eolienne4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Eolienne"/>
+        <NamedIndividual IRI="#eolienne5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CentraleThermique"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CentraleHydraulique"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#GroupeElectrogene"/>
+        <NamedIndividual IRI="#groupeElectrogene2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BatterieLithium"/>
+        <NamedIndividual IRI="#batterie4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BatterieLithium"/>
+        <NamedIndividual IRI="#batterie5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BatterieLithium"/>
+        <NamedIndividual IRI="#batterie6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BatteriePlomb"/>
+        <NamedIndividual IRI="#batterie7"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#StockageHydrogene"/>
+        <NamedIndividual IRI="#stockageH2_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#SuperCondensateur"/>
+        <NamedIndividual IRI="#superCondo2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LigneBasseTension"/>
+        <NamedIndividual IRI="#ligneBT2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LigneBasseTension"/>
+        <NamedIndividual IRI="#ligneBT3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LigneBasseTension"/>
+        <NamedIndividual IRI="#ligneBT4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LigneMoyenneTension"/>
+        <NamedIndividual IRI="#ligneMT3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LigneMoyenneTension"/>
+        <NamedIndividual IRI="#ligneMT4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LigneHauteTension"/>
+        <NamedIndividual IRI="#ligneHT3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LigneHauteTension"/>
+        <NamedIndividual IRI="#ligneHT4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PosteTransformation"/>
+        <NamedIndividual IRI="#poste3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PosteTransformation"/>
+        <NamedIndividual IRI="#poste4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PosteTransformation"/>
+        <NamedIndividual IRI="#poste5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CompteurIntelligent"/>
+        <NamedIndividual IRI="#compteur5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CompteurIntelligent"/>
+        <NamedIndividual IRI="#compteur6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CompteurIntelligent"/>
+        <NamedIndividual IRI="#compteur7"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CompteurIntelligent"/>
+        <NamedIndividual IRI="#compteur8"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CompteurIntelligent"/>
+        <NamedIndividual IRI="#compteur9"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CompteurIntelligent"/>
+        <NamedIndividual IRI="#compteur10"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CompteurIntelligent"/>
+        <NamedIndividual IRI="#compteur11"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#quartierLafayette"/>
+        <NamedIndividual IRI="#villeTunis"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+        <NamedIndividual IRI="#villeAriana"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+        <NamedIndividual IRI="#villeSfax"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#quartierMedinaSfax"/>
+        <NamedIndividual IRI="#villeSfax"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+        <NamedIndividual IRI="#villeSousse"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#quartierKhezama"/>
+        <NamedIndividual IRI="#villeSousse"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#Maison6"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#appartientA"/>
+        <NamedIndividual IRI="#Maison6"/>
+        <NamedIndividual IRI="#leila"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#possede"/>
+        <NamedIndividual IRI="#Maison6"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#Maison7"/>
+        <NamedIndividual IRI="#quartierLafayette"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#appartientA"/>
+        <NamedIndividual IRI="#Maison7"/>
+        <NamedIndividual IRI="#youssef"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#Maison8"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#appartientA"/>
+        <NamedIndividual IRI="#Maison8"/>
+        <NamedIndividual IRI="#ines"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#possede"/>
+        <NamedIndividual IRI="#Maison8"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#Maison9"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#appartientA"/>
+        <NamedIndividual IRI="#Maison9"/>
+        <NamedIndividual IRI="#mehdi"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#possede"/>
+        <NamedIndividual IRI="#Maison9"/>
+        <NamedIndividual IRI="#eolienne3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#Maison10"/>
+        <NamedIndividual IRI="#quartierKhezama"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#appartientA"/>
+        <NamedIndividual IRI="#Maison10"/>
+        <NamedIndividual IRI="#nour"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#Maison11"/>
+        <NamedIndividual IRI="#quartierMedinaSfax"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#appartientA"/>
+        <NamedIndividual IRI="#Maison11"/>
+        <NamedIndividual IRI="#slim"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#appartientA"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <NamedIndividual IRI="#rania"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#possede"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#possede"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <NamedIndividual IRI="#eolienne4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#Maison13"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#appartientA"/>
+        <NamedIndividual IRI="#Maison13"/>
+        <NamedIndividual IRI="#hichem"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#possede"/>
+        <NamedIndividual IRI="#Maison13"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#Maison14"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#appartientA"/>
+        <NamedIndividual IRI="#Maison14"/>
+        <NamedIndividual IRI="#amira"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#Maison15"/>
+        <NamedIndividual IRI="#quartierKhezama"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#appartientA"/>
+        <NamedIndividual IRI="#Maison15"/>
+        <NamedIndividual IRI="#walid"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#possede"/>
+        <NamedIndividual IRI="#Maison15"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#Maison16"/>
+        <NamedIndividual IRI="#quartierLafayette"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#appartientA"/>
+        <NamedIndividual IRI="#Maison16"/>
+        <NamedIndividual IRI="#leila"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#Maison17"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#appartientA"/>
+        <NamedIndividual IRI="#Maison17"/>
+        <NamedIndividual IRI="#youssef"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#ecole2"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#possede"/>
+        <NamedIndividual IRI="#ecole2"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#hopital2"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#mairie2"/>
+        <NamedIndividual IRI="#quartierKhezama"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#possede"/>
+        <NamedIndividual IRI="#mairie2"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#supermarche2"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#usine2"/>
+        <NamedIndividual IRI="#quartierKhezama"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <NamedIndividual IRI="#Maison6"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#stockeDans"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <NamedIndividual IRI="#batterie4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+        <NamedIndividual IRI="#Maison8"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <NamedIndividual IRI="#Maison12"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#stockeDans"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <NamedIndividual IRI="#batterie5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+        <NamedIndividual IRI="#Maison13"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <NamedIndividual IRI="#Maison15"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <NamedIndividual IRI="#quartierKhezama"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#stockeDans"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <NamedIndividual IRI="#batterie6"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+        <NamedIndividual IRI="#ecole2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+        <NamedIndividual IRI="#mairie2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+        <NamedIndividual IRI="#quartierKhezama"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <NamedIndividual IRI="#supermarche2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <NamedIndividual IRI="#hopital2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#stockeDans"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <NamedIndividual IRI="#stockageH2_2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <NamedIndividual IRI="#Maison9"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <NamedIndividual IRI="#Maison12"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <NamedIndividual IRI="#usine2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <NamedIndividual IRI="#ecole2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <NamedIndividual IRI="#villeSousse"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <NamedIndividual IRI="#supermarche2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <NamedIndividual IRI="#Maison7"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <NamedIndividual IRI="#Maison16"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <NamedIndividual IRI="#villeTunis"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+        <NamedIndividual IRI="#Maison10"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+        <NamedIndividual IRI="#Maison11"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+        <NamedIndividual IRI="#Maison14"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#groupeElectrogene2"/>
+        <NamedIndividual IRI="#hopital2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#batterie4"/>
+        <NamedIndividual IRI="#Maison6"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#batterie5"/>
+        <NamedIndividual IRI="#Maison12"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#batterie6"/>
+        <NamedIndividual IRI="#Maison15"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#batterie7"/>
+        <NamedIndividual IRI="#hopital2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#stockageH2_2"/>
+        <NamedIndividual IRI="#supermarche2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alimente"/>
+        <NamedIndividual IRI="#superCondo2"/>
+        <NamedIndividual IRI="#usine2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneBT2"/>
+        <NamedIndividual IRI="#poste3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneBT2"/>
+        <NamedIndividual IRI="#Maison6"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneBT2"/>
+        <NamedIndividual IRI="#Maison12"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneBT2"/>
+        <NamedIndividual IRI="#Maison17"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneBT3"/>
+        <NamedIndividual IRI="#poste4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneBT3"/>
+        <NamedIndividual IRI="#Maison8"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneBT3"/>
+        <NamedIndividual IRI="#Maison13"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneBT3"/>
+        <NamedIndividual IRI="#ecole2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneBT4"/>
+        <NamedIndividual IRI="#poste5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneBT4"/>
+        <NamedIndividual IRI="#Maison9"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneBT4"/>
+        <NamedIndividual IRI="#Maison14"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneMT3"/>
+        <NamedIndividual IRI="#poste4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneMT3"/>
+        <NamedIndividual IRI="#mairie2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneMT3"/>
+        <NamedIndividual IRI="#usine2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneMT4"/>
+        <NamedIndividual IRI="#poste5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneMT4"/>
+        <NamedIndividual IRI="#hopital2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneMT4"/>
+        <NamedIndividual IRI="#supermarche2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneHT3"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneHT3"/>
+        <NamedIndividual IRI="#poste3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneHT4"/>
+        <NamedIndividual IRI="#eolienne5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#relie"/>
+        <NamedIndividual IRI="#ligneHT4"/>
+        <NamedIndividual IRI="#poste4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#poste3"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#poste4"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estSitueDans"/>
+        <NamedIndividual IRI="#poste5"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estInstalleDans"/>
+        <NamedIndividual IRI="#compteur5"/>
+        <NamedIndividual IRI="#Maison6"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estInstalleDans"/>
+        <NamedIndividual IRI="#compteur6"/>
+        <NamedIndividual IRI="#Maison8"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estInstalleDans"/>
+        <NamedIndividual IRI="#compteur7"/>
+        <NamedIndividual IRI="#Maison10"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estInstalleDans"/>
+        <NamedIndividual IRI="#compteur8"/>
+        <NamedIndividual IRI="#Maison13"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estInstalleDans"/>
+        <NamedIndividual IRI="#compteur9"/>
+        <NamedIndividual IRI="#Maison15"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estInstalleDans"/>
+        <NamedIndividual IRI="#compteur10"/>
+        <NamedIndividual IRI="#Maison17"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estInstalleDans"/>
+        <NamedIndividual IRI="#compteur11"/>
+        <NamedIndividual IRI="#hopital2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#STEG"/>
+        <NamedIndividual IRI="#poste3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#STEG"/>
+        <NamedIndividual IRI="#poste5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#STEG"/>
+        <NamedIndividual IRI="#ligneHT3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#STEG"/>
+        <NamedIndividual IRI="#ligneMT4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#STEG"/>
+        <NamedIndividual IRI="#ligneBT2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#STEG"/>
+        <NamedIndividual IRI="#ligneBT4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#STEG"/>
+        <NamedIndividual IRI="#compteur5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#STEG"/>
+        <NamedIndividual IRI="#compteur6"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#STEG"/>
+        <NamedIndividual IRI="#compteur7"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#STEG"/>
+        <NamedIndividual IRI="#compteur11"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#sahelEnergie"/>
+        <NamedIndividual IRI="#poste4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#sahelEnergie"/>
+        <NamedIndividual IRI="#ligneHT4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#sahelEnergie"/>
+        <NamedIndividual IRI="#ligneMT3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#sahelEnergie"/>
+        <NamedIndividual IRI="#ligneBT3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#greenGrid"/>
+        <NamedIndividual IRI="#compteur8"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#greenGrid"/>
+        <NamedIndividual IRI="#compteur9"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#gere"/>
+        <NamedIndividual IRI="#greenGrid"/>
+        <NamedIndividual IRI="#compteur10"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#villeSfax"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Sfax</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#codePostal"/>
+        <NamedIndividual IRI="#villeSfax"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">3000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#population"/>
+        <NamedIndividual IRI="#villeSfax"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">330440</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#superficie"/>
+        <NamedIndividual IRI="#villeSfax"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">54.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#villeSousse"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Sousse</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#codePostal"/>
+        <NamedIndividual IRI="#villeSousse"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">4000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#population"/>
+        <NamedIndividual IRI="#villeSousse"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">271428</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#superficie"/>
+        <NamedIndividual IRI="#villeSousse"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">45.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#villeAriana"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Ariana</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#codePostal"/>
+        <NamedIndividual IRI="#villeAriana"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">2080</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#population"/>
+        <NamedIndividual IRI="#villeAriana"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">114486</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#superficie"/>
+        <NamedIndividual IRI="#villeAriana"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">22.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#quartierLafayette"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Lafayette</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#codePostal"/>
+        <NamedIndividual IRI="#quartierLafayette"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">1002</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#population"/>
+        <NamedIndividual IRI="#quartierLafayette"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">18000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#superficie"/>
+        <NamedIndividual IRI="#quartierLafayette"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">2.1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Ennasr</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#codePostal"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">2037</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#population"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">45000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#superficie"/>
+        <NamedIndividual IRI="#quartierEnnasr"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">8.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Sakiet Ezzit</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#codePostal"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">3021</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#population"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">38000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#superficie"/>
+        <NamedIndividual IRI="#quartierSakietEzzit"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">20.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#quartierMedinaSfax"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Médina de Sfax</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#codePostal"/>
+        <NamedIndividual IRI="#quartierMedinaSfax"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">3000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#population"/>
+        <NamedIndividual IRI="#quartierMedinaSfax"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">12000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#superficie"/>
+        <NamedIndividual IRI="#quartierMedinaSfax"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">0.6</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Sahloul</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#codePostal"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">4054</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#population"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">30000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#superficie"/>
+        <NamedIndividual IRI="#quartierSahloul"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">7.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#quartierKhezama"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Khezama</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#codePostal"/>
+        <NamedIndividual IRI="#quartierKhezama"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">4051</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#population"/>
+        <NamedIndividual IRI="#quartierKhezama"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">26000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#superficie"/>
+        <NamedIndividual IRI="#quartierKhezama"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">5.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#leila"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Leïla Haddad</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#email"/>
+        <NamedIndividual IRI="#leila"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">leila@example.tn</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#telephone"/>
+        <NamedIndividual IRI="#leila"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">+216 20 000 004</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#youssef"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Youssef Chaabane</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#email"/>
+        <NamedIndividual IRI="#youssef"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">youssef@example.tn</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#telephone"/>
+        <NamedIndividual IRI="#youssef"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">+216 20 000 005</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#ines"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Inès Mejri</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#email"/>
+        <NamedIndividual IRI="#ines"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">ines@example.tn</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#telephone"/>
+        <NamedIndividual IRI="#ines"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">+216 20 000 006</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#mehdi"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Mehdi Jlassi</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#email"/>
+        <NamedIndividual IRI="#mehdi"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">mehdi@example.tn</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#telephone"/>
+        <NamedIndividual IRI="#mehdi"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">+216 20 000 007</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#nour"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Nour Ben Salah</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#email"/>
+        <NamedIndividual IRI="#nour"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">nour@example.tn</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#telephone"/>
+        <NamedIndividual IRI="#nour"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">+216 20 000 008</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#slim"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Slim Ayari</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#email"/>
+        <NamedIndividual IRI="#slim"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">slim@example.tn</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#telephone"/>
+        <NamedIndividual IRI="#slim"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">+216 20 000 009</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#rania"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Rania Zouari</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#email"/>
+        <NamedIndividual IRI="#rania"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">rania@example.tn</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#telephone"/>
+        <NamedIndividual IRI="#rania"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">+216 20 000 010</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#hichem"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Hichem Kallel</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#email"/>
+        <NamedIndividual IRI="#hichem"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">hichem@example.tn</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#telephone"/>
+        <NamedIndividual IRI="#hichem"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">+216 20 000 011</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#amira"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Amira Gharsallah</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#email"/>
+        <NamedIndividual IRI="#amira"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">amira@example.tn</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#telephone"/>
+        <NamedIndividual IRI="#amira"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">+216 20 000 012</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#walid"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Walid Feki</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#email"/>
+        <NamedIndividual IRI="#walid"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">walid@example.tn</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#telephone"/>
+        <NamedIndividual IRI="#walid"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">+216 20 000 013</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#greenGrid"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">GreenGrid Tunisie</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#email"/>
+        <NamedIndividual IRI="#greenGrid"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">contact@greengrid.example.tn</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#telephone"/>
+        <NamedIndividual IRI="#greenGrid"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">+216 71 100 200</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#sahelEnergie"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Sahel Énergie</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#email"/>
+        <NamedIndividual IRI="#sahelEnergie"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">contact@sahel-energie.example.tn</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#telephone"/>
+        <NamedIndividual IRI="#sahelEnergie"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">+216 73 200 300</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Maison6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Villa Ennasr</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#Maison6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">A</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#Maison6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">8.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#Maison6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">180.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#Maison6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#Maison6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#Maison6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#Maison6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">36.8601</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#Maison6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.165</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Maison7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Maison Lafayette</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#Maison7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">D</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#Maison7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">18.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#Maison7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">110.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#Maison7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#Maison7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#Maison7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#Maison7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">36.8195</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#Maison7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.1801</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Maison8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Villa Sahloul</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#Maison8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">B</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#Maison8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">11.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#Maison8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">160.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#Maison8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#Maison8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#Maison8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#Maison8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">35.837</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#Maison8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.593</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Maison9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Dar Sakiet</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#Maison9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">C</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#Maison9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">14.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#Maison9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">140.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#Maison9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#Maison9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">6</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#Maison9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#Maison9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">34.798</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#Maison9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.752</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Maison10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Maison Khezama</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#Maison10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">E</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#Maison10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">22.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#Maison10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">95.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#Maison10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#Maison10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#Maison10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#Maison10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">35.842</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#Maison10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.615</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Maison11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Dar Médina</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#Maison11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">F</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#Maison11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">26.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#Maison11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">130.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#Maison11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#Maison11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">7</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#Maison11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#Maison11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">34.738</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#Maison11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.76</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Maison écologique Ennasr</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">A</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">6.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">120.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">36.862</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#Maison12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.169</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Maison13"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Duplex Sahloul</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#Maison13"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">B</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#Maison13"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">12.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#Maison13"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">150.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#Maison13"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#Maison13"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#Maison13"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#Maison13"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">35.836</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#Maison13"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.591</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Maison14"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Maison Sakiet</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#Maison14"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">C</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#Maison14"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">16.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#Maison14"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">125.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#Maison14"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#Maison14"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#Maison14"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#Maison14"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">34.796</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#Maison14"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.749</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Maison15"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Villa Khezama</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#Maison15"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">A</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#Maison15"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">9.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#Maison15"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">200.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#Maison15"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#Maison15"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#Maison15"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#Maison15"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">35.844</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#Maison15"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.618</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Maison16"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Appartement Lafayette</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#Maison16"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">G</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#Maison16"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#Maison16"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">85.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#Maison16"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#Maison16"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">6</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#Maison16"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#Maison16"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">36.82</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#Maison16"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.182</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Maison17"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Studio Ennasr</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#Maison17"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">D</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#Maison17"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">7.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#Maison17"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">45.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#Maison17"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#Maison17"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#Maison17"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#Maison17"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">36.859</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#Maison17"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.164</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#ecole2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">École primaire de Sahloul</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#ecole2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">B</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#ecole2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">38.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#ecole2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">1300.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#ecole2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#ecole2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">380</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#ecole2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#ecole2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">35.835</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#ecole2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.589</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#hopital2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Hôpital régional de Sfax</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#hopital2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">D</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#hopital2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">140.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#hopital2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">9500.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#hopital2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#hopital2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">700</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#hopital2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#hopital2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">34.79</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#hopital2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.745</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#mairie2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Mairie de Sousse</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#mairie2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">C</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#mairie2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">45.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#mairie2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">1500.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#mairie2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#mairie2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">90</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#mairie2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#mairie2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">35.827</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#mairie2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.637</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#supermarche2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Hypermarché de Sfax</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#supermarche2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">E</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#supermarche2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">95.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#supermarche2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">5000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#supermarche2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#supermarche2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">200</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#supermarche2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#supermarche2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">34.785</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#supermarche2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.74</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#usine2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Usine textile de Sousse</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#classeEnergetique"/>
+        <NamedIndividual IRI="#usine2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">F</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#consommation"/>
+        <NamedIndividual IRI="#usine2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">420.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surface"/>
+        <NamedIndividual IRI="#usine2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">15000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreEtages"/>
+        <NamedIndividual IRI="#usine2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreOccupants"/>
+        <NamedIndividual IRI="#usine2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">320</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estRaccordeReseau"/>
+        <NamedIndividual IRI="#usine2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#latitude"/>
+        <NamedIndividual IRI="#usine2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">35.85</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longitude"/>
+        <NamedIndividual IRI="#usine2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.63</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Toiture solaire Villa Ennasr</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">6.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">21.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surfacePanneau"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">32.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#inclinaison"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">9.2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">41.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">17000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">25</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#panneausolaire5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2022</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Toiture solaire Villa Sahloul</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">4.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">19.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surfacePanneau"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">25.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#inclinaison"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">7.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">41.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">13000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">25</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#panneausolaire6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2021</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Toiture solaire écologique</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">5.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">22.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surfacePanneau"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">26.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#inclinaison"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">8.1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">41.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">16000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">25</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#panneausolaire7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2023</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Toiture solaire Duplex Sahloul</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">3.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">18.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surfacePanneau"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">17.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#inclinaison"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">4.6</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">41.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">9000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">25</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#panneausolaire8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2020</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Toiture solaire Villa Khezama</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">7.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">22.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surfacePanneau"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">40.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#inclinaison"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">11.8</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">41.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">21000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">25</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#panneausolaire9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2024</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Panneaux de l'école de Sahloul</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">15.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">20.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surfacePanneau"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">80.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#inclinaison"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">23.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">41.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">42000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">25</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#panneausolaire10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2023</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Panneaux de la mairie de Sousse</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">12.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">21.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surfacePanneau"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">65.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#inclinaison"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">18.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">41.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">36000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">25</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#panneausolaire11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2022</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Ferme solaire de Sfax</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">120.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">21.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#surfacePanneau"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">650.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#inclinaison"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">190.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">41.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">380000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">25</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#panneausolaire12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2024</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Petite éolienne de Sakiet</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">3.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">38.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#diametreRotor"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">5.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hauteurMat"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">15.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#vitesseVentDemarrage"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">3.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">5.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">11.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">8000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">20</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#eolienne3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2021</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Éolienne domestique Ennasr</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">1.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">35.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#diametreRotor"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">3.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hauteurMat"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">12.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#vitesseVentDemarrage"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">3.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">2.4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">11.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">5000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">20</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#eolienne4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2023</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Parc éolien du Sahel</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">60.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">46.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#diametreRotor"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">90.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hauteurMat"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">95.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#vitesseVentDemarrage"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">3.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">150.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">11.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">1500000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">20</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#eolienne5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2019</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Centrale thermique de Radès</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">450.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">52.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">520.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#typeCombustible"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Gaz naturel</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">3200.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">25000000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">35</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#centraleGaz2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2002</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Centrale hydraulique du Nord</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">36.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">88.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">20.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#debitEau"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">120.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">8000000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">80</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#centraleHydro2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1982</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#groupeElectrogene2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Groupe de secours de l'hôpital de Sfax</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissance"/>
+        <NamedIndividual IRI="#groupeElectrogene2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">1.2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rendement"/>
+        <NamedIndividual IRI="#groupeElectrogene2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">32.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#emissionCO2"/>
+        <NamedIndividual IRI="#groupeElectrogene2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">700.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#typeCombustible"/>
+        <NamedIndividual IRI="#groupeElectrogene2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Diesel</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#productionAnnuelle"/>
+        <NamedIndividual IRI="#groupeElectrogene2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">2.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#groupeElectrogene2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">6500.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#groupeElectrogene2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#groupeElectrogene2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2018</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#batterie4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Batterie Villa Ennasr</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#capacite"/>
+        <NamedIndividual IRI="#batterie4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#niveauCharge"/>
+        <NamedIndividual IRI="#batterie4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">75.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tempsRecharge"/>
+        <NamedIndividual IRI="#batterie4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">2.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#batterie4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">7500.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#batterie4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#batterie4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2022</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreCyclesCharge"/>
+        <NamedIndividual IRI="#batterie4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">6000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#batterie5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Batterie maison écologique</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#capacite"/>
+        <NamedIndividual IRI="#batterie5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">15.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#niveauCharge"/>
+        <NamedIndividual IRI="#batterie5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">55.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tempsRecharge"/>
+        <NamedIndividual IRI="#batterie5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">3.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#batterie5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">10500.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#batterie5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#batterie5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2023</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreCyclesCharge"/>
+        <NamedIndividual IRI="#batterie5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">6000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#batterie6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Batterie Villa Khezama</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#capacite"/>
+        <NamedIndividual IRI="#batterie6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">13.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#niveauCharge"/>
+        <NamedIndividual IRI="#batterie6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">90.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tempsRecharge"/>
+        <NamedIndividual IRI="#batterie6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">2.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#batterie6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">9500.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#batterie6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#batterie6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2024</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreCyclesCharge"/>
+        <NamedIndividual IRI="#batterie6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">7000</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#batterie7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Batteries de secours de l'hôpital</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#capacite"/>
+        <NamedIndividual IRI="#batterie7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">150.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#niveauCharge"/>
+        <NamedIndividual IRI="#batterie7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">85.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tempsRecharge"/>
+        <NamedIndividual IRI="#batterie7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">9.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#batterie7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#batterie7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">7</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#batterie7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2018</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombreCyclesCharge"/>
+        <NamedIndividual IRI="#batterie7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1500</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#stockageH2_2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Stockage hydrogène de Sfax</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#capacite"/>
+        <NamedIndividual IRI="#stockageH2_2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">500.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#niveauCharge"/>
+        <NamedIndividual IRI="#stockageH2_2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tempsRecharge"/>
+        <NamedIndividual IRI="#stockageH2_2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">14.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#stockageH2_2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">400000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#stockageH2_2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#stockageH2_2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2024</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#superCondo2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Supercondensateurs de l'usine</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#capacite"/>
+        <NamedIndividual IRI="#superCondo2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">8.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#niveauCharge"/>
+        <NamedIndividual IRI="#superCondo2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">100.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tempsRecharge"/>
+        <NamedIndividual IRI="#superCondo2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">0.05</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#superCondo2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">26000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#superCondo2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#superCondo2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2021</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#ligneBT2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Ligne BT Ennasr</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tension"/>
+        <NamedIndividual IRI="#ligneBT2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">0.4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longueur"/>
+        <NamedIndividual IRI="#ligneBT2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">600.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#section"/>
+        <NamedIndividual IRI="#ligneBT2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">70.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tauxPertes"/>
+        <NamedIndividual IRI="#ligneBT2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">5.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estSouterraine"/>
+        <NamedIndividual IRI="#ligneBT2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#ligneBT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Ligne BT Sahloul</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tension"/>
+        <NamedIndividual IRI="#ligneBT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">0.4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longueur"/>
+        <NamedIndividual IRI="#ligneBT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">450.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#section"/>
+        <NamedIndividual IRI="#ligneBT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">50.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tauxPertes"/>
+        <NamedIndividual IRI="#ligneBT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">5.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estSouterraine"/>
+        <NamedIndividual IRI="#ligneBT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#ligneBT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Ligne BT Sakiet Ezzit</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tension"/>
+        <NamedIndividual IRI="#ligneBT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">0.4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longueur"/>
+        <NamedIndividual IRI="#ligneBT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">700.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#section"/>
+        <NamedIndividual IRI="#ligneBT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">35.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tauxPertes"/>
+        <NamedIndividual IRI="#ligneBT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">7.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estSouterraine"/>
+        <NamedIndividual IRI="#ligneBT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#ligneMT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Ligne MT Sousse</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tension"/>
+        <NamedIndividual IRI="#ligneMT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">30.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longueur"/>
+        <NamedIndividual IRI="#ligneMT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">3200.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#section"/>
+        <NamedIndividual IRI="#ligneMT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">150.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tauxPertes"/>
+        <NamedIndividual IRI="#ligneMT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">3.8</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estSouterraine"/>
+        <NamedIndividual IRI="#ligneMT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#ligneMT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Ligne MT Sfax</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tension"/>
+        <NamedIndividual IRI="#ligneMT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">15.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longueur"/>
+        <NamedIndividual IRI="#ligneMT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">2100.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#section"/>
+        <NamedIndividual IRI="#ligneMT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">150.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tauxPertes"/>
+        <NamedIndividual IRI="#ligneMT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">3.1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estSouterraine"/>
+        <NamedIndividual IRI="#ligneMT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#ligneHT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Ligne HT Radès – Ennasr</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tension"/>
+        <NamedIndividual IRI="#ligneHT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">225.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longueur"/>
+        <NamedIndividual IRI="#ligneHT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">15000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#section"/>
+        <NamedIndividual IRI="#ligneHT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">600.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tauxPertes"/>
+        <NamedIndividual IRI="#ligneHT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">1.2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estSouterraine"/>
+        <NamedIndividual IRI="#ligneHT3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#ligneHT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Ligne HT Parc éolien – Sahloul</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tension"/>
+        <NamedIndividual IRI="#ligneHT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">90.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#longueur"/>
+        <NamedIndividual IRI="#ligneHT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">9000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#section"/>
+        <NamedIndividual IRI="#ligneHT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">400.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tauxPertes"/>
+        <NamedIndividual IRI="#ligneHT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">1.6</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estSouterraine"/>
+        <NamedIndividual IRI="#ligneHT4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#poste3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Poste Ennasr</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tension"/>
+        <NamedIndividual IRI="#poste3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">90.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissanceTransformation"/>
+        <NamedIndividual IRI="#poste3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">50.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#poste3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2015</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#poste3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">40</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#poste3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">900000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#poste4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Poste Sahloul</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tension"/>
+        <NamedIndividual IRI="#poste4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">90.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissanceTransformation"/>
+        <NamedIndividual IRI="#poste4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">40.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#poste4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2016</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#poste4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">40</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#poste4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">900000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#poste5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">Poste Sakiet Ezzit</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tension"/>
+        <NamedIndividual IRI="#poste5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">150.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puissanceTransformation"/>
+        <NamedIndividual IRI="#poste5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">63.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#poste5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2014</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#poste5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">40</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#coutInstallation"/>
+        <NamedIndividual IRI="#poste5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#double">900000.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#identifiantCompteur"/>
+        <NamedIndividual IRI="#compteur5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">STEG-CPT-0005</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#compteur5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2022</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#compteur5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#frequenceReleve"/>
+        <NamedIndividual IRI="#compteur5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dateDerniereReleve"/>
+        <NamedIndividual IRI="#compteur5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T08:00:00+00:00</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#identifiantCompteur"/>
+        <NamedIndividual IRI="#compteur6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">STEG-CPT-0006</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#compteur6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2023</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#compteur6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#frequenceReleve"/>
+        <NamedIndividual IRI="#compteur6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">30</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dateDerniereReleve"/>
+        <NamedIndividual IRI="#compteur6"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-06T08:00:00+00:00</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#identifiantCompteur"/>
+        <NamedIndividual IRI="#compteur7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">STEG-CPT-0007</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#compteur7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2024</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#compteur7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#frequenceReleve"/>
+        <NamedIndividual IRI="#compteur7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">30</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dateDerniereReleve"/>
+        <NamedIndividual IRI="#compteur7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-07T08:00:00+00:00</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#identifiantCompteur"/>
+        <NamedIndividual IRI="#compteur8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">STEG-CPT-0008</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#compteur8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2023</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#compteur8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#frequenceReleve"/>
+        <NamedIndividual IRI="#compteur8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dateDerniereReleve"/>
+        <NamedIndividual IRI="#compteur8"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-08T08:00:00+00:00</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#identifiantCompteur"/>
+        <NamedIndividual IRI="#compteur9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">STEG-CPT-0009</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#compteur9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2024</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#compteur9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#frequenceReleve"/>
+        <NamedIndividual IRI="#compteur9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dateDerniereReleve"/>
+        <NamedIndividual IRI="#compteur9"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-09T08:00:00+00:00</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#identifiantCompteur"/>
+        <NamedIndividual IRI="#compteur10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">STEG-CPT-0010</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#compteur10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2025</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#compteur10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#frequenceReleve"/>
+        <NamedIndividual IRI="#compteur10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">30</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dateDerniereReleve"/>
+        <NamedIndividual IRI="#compteur10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-10T08:00:00+00:00</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#identifiantCompteur"/>
+        <NamedIndividual IRI="#compteur11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">STEG-CPT-0011</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#anneeInstallation"/>
+        <NamedIndividual IRI="#compteur11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2022</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dureeVie"/>
+        <NamedIndividual IRI="#compteur11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#frequenceReleve"/>
+        <NamedIndividual IRI="#compteur11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#dateDerniereReleve"/>
+        <NamedIndividual IRI="#compteur11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-11T08:00:00+00:00</Literal>
+    </DataPropertyAssertion>
+
     <!-- Feature 6 : maintenance et cycle de vie des équipements -->
     <Declaration><Class IRI="#EquipementMaintenable"/></Declaration>
     <Declaration><Class IRI="#Intervention"/></Declaration>

@@ -1,5 +1,6 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react'
-import AppNav from '../../shared/AppNav'
+import { PageHeader } from '../../shared/Layout'
+import { Badges, DataTable, Facts, Field, Section, UpdateNotice, fr, humanize, readJson, rowProps, withUnit } from '../../shared/ui'
 
 type Storage = {
   id: string; name: string; kind: string
@@ -30,19 +31,10 @@ const EMPTY_FORM: StorageForm = {
   name: '', kind: 'BatterieLithium', capacity: '', charge: '50', recharge_time: '', cycles: '',
   lifetime: '', installation_year: '', installation_cost: '', sources: [], buildings: [],
 }
-const shortKind = (kind: string) => KINDS[kind] ?? kind.replace(/([a-z])([A-Z])/g, '$1 $2')
-const kwh = (value?: number | null) => value == null ? '—' : `${value.toLocaleString('fr-FR')} kWh`
-const unit = (value: number | null | undefined, suffix: string) => value == null ? '—' : `${value.toLocaleString('fr-FR')} ${suffix}`
+const shortKind = (kind: string) => KINDS[kind] ?? humanize(kind)
+const kwh = (value?: number | null) => withUnit(value, 'kWh')
 const chargeLevel = (value: number | null) => value == null ? 'inconnu' : value < 50 ? 'faible' : value < 80 ? 'moyen' : 'eleve'
 const toNumber = (value: string) => value.trim() === '' ? null : Number(value)
-
-async function readJson<T>(response: Response): Promise<T> {
-  if (!response.ok) {
-    const body = await response.json().catch(() => null)
-    throw new Error(typeof body?.detail === 'string' ? body.detail : `Erreur ${response.status}.`)
-  }
-  return response.json()
-}
 
 export default function StockagePage() {
   const [storages, setStorages] = useState<Storage[]>([])
@@ -73,7 +65,7 @@ export default function StockagePage() {
       setOptions(choices)
       setError('')
     } catch (cause) {
-      setError(cause instanceof Error ? `${cause.message} Vérifiez que FastAPI est démarré.` : 'Erreur de chargement.')
+      setError(cause instanceof Error ? `${cause.message} Vérifiez que le backend est démarré.` : 'Erreur de chargement.')
     } finally {
       setLoading(false)
     }
@@ -83,6 +75,11 @@ export default function StockagePage() {
     const timer = setTimeout(loadLists, 250)
     return () => clearTimeout(timer)
   }, [loadLists])
+
+  function closeDetail() {
+    setStorage(null)
+    setForm(null)
+  }
 
   async function chooseStorage(id: string) {
     setForm(null)
@@ -149,69 +146,119 @@ export default function StockagePage() {
     }
   }
 
-  return <main className="stockage-page">
-    <header className="topbar"><span className="brand-mark">E</span><span>EnergyHome</span><span className="tag">STOCKAGE</span><AppNav current="#/stockage" /></header>
-    <section className="stockage-hero"><p className="eyebrow">FEATURE 3</p><h1>Garder l’énergie<br />pour <em>plus tard.</em></h1><p className="intro">Batteries, supercondensateurs et stockage hydrogène : capacité, niveau de charge, sources qui les remplissent et bâtiments qu’ils alimentent. Les bâtiments secourus par un stockage sont déduits par le raisonneur OWL.</p></section>
-    {indicators && <section className="storage-summary">
-      <div className="metrics"><Metric label="Stockages" value={String(indicators.count)} /><Metric label="Capacité totale" value={kwh(indicators.total_capacity_kwh)} /><Metric label="Énergie disponible" value={kwh(indicators.available_kwh)} /></div>
-      <div className="kind-bars">{indicators.by_kind.map((item) => <div key={item.kind} className="kind-bar"><span>{shortKind(item.kind)} · {item.count}</span><div className="bar"><i style={{ width: `${(item.total_capacity_kwh / indicators.total_capacity_kwh) * 100}%` }} /></div><small>{kwh(item.total_capacity_kwh)} · charge moy. {item.average_charge_percent} %</small></div>)}</div>
+  const panelOpen = storage !== null || form !== null
+  const maxCapacity = Math.max(1, ...(indicators?.by_kind.map((item) => item.total_capacity_kwh) ?? []))
+  return <>
+    <PageHeader eyebrow="Feature 3" title="Stockage">
+      Batteries, supercondensateurs et stockage hydrogène : capacité, niveau de charge, sources qui les remplissent et bâtiments qu’ils alimentent. Les bâtiments secourus par un stockage sont déduits par le raisonneur OWL.
+    </PageHeader>
+
+    {indicators && <section className="overview">
+      <div className="tiles">
+        <Tile label="Stockages" value={fr(indicators.count)} />
+        <Tile label="Capacité totale" value={kwh(indicators.total_capacity_kwh)} />
+        <Tile label="Énergie disponible" value={kwh(indicators.available_kwh)} />
+        <Tile label="Charge moyenne" value={withUnit(indicators.average_charge_percent, '%')} />
+      </div>
+      <div className="card capacity-card">
+        <h2>Capacité par type de stockage</h2>
+        <div className="bar-chart">{indicators.by_kind.map((item) => <div key={item.kind} className="bar-row" tabIndex={0} title={`${shortKind(item.kind)} : ${kwh(item.total_capacity_kwh)}, charge moyenne ${item.average_charge_percent} %`}>
+          <span className="bar-label">{shortKind(item.kind)} <span className="muted">· {item.count}</span></span>
+          <span className="bar-track"><span className="bar" style={{ width: `calc((100% - 6rem) * ${item.total_capacity_kwh / maxCapacity})` }} /><span className="bar-value">{kwh(item.total_capacity_kwh)}</span></span>
+        </div>)}</div>
+      </div>
     </section>}
-    <section className="filters">
-      <input aria-label="Filtrer par nom" placeholder="Filtrer par nom…" value={text} onChange={(event) => setText(event.target.value)} />
+
+    <div className="filters">
+      <input aria-label="Rechercher par nom" placeholder="Rechercher par nom…" value={text} onChange={(event) => setText(event.target.value)} />
       <select aria-label="Type de stockage" value={kind} onChange={(event) => setKind(event.target.value)}><option value="">Tous les types</option><option value="Batterie">Batteries (toutes)</option><option value="BatterieLithium">Batteries lithium</option><option value="BatteriePlomb">Batteries plomb</option><option value="SuperCondensateur">Supercondensateurs</option><option value="StockageHydrogene">Hydrogène</option></select>
       <select aria-label="Niveau de charge" value={charge} onChange={(event) => setCharge(event.target.value)}><option value="">Toute charge</option><option value="faible">Charge faible (&lt; 50 %)</option><option value="moyen">Charge moyenne (50–80 %)</option><option value="eleve">Charge élevée (≥ 80 %)</option></select>
       <input className="small-input" type="number" min="0" aria-label="Capacité minimale" placeholder="Capacité min (kWh)" value={minCapacity} onChange={(event) => setMinCapacity(event.target.value)} />
-      <button type="button" className="primary" onClick={startCreate}>+ Nouveau stockage</button>
-    </section>
-    {loading && <p className="notice">Chargement des données sémantiques…</p>}
+      <button type="button" className="button primary" onClick={startCreate}>+ Nouveau stockage</button>
+    </div>
+
     {error && <p className="notice error">{error}</p>}
-    {lastUpdate && <details className="notice update-notice"><summary>Requête SPARQL Update exécutée (:{lastUpdate.id})</summary><pre>{lastUpdate.sparql}</pre></details>}
-    {!loading && <section className="explorer">
-      <aside className="explorer-list">
-        <p className="list-title">STOCKAGES</p>
-        {storages.length === 0 && <p className="muted list-empty">Aucun résultat.</p>}
-        {storages.map((item) => <button key={item.id} className={storage?.id === item.id ? 'list-item active' : 'list-item'} onClick={() => chooseStorage(item.id)}><span>{item.name}</span><small>{shortKind(item.kind)} · {kwh(item.capacity_kwh)}</small><ChargeBar value={item.charge_percent} /></button>)}
-      </aside>
-      <section className="detail-panel">
-        {!storage && !form && <div className="empty-state"><span>⌁</span><h2>Sélectionnez un stockage</h2><p>Les données viennent de l’ontologie OWL via des requêtes SPARQL.</p></div>}
+    <UpdateNotice mutation={lastUpdate} />
+
+    <div className={panelOpen ? 'workspace with-panel' : 'workspace'}>
+      <div className="card table-card">
+        {loading ? <p className="notice">Chargement des données sémantiques…</p> : <DataTable empty={storages.length === 0 ? 'Aucun stockage ne correspond.' : ''}>
+          <thead><tr><th>Nom</th><th>Type</th><th className="num">Capacité</th><th>Charge</th><th className="num secondary">Sources</th><th className="num secondary">Bâtiments</th></tr></thead>
+          <tbody>{storages.map((item) => <tr key={item.id} {...rowProps(storage?.id === item.id, () => chooseStorage(item.id))}>
+            <td className="strong">{item.name}</td>
+            <td><span className="badge">{shortKind(item.kind)}</span></td>
+            <td className="num nowrap">{kwh(item.capacity_kwh)}</td>
+            <td><ChargeBar value={item.charge_percent} /></td>
+            <td className="num secondary">{item.source_count}</td>
+            <td className="num secondary">{item.building_count}</td>
+          </tr>)}</tbody>
+        </DataTable>}
+      </div>
+
+      {panelOpen && <aside className="card detail-card">
+        <button type="button" className="close" aria-label="Fermer le détail" onClick={closeDetail}>×</button>
+
         {storage && !form && <>
-          <div className="detail-head"><p className="eyebrow">{shortKind(storage.kind).toUpperCase()}</p><div className="actions"><button type="button" onClick={() => startEdit(storage)}>Modifier</button><button type="button" className="danger" onClick={() => deleteStorage(storage)}>Supprimer</button></div></div>
+          <span className="badge">{shortKind(storage.kind)}</span>
           <h2>{storage.name}</h2>
-          <div className="charge-gauge"><div className="gauge-head"><small>NIVEAU DE CHARGE</small><strong>{unit(storage.charge_percent, '%')}</strong></div><ChargeBar value={storage.charge_percent} large /></div>
-          <div className="metrics"><Metric label="Capacité" value={kwh(storage.capacity_kwh)} /><Metric label="Énergie disponible" value={kwh(storage.available_kwh)} /><Metric label="Temps de recharge" value={unit(storage.recharge_time_h, 'h')} /></div>
-          <div className="metrics"><Metric label="Cycles de charge" value={storage.charge_cycles?.toLocaleString('fr-FR') ?? '—'} /><Metric label="Durée de vie" value={unit(storage.lifetime_years, 'ans')} /><Metric label="Coût d’installation" value={unit(storage.installation_cost, 'TND')} /></div>
-          <section className="related"><h3>Sources qui le remplissent (stockeDans)</h3>{storage.sources.length === 0 ? <p className="muted">Aucune source reliée.</p> : <div className="related-grid">{storage.sources.map((item) => <article key={item.id}><span>{shortKind(item.kind.split(', ')[0])}</span><strong>{item.name}</strong><small className="muted">{unit(item.power_kw, 'kW')}</small></article>)}</div>}</section>
-          <section className="related"><h3>Bâtiments alimentés (alimente)</h3>{storage.buildings.length === 0 ? <p className="muted">Aucun bâtiment alimenté.</p> : <div className="related-grid">{storage.buildings.map((item) => <article key={item.id}><span>{shortKind(item.kind.split(', ')[0])}</span><strong>{item.name}</strong>{item.inferred_with_storage && <small className="inferred">Déduit : Bâtiment avec stockage</small>}</article>)}</div>}</section>
-          <section className="related"><h3>Classes déduites par le raisonneur</h3><div className="related-grid">{storage.inferred_classes.map((item) => <article key={item}><span>Inférence OWL</span><strong>{shortKind(item)}</strong></article>)}</div></section>
+          <div className="actions"><button type="button" className="button" onClick={() => startEdit(storage)}>Modifier</button><button type="button" className="button danger" onClick={() => deleteStorage(storage)}>Supprimer</button></div>
+          <div className="gauge"><span>Niveau de charge</span><ChargeBar value={storage.charge_percent} large /></div>
+          <Facts items={[
+            ['Capacité', kwh(storage.capacity_kwh)],
+            ['Énergie disponible', kwh(storage.available_kwh)],
+            ['Temps de recharge', withUnit(storage.recharge_time_h, 'h')],
+            ['Cycles de charge', fr(storage.charge_cycles)],
+            ['Durée de vie', withUnit(storage.lifetime_years, 'ans')],
+            ['Coût d’installation', withUnit(storage.installation_cost, 'TND')],
+          ]} />
+          <Section title="Sources qui le remplissent" count={storage.sources.length} note="propriété stockeDans">
+            {storage.sources.length === 0 ? <p className="muted">Aucune source reliée.</p> : <DataTable compact>
+              <thead><tr><th>Nom</th><th>Type</th><th className="num">Puissance</th></tr></thead>
+              <tbody>{storage.sources.map((item) => <tr key={item.id}><td className="strong">{item.name}</td><td><span className="badge">{shortKind(item.kind.split(', ')[0])}</span></td><td className="num nowrap">{withUnit(item.power_kw, 'kW')}</td></tr>)}</tbody>
+            </DataTable>}
+          </Section>
+          <Section title="Bâtiments alimentés" count={storage.buildings.length} note="propriété alimente">
+            {storage.buildings.length === 0 ? <p className="muted">Aucun bâtiment alimenté.</p> : <DataTable compact>
+              <thead><tr><th>Nom</th><th>Type</th><th>Inférence</th></tr></thead>
+              <tbody>{storage.buildings.map((item) => <tr key={item.id}><td className="strong">{item.name}</td><td><span className="badge">{shortKind(item.kind.split(', ')[0])}</span></td><td>{item.inferred_with_storage ? <span className="badge inferred">Bâtiment avec stockage</span> : '—'}</td></tr>)}</tbody>
+            </DataTable>}
+          </Section>
+          <Section title="Classes déduites par le raisonneur"><Badges values={storage.inferred_classes} label={shortKind} /></Section>
         </>}
-        {form && <form className="storage-form" onSubmit={saveStorage}>
-          <p className="eyebrow">{storage ? 'MODIFIER LE STOCKAGE' : 'NOUVEAU STOCKAGE'}</p>
-          <label>Nom<input required maxLength={120} value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></label>
-          <label>Type<select value={form.kind} onChange={(event) => setForm({ ...form, kind: event.target.value })}>{Object.entries(KINDS).map(([value, label]) => <option key={value} value={value}>{value === 'Batterie' ? 'Batterie (autre technologie)' : label}</option>)}</select></label>
+
+        {form && <form className="actor-form" onSubmit={saveStorage}>
+          <h2>{storage ? `Modifier ${storage.name}` : 'Nouveau stockage'}</h2>
+          <Field label="Nom"><input required maxLength={120} value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></Field>
+          <Field label="Type"><select value={form.kind} onChange={(event) => setForm({ ...form, kind: event.target.value })}>{Object.entries(KINDS).map(([value, label]) => <option key={value} value={value}>{value === 'Batterie' ? 'Batterie (autre technologie)' : label}</option>)}</select></Field>
           <div className="form-row">
-            <label>Capacité (kWh)<input type="number" required min="0.01" step="0.01" value={form.capacity} onChange={(event) => setForm({ ...form, capacity: event.target.value })} /></label>
-            <label>Charge (%)<input type="number" required min="0" max="100" step="0.1" value={form.charge} onChange={(event) => setForm({ ...form, charge: event.target.value })} /></label>
+            <Field label="Capacité (kWh)"><input type="number" required min="0.01" step="0.01" value={form.capacity} onChange={(event) => setForm({ ...form, capacity: event.target.value })} /></Field>
+            <Field label="Charge (%)"><input type="number" required min="0" max="100" step="0.1" value={form.charge} onChange={(event) => setForm({ ...form, charge: event.target.value })} /></Field>
           </div>
           <div className="form-row">
-            <label>Temps de recharge (h)<input type="number" min="0" step="0.01" value={form.recharge_time} onChange={(event) => setForm({ ...form, recharge_time: event.target.value })} /></label>
-            {BATTERIES.includes(form.kind) && <label>Cycles de charge<input type="number" min="0" step="1" value={form.cycles} onChange={(event) => setForm({ ...form, cycles: event.target.value })} /></label>}
+            <Field label="Temps de recharge (h)"><input type="number" min="0" step="0.01" value={form.recharge_time} onChange={(event) => setForm({ ...form, recharge_time: event.target.value })} /></Field>
+            {BATTERIES.includes(form.kind) && <Field label="Cycles de charge"><input type="number" min="0" step="1" value={form.cycles} onChange={(event) => setForm({ ...form, cycles: event.target.value })} /></Field>}
           </div>
           <div className="form-row">
-            <label>Durée de vie (ans)<input type="number" min="0" step="1" value={form.lifetime} onChange={(event) => setForm({ ...form, lifetime: event.target.value })} /></label>
-            <label>Année d’installation<input type="number" min="1900" max="2100" step="1" value={form.installation_year} onChange={(event) => setForm({ ...form, installation_year: event.target.value })} /></label>
+            <Field label="Durée de vie (ans)"><input type="number" min="0" step="1" value={form.lifetime} onChange={(event) => setForm({ ...form, lifetime: event.target.value })} /></Field>
+            <Field label="Année d’installation"><input type="number" min="1900" max="2100" step="1" value={form.installation_year} onChange={(event) => setForm({ ...form, installation_year: event.target.value })} /></Field>
           </div>
-          <label>Coût d’installation (TND)<input type="number" min="0" step="0.01" value={form.installation_cost} onChange={(event) => setForm({ ...form, installation_cost: event.target.value })} /></label>
+          <Field label="Coût d’installation (TND)"><input type="number" min="0" step="0.01" value={form.installation_cost} onChange={(event) => setForm({ ...form, installation_cost: event.target.value })} /></Field>
           <fieldset><legend>Sources qui le remplissent</legend><div className="checks">{options.sources.map((item) => <label key={item.id} className="check"><input type="checkbox" checked={form.sources.includes(item.id)} onChange={() => toggle('sources', item.id)} />{item.name}</label>)}</div></fieldset>
           <fieldset><legend>Bâtiments alimentés</legend><div className="checks">{options.buildings.map((item) => <label key={item.id} className="check"><input type="checkbox" checked={form.buildings.includes(item.id)} onChange={() => toggle('buildings', item.id)} />{item.name}</label>)}</div></fieldset>
-          <div className="actions"><button type="submit" className="primary">Enregistrer</button><button type="button" onClick={() => setForm(null)}>Annuler</button></div>
+          <div className="actions"><button type="submit" className="button primary">Enregistrer</button><button type="button" className="button" onClick={() => storage ? setForm(null) : closeDetail()}>Annuler</button></div>
         </form>}
-      </section>
-    </section>}
-  </main>
+      </aside>}
+    </div>
+  </>
 }
 
-function Metric({ label, value }: { label: string; value: string }) { return <div className="metric"><small>{label}</small><strong>{value}</strong></div> }
+function Tile({ label, value }: { label: string; value: string }) {
+  return <div className="tile"><p className="card-label">{label}</p><p className="tile-value">{value}</p></div>
+}
 
 function ChargeBar({ value, large = false }: { value: number | null; large?: boolean }) {
-  return <span className={`charge-bar ${chargeLevel(value)}${large ? ' large' : ''}`} aria-label={value == null ? 'Charge inconnue' : `Charge ${value} %`}><i style={{ width: `${value ?? 0}%` }} /></span>
+  return <span className={`charge ${chargeLevel(value)}${large ? ' large' : ''}`}>
+    <span className="charge-track" aria-hidden="true"><i style={{ width: `${value ?? 0}%` }} /></span>
+    <span className="charge-value">{value == null ? '—' : `${fr(value)} %`}</span>
+  </span>
 }

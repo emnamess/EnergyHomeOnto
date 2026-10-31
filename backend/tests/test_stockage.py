@@ -18,7 +18,9 @@ def ids(response) -> list[str]:
 
 def test_storage_list_sorted_by_capacity():
     storages = client.get(API).json()
-    assert [s["id"] for s in storages] == ["stockageH2_1", "batterie3", "batterie1", "batterie2", "superCondo1"]
+    assert len(storages) == 11
+    assert [s["id"] for s in storages][:5] == ["stockageH2_2", "stockageH2_1", "batterie7", "batterie3", "batterie1"]
+    assert storages[-1]["id"] == "superCondo1"
     battery = next(s for s in storages if s["id"] == "batterie1")
     # Le type affiché est la classe la plus précise de la hiérarchie Stockage (pas EquipementEntretenu...).
     assert battery["kind"] == "BatterieLithium"
@@ -29,24 +31,24 @@ def test_storage_list_sorted_by_capacity():
 
 def test_kind_filter_uses_subclass_inference():
     # batterie3 est déclarée BatteriePlomb : le raisonneur la classe aussi Batterie.
-    assert sorted(ids(client.get(API, params={"kind": "Batterie"}))) == ["batterie1", "batterie2", "batterie3"]
-    assert ids(client.get(API, params={"kind": "BatteriePlomb"})) == ["batterie3"]
-    assert ids(client.get(API, params={"kind": "SuperCondensateur"})) == ["superCondo1"]
+    assert sorted(ids(client.get(API, params={"kind": "Batterie"}))) == ["batterie1", "batterie2", "batterie3", "batterie4", "batterie5", "batterie6", "batterie7"]
+    assert ids(client.get(API, params={"kind": "BatteriePlomb"})) == ["batterie7", "batterie3"]
+    assert ids(client.get(API, params={"kind": "SuperCondensateur"})) == ["superCondo2", "superCondo1"]
 
 
 def test_numeric_text_and_charge_filters():
-    assert ids(client.get(API, params={"min_capacity": 50})) == ["stockageH2_1", "batterie3", "batterie1"]
-    assert ids(client.get(API, params={"charge": "faible"})) == ["stockageH2_1"]
-    assert ids(client.get(API, params={"charge": "moyen"})) == ["batterie2"]
-    assert ids(client.get(API, params={"charge": "eleve"})) == ["batterie3", "batterie1", "superCondo1"]
+    assert ids(client.get(API, params={"min_capacity": 50})) == ["stockageH2_2", "stockageH2_1", "batterie7", "batterie3", "batterie1"]
+    assert ids(client.get(API, params={"charge": "faible"})) == ["stockageH2_2", "stockageH2_1"]
+    assert sorted(ids(client.get(API, params={"charge": "moyen"}))) == ["batterie2", "batterie4", "batterie5"]
+    assert sorted(ids(client.get(API, params={"charge": "eleve"}))) == ["batterie1", "batterie3", "batterie6", "batterie7", "superCondo1", "superCondo2"]
     assert ids(client.get(API, params={"q": "condo"})) == ["superCondo1"]
 
 
 def test_indicators_aggregate_by_kind():
     body = client.get(f"{API}/indicateurs").json()
-    assert (body["count"], body["total_capacity_kwh"], body["available_kwh"]) == (5, 368.5, 223.78)
+    assert (body["count"], body["total_capacity_kwh"], body["available_kwh"]) == (11, 1065.0, 537.17)
     lithium = next(item for item in body["by_kind"] if item["kind"] == "BatterieLithium")
-    assert (lithium["count"], lithium["total_capacity_kwh"]) == (2, 63.5)
+    assert (lithium["count"], lithium["total_capacity_kwh"]) == (5, 102.0)
 
 
 def test_storage_detail_uses_reasoning():
@@ -61,7 +63,7 @@ def test_storage_detail_uses_reasoning():
 
 def test_options_for_the_form():
     body = client.get(f"{API}/options").json()
-    assert len(body["sources"]) == 9
+    assert len(body["sources"]) == 23
     assert {"Maison1", "ecole1", "hopital1"} <= {b["id"] for b in body["buildings"]}
 
 
@@ -154,16 +156,16 @@ def test_storage_input_validation(payload):
 @pytest.mark.parametrize(
     ("question", "expected"),
     [
-        ("supercondensateurs", ["superCondo1"]),
-        ("accumulateurs", ["batterie1", "batterie2", "batterie3"]),
-        ("batteries au plomb", ["batterie3"]),
-        ("stockages avec un niveau de charge inférieur à 50", ["stockageH2_1"]),
-        ("batteries avec plus de 2000 cycles", ["batterie1", "batterie2"]),
-        ("stockages avec une durée de recharge inférieure à 1", ["superCondo1"]),
-        ("stockages rechargés par un panneau solaire", ["batterie1", "batterie2"]),
-        ("bâtiments avec batterie", ["Maison5", "ecole1", "hopital1"]),
-        ("bâtiments secourus", ["Maison5", "ecole1", "hopital1", "mairie1", "usine1"]),
-        ("quel est le stockage avec la plus grande capacité", ["stockageH2_1"]),
+        ("supercondensateurs", ["superCondo1", "superCondo2"]),
+        ("accumulateurs", ["batterie1", "batterie2", "batterie3", "batterie4", "batterie5", "batterie6", "batterie7"]),
+        ("batteries au plomb", ["batterie3", "batterie7"]),
+        ("stockages avec un niveau de charge inférieur à 50", ["stockageH2_1", "stockageH2_2"]),
+        ("batteries avec plus de 2000 cycles", ["batterie1", "batterie2", "batterie4", "batterie5", "batterie6"]),
+        ("stockages avec une durée de recharge inférieure à 1", ["superCondo1", "superCondo2"]),
+        ("stockages rechargés par un panneau solaire", ["batterie1", "batterie2", "batterie4", "batterie5", "batterie6", "stockageH2_2"]),
+        ("bâtiments avec batterie", ["Maison12", "Maison15", "Maison5", "Maison6", "ecole1", "hopital1", "hopital2"]),
+        ("bâtiments secourus", ["Maison12", "Maison15", "Maison5", "Maison6", "ecole1", "hopital1", "hopital2", "mairie1", "supermarche2", "usine1", "usine2"]),
+        ("quel est le stockage avec la plus grande capacité", ["stockageH2_2"]),
     ],
 )
 def test_search_storage(question, expected):
