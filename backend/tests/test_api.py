@@ -144,6 +144,7 @@ def test_actor_input_validation():
         ("la batterie avec la plus grande capacité", ["batterie7"]),
         ("quel est le panneau solaire le plus puissant", ["panneausolaire12"]),
         ("lignes souterraines", ["ligne2", "ligneBT1", "ligneBT2", "ligneMT1", "ligneMT2", "ligneMT3", "ligneMT4"]),
+        ("villas de Sarra", ["Maison2", "Maison5"]),
     ],
 )
 def test_search(question, expected):

@@ -19,10 +19,13 @@ LIAISONS = {"de", "d", "du", "des", "la", "le", "l", "au", "aux", "a", "en"}
 
 # Formes supplémentaires que le découpage des identifiants ne produit pas.
 SYNONYMES = {
-    "Maison": ["logement", "habitation"],
+    "Maison": ["logement", "habitation", "villa", "pavillon", "demeure"],
     "MaisonAutonome": ["autonome"],
     "MaisonIntelligente": ["intelligente"],
-    "Batiment": ["edifice"],
+    "Batiment": ["edifice", "structure", "immeuble"],
+    "BatimentPublic": ["public"],
+    "BatimentEconome": ["econome"],
+    "GrosConsommateur": ["gros consommateur", "energivore"],
     "BatimentIndustriel": ["usine"],
     "BatimentCommercial": ["commerce", "supermarche"],
     "PanneauSolaire": ["panneau", "panneau photovoltaique", "photovoltaique"],
