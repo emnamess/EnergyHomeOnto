@@ -4,6 +4,7 @@ import BuildingsPage from './features/batiments/BuildingsPage'
 import MaintenancePage from './features/maintenance/MaintenancePage'
 import StockagePage from './features/stockage/StockagePage'
 import ProductionPage from './features/production/ProductionPage'
+import ReseauPage from './features/reseau/ReseauPage'
 import IntelligentSearchPage from './shared/recherche-intelligente/IntelligentSearchPage'
 import DashboardPage from './shared/tableau-de-bord/DashboardPage'
 import { Layout } from './shared/Layout'
@@ -33,6 +34,7 @@ export default function App() {
   if (route === '#/batiments') return <Layout current={route}><BuildingsPage /></Layout>
   if (route === '#/stockage') return <Layout current={route}><StockagePage key={params.get('batiment')} initialBuilding={params.get('batiment') ?? undefined} /></Layout>
   if (route === '#/production') return <Layout current={route}><ProductionPage key={params.get('batiment')} initialBuilding={params.get('batiment') ?? undefined} /></Layout>
+  if (route === '#/reseau') return <Layout current={route}><ReseauPage /></Layout>
   if (route === '#/maintenance') return <Layout current={route}><MaintenancePage key={params.get('equipement')} initialEquipment={params.get('equipement') ?? undefined} /></Layout>
   return <Layout current="#/tableau-de-bord"><DashboardPage /></Layout>
 }
