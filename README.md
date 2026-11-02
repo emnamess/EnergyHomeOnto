@@ -65,13 +65,13 @@ ce que le raisonneur a déduit, scénario de démonstration) ; la barre latéral
 | Interfaces front et back | React (`frontend/`) + FastAPI (`backend/`) |
 | Communication front ↔ back | API REST JSON, proxy Vite `/api` → port 8000 |
 | SPARQL : lecture | `SELECT` dans chaque `queries.py` |
-| SPARQL : CRUD | `INSERT DATA`, `DELETE … INSERT … WHERE`, `DELETE WHERE` (feature 3 : stockages, feature 5 : acteurs, feature 6 : interventions) |
+| SPARQL : CRUD | `INSERT DATA`, `DELETE … INSERT … WHERE`, `DELETE WHERE` (feature 1 : bâtiments, feature 2 : sources d’énergie, feature 3 : stockages, feature 5 : acteurs, feature 6 : interventions) |
 | SPARQL : filtrage et recherche | `FILTER(CONTAINS(...))`, `VALUES`, filtres numériques générés par la recherche |
 | Module NLP question → SPARQL | `backend/app/shared/recherche/` avec spaCy (voir § 5) |
 
-**État des features** : la feature 3 (stockage), la feature 5 (territoires et acteurs), la feature 6
-(maintenance et cycle de vie des équipements) et la recherche intelligente sont terminées. Les features 1, 2 et 4 sont à développer par leurs
-responsables en suivant le § 6.
+**État des features** : les features 1 (bâtiments), 2 (production), 3 (stockage), 5 (territoires et
+acteurs), 6 (maintenance) et la recherche intelligente sont terminées. La feature 4 (réseau) est à
+développer par son responsable en suivant le § 6.
 
 ---
 
@@ -88,7 +88,8 @@ bâtiments publics et anticiper l’usure des équipements. Le tableau de bord a
 | 2. Analyser | Recherche intelligente | « bâtiments publics sans stockage » : spaCy → SPARQL retrouve les mêmes bâtiments |
 | 3. Agir | Stockage (bouton « Traiter ») | Créer une batterie pour l’école : le raisonneur la classe `BatimentAvecStockage`, l’alerte disparaît |
 | 4. Entretenir | Maintenance (bouton « Traiter ») | Planifier une intervention préventive : l’équipement devient `EquipementEntretenu`, l’alerte disparaît |
-| 5. Bilan | Tableau de bord | Le compteur d’alertes baisse ; les maisons énergivores restent pour la feature Production à venir |
+| 5. Équiper | Production (bouton « Traiter ») | Installer un panneau solaire sur une maison énergivore : le raisonneur la classe `MaisonAutonome`, l’alerte disparaît |
+| 6. Bilan | Tableau de bord | Le compteur d’alertes a baissé à chaque action, sans règle codée à la main |
 
 Le test `backend/tests/test_scenario.py` vérifie ce scénario de bout en bout.
 **Pour répéter la démonstration**, arrêter le backend, supprimer `data/journal-crud.rq`
@@ -119,6 +120,7 @@ backend/app/
   features/territoires_acteurs/  exemple complet de feature (lecture, filtres, CRUD)
   features/stockage/           feature 3 : stockages, indicateurs, sources et bâtiments alimentés
   features/maintenance/        feature 6 : cycle de vie des équipements et interventions
+  features/production/         feature 2 : sources d’énergie, indicateurs, bâtiments alimentés et stockages rechargés
   features/<feature>/          à remplir par chaque membre
 backend/tests/                 tests pytest de l’API
 frontend/src/
@@ -129,6 +131,7 @@ frontend/src/
   features/territoires-acteurs/   exemple complet de page
   features/stockage/              page Stockage (feature 3)
   features/maintenance/           page Maintenance (feature 6)
+  features/production/            page Production (feature 2)
 ```
 
 **Points importants**

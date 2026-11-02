@@ -42,8 +42,18 @@ def test_actions_resolve_alerts_through_reasoning():
     assert intervention.status_code == 201
     assert alert_items("fin-de-vie") == []
 
+    # Étape 5 : un panneau solaire possédé par la maison -> MaisonAutonome est déduit.
+    panel = client.post("/api/production/sources", json={
+        "name": "Toiture solaire – Appartement Lafayette", "kind": "PanneauSolaire", "power": 4,
+        "owner": "Maison16", "buildings": ["Maison16"],
+    })
+    assert panel.status_code == 201
+    assert alert_items("maisons-energivores") == ["Maison11", "Maison10"]
+
     # Remise à l'état initial pour les autres tests.
+    client.delete(f"/api/production/sources/{panel.json()['id']}")
     client.delete(f"/api/maintenance/interventions/{intervention.json()['id']}")
     client.delete(f"/api/stockages/{storage.json()['id']}")
     assert sorted(alert_items("batiments-non-secourus")) == ["ecole2", "mairie2"]
     assert alert_items("fin-de-vie") == ["batterie7"]
+    assert alert_items("maisons-energivores") == ["Maison16", "Maison11", "Maison10"]

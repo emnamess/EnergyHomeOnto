@@ -22,7 +22,7 @@ const SEVERITY: Record<Alert['severity'], string> = { critique: 'Critique', atte
 const EMPTY: Record<string, string> = {
   'batiments-non-secourus': 'Tous les bâtiments publics sont secourus par un stockage.',
   'fin-de-vie': 'Tous les équipements en fin de vie ont un entretien préventif.',
-  'maisons-energivores': 'Aucune maison énergivore non autonome.',
+  'maisons-energivores': 'Toutes les maisons énergivores sont équipées d’un panneau solaire.',
 }
 
 const fr = (value: number) => value.toLocaleString('fr-FR')
@@ -57,7 +57,8 @@ export default function DashboardPage() {
     { title: 'Analyser en français', text: 'Posez la question « bâtiments publics sans stockage » : spaCy la traduit en SPARQL et retrouve les mêmes bâtiments.', href: search('bâtiments publics sans stockage'), action: 'Poser la question' },
     { title: 'Agir sur le stockage', text: `Créez une batterie de secours${firstName('batiments-non-secourus') ? ` pour « ${firstName('batiments-non-secourus')} »` : ''} : le raisonneur classe le bâtiment « avec stockage » et l’alerte disparaît.`, href: firstAction('batiments-non-secourus', '#/stockage'), action: 'Créer la batterie' },
     { title: 'Planifier la maintenance', text: `Planifiez une intervention préventive${firstName('fin-de-vie') ? ` sur « ${firstName('fin-de-vie')} »` : ''} : l’équipement devient « entretenu » par déduction.`, href: firstAction('fin-de-vie', '#/maintenance'), action: 'Planifier' },
-    { title: 'Faire le bilan', text: 'Revenez ici : les alertes traitées ont disparu. Les maisons énergivores restent pour la future feature Production.', href: '', action: 'Revoir les alertes' },
+    { title: 'Équiper une maison', text: `Installez un panneau solaire${firstName('maisons-energivores') ? ` sur « ${firstName('maisons-energivores')} »` : ''} : MaisonAutonome ≡ Maison ⊓ ∃possede.PanneauSolaire, la maison sort de l’alerte.`, href: firstAction('maisons-energivores', '#/production'), action: 'Installer le panneau' },
+    { title: 'Faire le bilan', text: 'Revenez ici : le compteur d’alertes a baissé à chaque action, sans aucune règle codée à la main.', href: '', action: 'Revoir les alertes' },
   ]
   const scrollToAlerts = () => document.getElementById('alertes')?.scrollIntoView({ behavior: 'smooth' })
 
