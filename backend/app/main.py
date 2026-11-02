@@ -11,6 +11,7 @@ from app.features.territoires_acteurs.router import router as territories_actors
 from app.features.maintenance.router import router as maintenance_router
 from app.features.stockage.router import router as storage_router
 from app.features.batiments.router import router as batiments_router
+from app.features.production.router import router as production_router
 from app.features.reseau.router import router as network_router
 
 
@@ -30,6 +31,7 @@ app.include_router(territories_actors_router, prefix="/api")
 app.include_router(maintenance_router, prefix="/api")
 app.include_router(storage_router, prefix="/api")
 app.include_router(batiments_router, prefix="/api")
+app.include_router(production_router, prefix="/api")
 app.include_router(network_router, prefix="/api")
 
 

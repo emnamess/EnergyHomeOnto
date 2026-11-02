@@ -116,11 +116,11 @@ def alerts() -> list[Alert]:
                              action=f"#/maintenance?equipement={local_name(r['e'])}") for r in ageing],
         ),
         Alert(
-            id="maisons-energivores", severity="info",
+            id="maisons-energivores", severity="attention",
             title="Maisons énergivores non autonomes",
-            rule="Maison ⊓ ¬MaisonAutonome, classe énergétique E à G — à transmettre à l’équipe Production (feature à venir)",
-            items=[AlertItem(id=local_name(r["m"]), name=_label(r, "m"), detail=f"classe {r['classe']} · {float(r['conso']):g} kWh", action=None)
-                   for r in energy_hungry],
+            rule="Maison ⊓ ¬MaisonAutonome, classe E à G — MaisonAutonome ≡ Maison ⊓ ∃possede.PanneauSolaire",
+            items=[AlertItem(id=local_name(r["m"]), name=_label(r, "m"), detail=f"classe {r['classe']} · {float(r['conso']):g} kWh",
+                             action=f"#/production?batiment={local_name(r['m'])}") for r in energy_hungry],
         ),
     ]
 

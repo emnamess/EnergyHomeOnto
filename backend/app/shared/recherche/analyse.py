@@ -21,8 +21,8 @@ SUPERLATIF_BAS = {"petit", "petite", "faible", "bas", "basse", "minimum", "min"}
 OPERATEURS = (
     (r"\bau moins\b|\bminimum\b|>=|≥|superieure?s? ou egale?s?", ">="),
     (r"\bau plus\b|\bmaximum\b|<=|≤|inferieure?s? ou egale?s?", "<="),
-    (r"\bsuperieure?s?\b|\bplus de\b|\bplus que\b|\bdepass|\bau dessus\b|>", ">"),
-    (r"\binferieure?s?\b|\bmoins de\b|\bmoins que\b|\ben dessous\b|<", "<"),
+    (r"\bsuperieure?s?\b|\bplus de\b|\bplus que\b|\bdepass|\bau dessus\b|\bapres\b|>", ">"),
+    (r"\binferieure?s?\b|\bmoins de\b|\bmoins que\b|\ben dessous\b|\bavant\b|<", "<"),
 )
 
 
@@ -163,7 +163,11 @@ def analyser(question: str, voc: Vocabulaire) -> Analyse:
             analyse.comparaisons[index] = comparaison
             continue
         mots = {cle(t) for t in avant} | {cle(t) for t in doc[mention.debut:mention.fin]} | {cle(t) for t in apres[:3]}
-        if "plus" in mots and mots & SUPERLATIF_HAUT or mots & {"maximum", "max"}:
+        # « … produit le plus », « … consomme le moins » : superlatif placé juste après la propriété.
+        suite = [cle(t) for t in apres[:2]]
+        if suite[:1] in (["le"], ["la"]) and suite[1:] in (["plus"], ["moins"]):
+            analyse.superlatifs[index] = "DESC" if suite[1] == "plus" else "ASC"
+        elif "plus" in mots and mots & SUPERLATIF_HAUT or mots & {"maximum", "max"}:
             analyse.superlatifs[index] = "DESC"
         elif ("plus" in mots and mots & SUPERLATIF_BAS) or "moins" in mots or mots & {"minimum", "min"}:
             analyse.superlatifs[index] = "ASC"
