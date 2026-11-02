@@ -17,7 +17,7 @@ export const SECTIONS: Array<{ title: string; routes: Route[] }> = [
       { hash: '#/batiments', label: 'Bâtiments', icon: '⌂', ready: true },
       { hash: '#/production', label: 'Production', icon: '☀', ready: false },
       { hash: '#/stockage', label: 'Stockage', icon: '▤', ready: true },
-      { hash: '#/reseau', label: 'Réseau', icon: '⌁', ready: false },
+      { hash: '#/reseau', label: 'Réseau', icon: '⌁', ready: true },
       { hash: '#/territoires-acteurs', label: 'Territoires & acteurs', icon: '◎', ready: true },
       { hash: '#/maintenance', label: 'Maintenance', icon: '⚙', ready: true },
     ],
