@@ -34,6 +34,8 @@ PRIORITE = [
     "estGerePar", "gere", "stockeDans", "relie", "estProprietaireDe", "transmetEnergieA",
 ]
 
+NETWORK_LINE_KINDS = {"LigneElectrique", "LigneHauteTension", "LigneMoyenneTension", "LigneBasseTension", "LigneSouterraine"}
+
 
 @dataclass(frozen=True)
 class InterpretedQuery:
@@ -65,6 +67,13 @@ def _relation(voc: Vocabulaire, source: set[str], cible: set[str], indices: list
         domaine, portee = voc.domaines.get(p, set()), voc.portees.get(p, set())
         if not domaine and not portee and p not in indices:
             return False
+        # Une propriété sans portée ne permet pas de déduire le sens ni la classe
+        # de l'objet cible. On conserve ce cas uniquement pour une relation
+        # explicitement citée, et seulement si son domaine correspond.
+        if not portee:
+            return p in indices and bool(domaine) and any(voc.compatible(c, domaine) for c in de)
+        if not domaine:
+            return any(voc.compatible(c, portee) for c in vers)
         return any(voc.compatible(c, domaine) for c in de) and any(voc.compatible(c, portee) for c in vers)
 
     for p in dict.fromkeys(p for p in indices + PRIORITE + sorted(voc.relations) if p in voc.relations):
@@ -72,6 +81,20 @@ def _relation(voc: Vocabulaire, source: set[str], cible: set[str], indices: list
             return p, True
         if convient(p, cible, source):
             return p, False
+    return None
+
+
+def _cible_reseau(analyse: Analyse) -> tuple[int, str] | None:
+    """Restreint les demandes génériques réseau aux vraies classes réseau de l'ontologie."""
+    for index, mention in enumerate(analyse.mentions):
+        if mention.terme.nature != "classe":
+            continue
+        iri = mention.terme.iri
+        if iri in NETWORK_LINE_KINDS | {"PosteTransformation", "CompteurIntelligent", "EquipementReseau"}:
+            return index, iri
+        if iri in {"SourceEnergie", "Stockage", "Batiment"}:
+            # « équipements du réseau » doit viser EquipementReseau, non toutes les sources/stockages.
+            continue
     return None
 
 
@@ -119,9 +142,10 @@ def interpret(question: str) -> InterpretedQuery:
     analyse = analyser(question, voc)
     mentions = analyse.mentions
 
-    cible_index = next((i for i, m in enumerate(mentions) if m.terme.nature == "classe"), None)
+    target_network = _cible_reseau(analyse)
+    cible_index = target_network[0] if target_network else next((i for i, m in enumerate(mentions) if m.terme.nature == "classe"), None)
     if cible_index is not None:
-        cible = mentions[cible_index].terme.iri
+        cible = target_network[1] if target_network else mentions[cible_index].terme.iri
     else:
         individu = next((m for m in mentions if m.terme.nature == "individu"), None)
         donnee = next((m for m in mentions if m.terme.nature == "donnee"), None)
@@ -145,12 +169,24 @@ def interpret(question: str) -> InterpretedQuery:
         terme, negation = mention.terme, mention.negation
         prefixe = "sans " if negation else ""
 
-        if terme.nature == "classe" and voc.sous_classe(terme.iri, cible):
+        # Indicateur booléen dédié aux lignes. C’est une DataProperty de domaine LigneElectrique.
+        if target_network and cible in NETWORK_LINE_KINDS and terme.iri == "LigneSouterraine":
+            requete.motifs.append(_contrainte("?x :estSouterraine true .", negation))
+            requete.clauses.append(f"{prefixe}souterraine")
+            continue
+
+        relation_indices = _indices(analyse, ancre, mention) if terme.nature in ("classe", "individu") else []
+        if terme.nature == "classe" and voc.sous_classe(terme.iri, cible) and not relation_indices:
             requete.motifs.append(_contrainte(f"?x a :{terme.iri} .", negation))
             requete.clauses.append(f"{prefixe}de type :{terme.iri}")
         elif terme.nature in ("classe", "individu"):
             classes = {terme.iri} if terme.nature == "classe" else voc.classes_de(terme.iri)
-            relation = _relation(voc, {cible}, classes, _indices(analyse, ancre, mention))
+            relation = _relation(voc, {cible}, classes, relation_indices)
+            # `relie` a un domaine LigneElectrique et aucune portée. Si l'utilisateur
+            # formule explicitement « relié/connecté », les assertions existantes sont
+            # interrogeables sans inventer un rdfs:range.
+            if relation is None and target_network and "relie" in relation_indices and cible in NETWORK_LINE_KINDS:
+                relation = ("relie", True)
             if relation is None:
                 raise ValueError(f"Aucune propriété de l'ontologie ne relie :{cible} et « {mention.texte} ».")
             propriete, direct = relation
@@ -168,6 +204,10 @@ def interpret(question: str) -> InterpretedQuery:
             domaine = voc.domaines_donnees.get(terme.iri, set())
             sujet = next((v for v, c in reversed(variables) if voc.compatible(c, domaine)), "?x")
             _donnee(requete, analyse, index, terme.iri, sujet)
+
+        elif target_network and terme.iri == "estSouterraine":
+            requete.motifs.append(_contrainte("?x :estSouterraine true .", negation))
+            requete.clauses.append(f"{prefixe}souterraine")
 
     corps = "\n".join(f"  {motif}" for motif in requete.motifs)
     if analyse.comptage:
